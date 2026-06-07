@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.CLAUD }}
           protocol: ftps            # FTPS explícito (porta 21)
           port: 21
-          server-dir: public_html/  # conta 'claude' loga na home; site fica em public_html
+          server-dir: ./            # a conta FTP 'claude' deve ter o diretório = public_html
           # NÃO mexe em jinkei/ e cgi-bin/ (não estão no repo)
           exclude: |
             **/.git*
