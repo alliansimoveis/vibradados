@@ -439,12 +439,10 @@ ul, ol { list-style: none; }
    ============================================================ */
 .footer { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto;
   padding: clamp(50px,7vw,80px) var(--gutter) 50px; border-top: 1px solid var(--hair-soft); }
-.footer__top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
-  padding-bottom: 40px; }
-.footer__brand { display: flex; align-items: center; gap: 11px; font-family: var(--font-display);
-  font-weight: 600; font-size: 1.5rem; }
-.footer__brand i { color: var(--magenta); font-style: normal; }
-.footer__tag { font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); }
+.footer__top { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;
+  padding-bottom: 44px; }
+.footer__brand { display: inline-flex; }
+.footer__logo { height: clamp(60px, 8vw, 82px); width: auto; display: block; }
 .footer__bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
   padding-top: 28px; border-top: 1px solid var(--hair-soft); font-size: .85rem; color: var(--faint); }
 
