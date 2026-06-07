@@ -445,7 +445,7 @@ ul, ol { list-style: none; }
 .footer__top { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;
   padding-bottom: 44px; }
 .footer__brand { display: inline-flex; }
-.footer__logo { height: clamp(60px, 8vw, 82px); width: auto; display: block; }
+.footer__logo { height: clamp(120px, 16vw, 164px); width: auto; display: block; }
 .footer__bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
   padding-top: 28px; border-top: 1px solid var(--hair-soft); font-size: .85rem; color: var(--faint); }
 
