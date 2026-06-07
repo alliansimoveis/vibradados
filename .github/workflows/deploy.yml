@@ -1,0 +1,38 @@
+name: Deploy para cPanel (FTP)
+
+# Sobe o site para o public_html do cPanel a cada push na main.
+# Requer 3 secrets no repo (Settings -> Secrets and variables -> Actions):
+#   FTP_SERVER    -> host de FTP (ex: vibradados.com.br ou 177.70.4.10)
+#   FTP_USERNAME  -> usuário de FTP (ex: vibradadoscombr)
+#   FTP_PASSWORD  -> senha do FTP
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps            # se der erro de TLS, troque para: ftp
+          port: 21
+          server-dir: public_html/  # raiz do site no cPanel
+          # NÃO mexe em jinkei/ e cgi-bin/ (não estão no repo)
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            README.md
+            CNAME
+            .nojekyll
+            .gitignore
+            assets/logo-vibra-marketing.png
