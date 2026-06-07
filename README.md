@@ -13,8 +13,9 @@ styles.css        Design system, layout, animações e responsividade
 main.js           Loader, smooth scroll (Lenis), reveals (GSAP), contadores,
                   cursor custom, botões magnéticos, tilt 3D, parallax
 assets/
-  favicon.svg     Ícone (símbolo "V")
-  og.png          Imagem social (1200×630)
+  favicon.svg                Ícone (símbolo "V" em vetor)
+  og.png                     Imagem social (1200×630)
+  logo-vibra-marketing.png   Logo oficial completo (ativo da marca)
 CNAME             Domínio customizado (GitHub Pages)
 robots.txt        / sitemap.xml — SEO técnico
 ```
