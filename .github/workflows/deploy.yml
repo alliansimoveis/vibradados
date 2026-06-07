@@ -1,10 +1,8 @@
 name: Deploy para cPanel (FTP)
 
 # Sobe o site para o public_html do cPanel a cada push na main.
-# Requer 3 secrets no repo (Settings -> Secrets and variables -> Actions):
-#   FTP_SERVER    -> host de FTP (ex: vibradados.com.br ou 177.70.4.10)
-#   FTP_USERNAME  -> usuário de FTP (ex: vibradadoscombr)
-#   FTP_PASSWORD  -> senha do FTP
+# Requer APENAS 1 secret no repo (Settings -> Secrets and variables -> Actions):
+#   FTP_PASSWORD  -> senha de FTP da conta vibradadoscombr (a mesma do cPanel)
 on:
   push:
     branches: [main]
@@ -20,8 +18,8 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
+          server: vibradados.com.br
+          username: vibradadoscombr
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps            # se der erro de TLS, troque para: ftp
           port: 21
