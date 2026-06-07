@@ -19,11 +19,11 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: vibradados.com.br
-          username: claude@vibradados.com.br
+          username: vibradadoscombr
           password: ${{ secrets.CLAUD }}
           protocol: ftps            # FTPS explícito (porta 21)
           port: 21
-          server-dir: ./            # a conta FTP 'claude' deve ter o diretório = public_html
+          server-dir: public_html/
           # NÃO mexe em jinkei/ e cgi-bin/ (não estão no repo)
           exclude: |
             **/.git*
