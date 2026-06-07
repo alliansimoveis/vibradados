@@ -196,6 +196,9 @@ ul, ol { list-style: none; }
   border-bottom: 1px solid var(--hair-soft);
 }
 .nav__brand { display: flex; align-items: center; gap: 11px; }
+.nav__logo { height: clamp(44px, 5vw, 56px); width: auto; display: block;
+  transition: height .4s var(--ease); }
+.nav.is-scrolled .nav__logo { height: clamp(38px, 4vw, 46px); }
 .nav__mark { width: auto; height: 30px; display: block; }
 .nav__word { font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; letter-spacing: -.01em; }
 .nav__word i { color: var(--magenta); font-style: normal; }
