@@ -20,7 +20,7 @@ jobs:
         with:
           server: ftp.vibradados.com.br
           username: claude@vibradados.com.br
-          password: ${{ secrets.FTP_PASSWORD }}
+          password: ${{ secrets.CLAUD }}
           protocol: ftps            # FTPS explícito (porta 21)
           port: 21
           server-dir: ./            # conta de FTP 'claude' deve apontar para public_html
