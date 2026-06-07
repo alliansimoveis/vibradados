@@ -18,12 +18,12 @@ jobs:
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: vibradados.com.br
-          username: vibradadoscombr
+          server: ftp.vibradados.com.br
+          username: claude@vibradados.com.br
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps            # se der erro de TLS, troque para: ftp
+          protocol: ftps            # FTPS explícito (porta 21)
           port: 21
-          server-dir: public_html/  # raiz do site no cPanel
+          server-dir: ./            # conta de FTP 'claude' deve apontar para public_html
           # NÃO mexe em jinkei/ e cgi-bin/ (não estão no repo)
           exclude: |
             **/.git*
