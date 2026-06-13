@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0a0a">
+
+  <!-- SEO -->
+  <title>Automação de Portões Eletrônicos em Itajaí SC | Motor Deslizante Basculante</title>
+  <meta name="description" content="Especialistas em instalação e manutenção de portões eletrônicos em Itajaí, Balneário Camboriú e região. PPA, Rossi, Nice, AGL, BM. Plantão 24h. (47) 98448-3590">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://portoes.vibradados.com.br/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Automação de Portões Eletrônicos em Itajaí SC">
+  <meta property="og:description" content="Especialistas em instalação e manutenção de portões em Itajaí e região. PPA · Rossi · Nice · AGL. Plantão 24h.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portoes.vibradados.com.br/">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;0,900;1,300&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@0.441.0/dist/umd/lucide.min.js"></script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "AutoPortões Itajaí",
+    "description": "Especialistas em automação de portões eletrônicos em Itajaí e região.",
+    "telephone": "+5547984483590",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Rua Alberto Werner, 529",
+      "addressLocality": "Itajaí",
+      "addressRegion": "SC",
+      "addressCountry": "BR"
+    },
+    "areaServed": ["Itajaí","Balneário Camboriú","Camboriú","Navegantes","Itapema","Brusque","Penha","Piçarras","Porto Belo","Bombinhas","Gaspar","Tijucas"],
+    "openingHours": "Mo-Su 00:00-24:00",
+    "url": "https://portoes.vibradados.com.br"
+  }
+  </script>
+
+  <style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --red: #e84118;
+  --dark: #0a0a0a;
+  --dark2: #111111;
+  --white: #ffffff;
+  --gray: #f5f5f5;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--dark); font-family: 'Poppins', sans-serif; overflow-x: hidden; color: var(--white); }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ── TIPOGRAFIA ── */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  color: var(--red); text-transform: uppercase; margin-bottom: 16px;
+}
+.eyebrow::after { content: ''; flex: 0 0 40px; height: 1px; background: var(--red); }
+.section-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(32px, 4vw, 56px); line-height: 1;
+  letter-spacing: -2px; text-transform: uppercase;
+}
+.section-title .italic { font-weight: 300; font-style: italic; font-size: 0.78em; display: block; letter-spacing: -1px; }
+.section-title.dark { color: var(--dark); }
+.section-title.light { color: var(--white); }
+
+/* ── NAVBAR ── */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 60px;
+  transition: padding 0.4s ease, background 0.4s ease, border-color 0.4s ease;
+  border-bottom: 1px solid transparent;
+}
+.navbar.scrolled {
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: rgba(232,65,24,0.2);
+  padding: 14px 60px;
+}
+.nav-logo {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: 18px; letter-spacing: 3px; text-transform: uppercase; color: var(--white);
+}
+.nav-logo span { color: var(--red); }
+.nav-menu { display: flex; align-items: center; gap: 36px; }
+.nav-link {
+  font-size: 11px; font-weight: 500; letter-spacing: 1.5px;
+  text-transform: uppercase; color: rgba(255,255,255,0.55);
+  transition: color 0.2s; cursor: pointer;
+}
+.nav-link:hover { color: var(--white); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--red); color: var(--white);
+  padding: 10px 22px; border-radius: 2px;
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  transition: all 0.2s; cursor: pointer;
+}
+.nav-cta:hover { background: #ff4d20; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(232,65,24,0.3); }
+.nav-cta svg { width: 14px; height: 14px; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: center; overflow: hidden;
+}
+.hero-video {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(105deg, rgba(0,0,0,0.93) 0%, rgba(0,0,0,0.72) 55%, rgba(0,0,0,0.18) 100%);
+}
+.hero-diagonal {
+  position: absolute; right: 0; top: 0; bottom: 0; width: 45%; z-index: 1;
+  background: linear-gradient(to right, transparent, rgba(232,65,24,0.025));
+  clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 130px 60px 120px; max-width: 800px;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 10px; font-weight: 600; letter-spacing: 3px;
+  color: var(--red); text-transform: uppercase; margin-bottom: 28px;
+}
+.hero-tag::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--red); }
+.hero-h1 {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(48px, 6.5vw, 96px); line-height: 0.92;
+  color: var(--white); letter-spacing: -3px; text-transform: uppercase; margin-bottom: 28px;
+}
+.hero-h1 .thin {
+  font-weight: 300; font-style: italic; font-size: 0.58em;
+  display: block; letter-spacing: -1px; color: rgba(255,255,255,0.65); text-transform: none;
+}
+.hero-h1 .accent { color: var(--red); }
+.hero-sub {
+  font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.5);
+  line-height: 1.85; margin-bottom: 44px; max-width: 480px;
+}
+.hero-sub strong { color: rgba(255,255,255,0.82); font-weight: 500; }
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--red); color: var(--white);
+  padding: 17px 34px; border-radius: 2px;
+  font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+  transition: all 0.25s; position: relative; overflow: hidden;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(232,65,24,0.38); background: #ff4d20; }
+.btn-primary svg { width: 16px; height: 16px; }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 10px;
+  border: 1px solid rgba(255,255,255,0.22); color: rgba(255,255,255,0.72);
+  padding: 17px 30px; border-radius: 2px;
+  font-size: 12px; font-weight: 500; letter-spacing: 1px; cursor: pointer;
+  transition: all 0.25s;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.55); color: var(--white); }
+
+/* ── URGENCY STRIP ── */
+.urgency-strip {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+  background: rgba(5,5,5,0.94); border-top: 1px solid rgba(232,65,24,0.2);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  padding: 16px 60px;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.urgency-left { display: flex; align-items: center; gap: 14px; }
+.urgency-dot {
+  flex-shrink: 0; width: 8px; height: 8px;
+  background: var(--red); border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(232,65,24,0.5);
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(232,65,24,0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(232,65,24,0); }
+  100% { box-shadow: 0 0 0 0 rgba(232,65,24,0); }
+}
+.urgency-text { font-size: 13px; color: rgba(255,255,255,0.68); font-weight: 400; }
+.urgency-text strong { color: var(--white); font-weight: 600; }
+.urgency-btn {
+  flex-shrink: 0; display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid rgba(232,65,24,0.4); color: var(--red);
+  padding: 9px 22px; border-radius: 2px; cursor: pointer;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif; transition: all 0.2s; white-space: nowrap;
+}
+.urgency-btn:hover { background: var(--red); color: var(--white); border-color: var(--red); }
+.urgency-btn svg { width: 14px; height: 14px; }
+
+/* ── HERO ANIMATED FALLBACK (quando vídeo não carrega) ── */
+.hero-bg-fallback {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 30%, #0d0505 60%, #0a0a0a 100%);
+}
+.hero-bg-fallback::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(232,65,24,0.04) 0%, transparent 70%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 60px,
+      rgba(255,255,255,0.008) 60px,
+      rgba(255,255,255,0.008) 61px
+    );
+  animation: hero-shift 12s ease-in-out infinite alternate;
+}
+@keyframes hero-shift {
+  from { opacity: 0.6; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.03); }
+}
+
+/* ── WHATSAPP FLUTUANTE ── */
+.wpp-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 2000;
+  width: 58px; height: 58px; background: #25D366; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.45);
+  color: var(--white); animation: float-bounce 3.5s ease-in-out infinite;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.wpp-float:hover { transform: scale(1.1) translateY(-4px); box-shadow: 0 8px 32px rgba(37,211,102,0.5); animation: none; }
+@keyframes float-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ── STATS BAR ── */
+.stats-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  background: var(--dark2);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.stat-item {
+  padding: 36px 40px; border-right: 1px solid rgba(255,255,255,0.05);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: 48px; color: var(--white); line-height: 1; letter-spacing: -3px;
+}
+.stat-num span { color: var(--red); }
+.stat-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+}
+
+/* ── SERVIÇOS ── */
+.services { background: var(--white); padding: 100px 60px; }
+.services .header { margin-bottom: 64px; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: #e0e0e0;
+}
+.service-card {
+  background: var(--white); padding: 44px 36px;
+  display: flex; flex-direction: column; gap: 18px;
+  position: relative; overflow: hidden; cursor: pointer; transition: background 0.3s;
+}
+.service-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
+}
+.service-card:hover { background: #fafafa; }
+.service-card:hover::after { transform: scaleX(1); }
+.service-num {
+  font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 11px;
+  color: rgba(0,0,0,0.08); letter-spacing: 3px;
+}
+.service-icon { color: rgba(0,0,0,0.15); }
+.service-icon svg { width: 32px; height: 32px; }
+.service-name {
+  font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px;
+  color: var(--dark); line-height: 1.1; text-transform: uppercase; letter-spacing: -0.5px;
+}
+.service-desc { font-size: 13px; color: #888; font-weight: 300; line-height: 1.75; }
+.service-arrow { color: var(--red); margin-top: auto; }
+.service-arrow svg { width: 20px; height: 20px; }
+
+/* ── MARQUEE DE LOGOS ── */
+.logo-marquee-wrap {
+  background: var(--dark); overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.marquee-track {
+  display: flex; padding: 22px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03); overflow: hidden;
+}
+.marquee-track:last-child { border-bottom: none; }
+.marquee-inner {
+  display: flex; align-items: center; gap: 60px;
+  animation: marquee-left 30s linear infinite;
+  white-space: nowrap; flex-shrink: 0; padding: 0 30px;
+}
+.marquee-track:nth-child(2) .marquee-inner { animation: marquee-right 35s linear infinite; }
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.marquee-logo {
+  height: 28px; width: auto; flex-shrink: 0;
+  filter: brightness(0) invert(0.45);
+  transition: filter 0.3s, transform 0.3s;
+}
+.marquee-logo:hover { filter: brightness(0) invert(1); transform: scale(1.08); }
+.marquee-sep {
+  flex-shrink: 0; width: 1px; height: 20px;
+  background: rgba(255,255,255,0.1); display: inline-block;
+}
+
+/* ── MARCAS / MOTORES ── */
+.brands { background: var(--dark); padding: 100px 60px; }
+.brands .header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px; }
+.brands .header-sub { font-size: 12px; color: rgba(255,255,255,0.3); max-width: 200px; line-height: 1.8; text-align: right; }
+.brands-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: rgba(255,255,255,0.04); }
+.brand-card {
+  background: rgba(255,255,255,0.02); padding: 32px 24px;
+  display: flex; flex-direction: column; gap: 20px; align-items: center; text-align: center;
+  position: relative; overflow: hidden; cursor: pointer; transition: background 0.3s;
+}
+.brand-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: var(--red); transform: scaleX(0); transform-origin: center; transition: transform 0.35s ease;
+}
+.brand-card:hover { background: rgba(255,255,255,0.05); }
+.brand-card:hover::after { transform: scaleX(1); }
+.brand-motor-img {
+  width: 100%; aspect-ratio: 4/3; object-fit: contain;
+  background: rgba(255,255,255,0.03); border-radius: 2px; padding: 12px;
+}
+.brand-logo-img { height: 22px; width: auto; filter: brightness(0) invert(0.5); transition: filter 0.3s; }
+.brand-card:hover .brand-logo-img { filter: brightness(0) invert(1); }
+.brand-specs { font-size: 10px; color: rgba(255,255,255,0.28); line-height: 1.8; letter-spacing: 0.3px; }
+.brand-name-fallback {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 14px;
+  color: rgba(255,255,255,0.45); letter-spacing: 2px; text-transform: uppercase;
+}
+
+/* ── POR QUE NÓS ── */
+.why-us { background: var(--gray); padding: 100px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+.why-left p { font-size: 15px; color: #666; line-height: 1.85; font-weight: 300; margin: 24px 0 36px; }
+.why-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--dark); color: var(--white);
+  padding: 15px 30px; border-radius: 2px;
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.25s;
+}
+.why-cta:hover { background: var(--red); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,65,24,0.25); }
+.why-cta svg { width: 14px; height: 14px; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #ddd; }
+.why-item {
+  background: var(--white); padding: 36px 30px;
+  transition: background 0.3s;
+}
+.why-item:hover { background: var(--dark); }
+.why-item:hover .why-title { color: var(--white); }
+.why-item:hover .why-text { color: rgba(255,255,255,0.45); }
+.why-item:hover .why-icon-wrap { color: var(--red); }
+.why-icon-wrap { color: rgba(0,0,0,0.18); margin-bottom: 18px; transition: color 0.3s; }
+.why-icon-wrap svg { width: 28px; height: 28px; }
+.why-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px;
+  color: var(--dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;
+  transition: color 0.3s;
+}
+.why-text { font-size: 12px; color: #999; line-height: 1.75; transition: color 0.3s; }
+
+/* ── PORTFÓLIO ── */
+.portfolio { background: var(--dark); padding: 100px 60px; }
+.portfolio .header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; }
+.portfolio-link {
+  font-size: 11px; color: var(--red); letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 700; cursor: pointer; transition: opacity 0.2s;
+}
+.portfolio-link:hover { opacity: 0.7; }
+.portfolio-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 220px 220px; gap: 4px;
+}
+.portfolio-item {
+  background: #1a1a1a; position: relative; overflow: hidden; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.portfolio-item:first-child { grid-row: span 2; }
+.portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.portfolio-item:hover img { transform: scale(1.05); }
+.portfolio-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  opacity: 0; transition: opacity 0.3s;
+  display: flex; align-items: flex-end; padding: 20px 18px;
+}
+.portfolio-item:hover .portfolio-overlay { opacity: 1; }
+.portfolio-overlay-label {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12px;
+  color: var(--white); text-transform: uppercase; letter-spacing: 1px;
+}
+.portfolio-placeholder {
+  width: 100%; height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  border: 1px dashed rgba(255,255,255,0.08);
+}
+.portfolio-placeholder span { font-size: 11px; color: rgba(255,255,255,0.15); letter-spacing: 2px; text-transform: uppercase; }
+
+/* ── DEPOIMENTOS ── */
+.testimonials { background: var(--white); padding: 100px 60px; }
+.test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+.test-card {
+  padding: 36px; background: #f8f8f8; border-radius: 2px;
+  position: relative; overflow: hidden; transition: background 0.35s;
+}
+.test-card:hover { background: var(--dark); }
+.test-card:hover .test-text { color: rgba(255,255,255,0.55); }
+.test-card:hover .test-name { color: var(--white); }
+.test-card:hover .test-city { color: rgba(255,255,255,0.28); }
+.test-card::before {
+  content: '\201C'; font-size: 100px; color: rgba(232,65,24,0.07);
+  font-family: Georgia, serif; position: absolute; top: -16px; left: 16px;
+  line-height: 1; pointer-events: none; transition: color 0.35s;
+}
+.test-card:hover::before { color: rgba(232,65,24,0.12); }
+.test-stars { color: var(--red); font-size: 13px; letter-spacing: 3px; margin-bottom: 18px; }
+.test-text { font-size: 13px; color: #555; line-height: 1.85; font-weight: 300; margin-bottom: 22px; font-style: italic; transition: color 0.35s; }
+.test-divider { width: 28px; height: 1px; background: var(--red); margin-bottom: 14px; }
+.test-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--dark); transition: color 0.35s; }
+.test-city { font-size: 11px; color: #bbb; margin-top: 3px; transition: color 0.35s; }
+
+/* ── COBERTURA ── */
+.coverage { background: var(--gray); padding: 100px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+.cities-wrap { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.city-tag {
+  border: 1px solid #ccc; padding: 9px 20px; border-radius: 2px;
+  font-size: 12px; color: #555; font-weight: 500; cursor: default;
+  transition: all 0.2s;
+}
+.city-tag:hover { border-color: var(--red); color: var(--red); }
+.coverage-visual {
+  background: var(--dark); border-radius: 4px; min-height: 320px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
+  position: relative; overflow: hidden;
+}
+.coverage-visual::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(232,65,24,0.07) 0%, transparent 70%);
+}
+.coverage-pin { color: var(--red); position: relative; }
+.coverage-pin svg { width: 48px; height: 48px; }
+.coverage-label { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 3px; text-transform: uppercase; position: relative; }
+
+/* ── CTA FINAL ── */
+.cta-final {
+  background: var(--red); padding: 100px 60px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  position: relative; overflow: hidden;
+}
+.cta-final::before {
+  content: ''; position: absolute; top: -120px; right: -120px;
+  width: 500px; height: 500px; background: rgba(255,255,255,0.04); border-radius: 50%;
+  pointer-events: none;
+}
+.cta-final-title {
+  font-family: 'Montserrat', sans-serif; font-weight: 900;
+  font-size: clamp(36px, 4.5vw, 60px); color: var(--white);
+  line-height: 0.95; letter-spacing: -2.5px; text-transform: uppercase; position: relative;
+}
+.cta-final-title .thin { font-weight: 300; font-style: italic; font-size: 0.62em; display: block; letter-spacing: -1px; margin-bottom: 6px; }
+.cta-right { display: flex; flex-direction: column; gap: 16px; position: relative; }
+.btn-wpp {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  background: var(--white); color: var(--dark);
+  padding: 20px 36px; border-radius: 2px;
+  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: all 0.28s;
+}
+.btn-wpp:hover { background: var(--dark); color: var(--white); transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,0.25); }
+.btn-wpp svg { width: 18px; height: 18px; }
+.btn-phone {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  border: 2px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.85);
+  padding: 18px 36px; border-radius: 2px;
+  font-size: 14px; font-weight: 400; cursor: pointer; transition: all 0.25s;
+}
+.btn-phone:hover { border-color: var(--white); color: var(--white); }
+.btn-phone svg { width: 16px; height: 16px; }
+.cta-info { text-align: center; font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 1px; }
+
+/* ── FOOTER ── */
+.footer { background: #050505; padding: 70px 60px 36px; border-top: 1px solid rgba(255,255,255,0.04); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 80px; margin-bottom: 56px; }
+.footer-logo { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 3px; text-transform: uppercase; color: var(--white); margin-bottom: 16px; }
+.footer-logo span { color: var(--red); }
+.footer-tagline { font-size: 13px; color: rgba(255,255,255,0.28); line-height: 1.85; max-width: 280px; }
+.footer-col-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 3.5px; text-transform: uppercase; margin-bottom: 22px; }
+.footer-links { display: flex; flex-direction: column; gap: 12px; }
+.footer-link { font-size: 13px; color: rgba(255,255,255,0.3); cursor: pointer; transition: color 0.2s; }
+.footer-link:hover { color: var(--white); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 28px; display: flex; justify-content: space-between; align-items: center; }
+.footer-copy { font-size: 11px; color: rgba(255,255,255,0.18); }
+.footer-address { font-size: 11px; color: rgba(255,255,255,0.18); text-align: right; }
+  </style>
+</head>
+<body>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a href="https://wa.me/5547984483590" target="_blank" rel="noopener" class="wpp-float" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo"><span>AUTO</span>PORTÕES</div>
+  <div class="nav-menu">
+    <a href="#servicos" class="nav-link">Serviços</a>
+    <a href="#portfolio" class="nav-link">Portfólio</a>
+    <a href="#marcas" class="nav-link">Marcas</a>
+    <a href="#regioes" class="nav-link">Regiões</a>
+    <a href="https://wa.me/5547984483590" target="_blank" class="nav-cta">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-fallback" id="hero-bg-fallback"></div>
+  <video class="hero-video" autoplay muted loop playsinline id="hero-video">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-diagonal"></div>
+  <div class="hero-content" id="hero-content">
+    <div class="hero-tag">Itajaí · Balneário Camboriú · Região</div>
+    <h1 class="hero-h1">
+      <span class="thin">Automação de portões</span>
+      COM GARANTIA<br><span class="accent">REAL.</span>
+    </h1>
+    <p class="hero-sub">
+      <strong>PPA · Rossi · Nice · AGL · BM Portões.</strong><br>
+      Instalação profissional, nota fiscal garantida e atendimento de urgência quando você mais precisar.
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5547984483590" target="_blank" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Orçamento Grátis
+      </a>
+      <a href="#servicos" class="btn-outline">Ver Serviços</a>
+    </div>
+  </div>
+  <div class="urgency-strip">
+    <div class="urgency-left">
+      <div class="urgency-dot"></div>
+      <span class="urgency-text">Portão travado? <strong>Atendemos agora</strong> — plantão 24h inclusive fins de semana</span>
+    </div>
+    <a href="tel:+5547984483590" class="urgency-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.22 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.28-.54a2 2 0 012.11.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Ligar Agora
+    </a>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">24<span>h</span></div>
+    <div class="stat-label">Plantão urgência</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num" style="font-size:32px;letter-spacing:-1px;">NF</div>
+    <div class="stat-label">Nota Fiscal garantida</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">12<span>+</span></div>
+    <div class="stat-label">Cidades atendidas</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5<span>★</span></div>
+    <div class="stat-label">Avaliação Google</div>
+  </div>
+</div>
+
+<!-- SERVIÇOS -->
+<section class="services" id="servicos">
+  <div class="header">
+    <div class="eyebrow">Nossos Serviços</div>
+    <h2 class="section-title dark">Solução completa<br><span class="italic">para todo tipo de portão</span></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon"><i data-lucide="move-horizontal"></i></div>
+      <div class="service-name">Portão<br>Deslizante</div>
+      <div class="service-desc">Motor silencioso e potente para portões que deslizam lateralmente. Ideal para garagens sem espaço frontal.</div>
+      <div class="service-arrow"><i data-lucide="arrow-right"></i></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon"><i data-lucide="chevrons-up"></i></div>
+      <div class="service-name">Portão<br>Basculante</div>
+      <div class="service-desc">Abre para cima com total praticidade. A solução mais comum para residências em Itajaí e região.</div>
+      <div class="service-arrow"><i data-lucide="arrow-right"></i></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon"><i data-lucide="door-open"></i></div>
+      <div class="service-name">Portão<br>De Abrir</div>
+      <div class="service-desc">Uma ou duas folhas com automação inteligente. Elegante para entradas sociais e residenciais.</div>
+      <div class="service-arrow"><i data-lucide="arrow-right"></i></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon"><i data-lucide="smartphone"></i></div>
+      <div class="service-name">Portão<br>Inteligente</div>
+      <div class="service-desc">Controle total pelo celular, de qualquer lugar. App, Wi-Fi, tag e biometria integrados.</div>
+      <div class="service-arrow"><i data-lucide="arrow-right"></i></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-icon"><i data-lucide="building-2"></i></div>
+      <div class="service-name">Portão<br>Seccional</div>
+      <div class="service-desc">Para condomínios e alto fluxo. Alta durabilidade, controle de acesso e manutenção preventiva.</div>
+      <div class="service-arrow"><i data-lucide="arrow-right"></i></div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-icon"><i data-lucide="wrench"></i></div>
+      <div class="service-name">Manutenção<br>&amp; Reparo</div>
+      <div class="service-desc">Atendemos todas as marcas. Diagnóstico rápido, peças originais e garantia no serviço.</div>
+      <div class="service-arrow"><i data-lucide="arrow-right"></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE DE LOGOS -->
+<div class="logo-marquee-wrap">
+  <!-- Trilha 1: esquerda → direita -->
+  <div class="marquee-track">
+    <div class="marquee-inner">
+      <img src="assets/brands/logo-ppa.png" alt="PPA" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-rossi.svg" alt="Rossi" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-nice.svg" alt="Nice" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-agl.svg" alt="AGL" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-bm.webp" alt="BM Portões" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <!-- duplicado para seamless loop -->
+      <img src="assets/brands/logo-ppa.png" alt="PPA" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-rossi.svg" alt="Rossi" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-nice.svg" alt="Nice" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-agl.svg" alt="AGL" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-bm.webp" alt="BM Portões" class="marquee-logo">
+    </div>
+  </div>
+  <!-- Trilha 2: direita → esquerda -->
+  <div class="marquee-track">
+    <div class="marquee-inner">
+      <img src="assets/brands/logo-bm.webp" alt="BM Portões" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-agl.svg" alt="AGL" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-nice.svg" alt="Nice" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-rossi.svg" alt="Rossi" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-ppa.png" alt="PPA" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <!-- duplicado -->
+      <img src="assets/brands/logo-bm.webp" alt="BM Portões" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-agl.svg" alt="AGL" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-nice.svg" alt="Nice" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-rossi.svg" alt="Rossi" class="marquee-logo">
+      <span class="marquee-sep"></span>
+      <img src="assets/brands/logo-ppa.png" alt="PPA" class="marquee-logo">
+    </div>
+  </div>
+</div>
+
+<!-- MARCAS / MOTORES -->
+<section class="brands" id="marcas">
+  <div class="header">
+    <div>
+      <div class="eyebrow">Marcas Oficiais</div>
+      <h2 class="section-title light">As melhores<br><span class="italic">marcas do mundo</span></h2>
+    </div>
+    <div class="header-sub">Trabalhamos com as líderes mundiais em automação de portões.</div>
+  </div>
+  <div class="brands-grid">
+    <div class="brand-card">
+      <img src="assets/brands/motor-ppa.jpg" alt="Motor PPA" class="brand-motor-img" onerror="this.style.display='none'">
+      <img src="assets/brands/logo-ppa.png" alt="PPA" class="brand-logo-img" onerror="this.outerHTML='<div class=brand-name-fallback>PPA</div>'">
+      <div class="brand-specs">Motor AC · Até 500kg<br>Central Wi-Fi nativa</div>
+    </div>
+    <div class="brand-card">
+      <img src="assets/brands/motor-rossi.jpg" alt="Motor Rossi" class="brand-motor-img" onerror="this.style.display='none'">
+      <img src="assets/brands/logo-rossi.svg" alt="Rossi" class="brand-logo-img" onerror="this.outerHTML='<div class=brand-name-fallback>ROSSI</div>'">
+      <div class="brand-specs">Deslizante e basculante<br>Garantia de fábrica</div>
+    </div>
+    <div class="brand-card">
+      <img src="assets/brands/motor-nice.jpg" alt="Motor Nice" class="brand-motor-img" onerror="this.style.display='none'">
+      <img src="assets/brands/logo-nice.svg" alt="Nice" class="brand-logo-img" onerror="this.outerHTML='<div class=brand-name-fallback>NICE</div>'">
+      <div class="brand-specs">Tecnologia europeia<br>Controle por app</div>
+    </div>
+    <div class="brand-card">
+      <img src="assets/brands/motor-agl.jpg" alt="Motor AGL" class="brand-motor-img" onerror="this.style.display='none'">
+      <img src="assets/brands/logo-agl.svg" alt="AGL" class="brand-logo-img" onerror="this.outerHTML='<div class=brand-name-fallback>AGL</div>'">
+      <div class="brand-specs">Alta performance<br>Produto nacional</div>
+    </div>
+    <div class="brand-card">
+      <img src="assets/brands/motor-bm.jpg" alt="Motor BM" class="brand-motor-img" onerror="this.style.display='none'">
+      <img src="assets/brands/logo-bm.webp" alt="BM Portões" class="brand-logo-img" onerror="this.outerHTML='<div class=brand-name-fallback>BM</div>'">
+      <div class="brand-specs">Robustez industrial<br>Longa durabilidade</div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE NÓS -->
+<section class="why-us">
+  <div class="why-left">
+    <div class="eyebrow">Por Que Nós</div>
+    <h2 class="section-title dark">O especialista<br><span class="italic">que o mercado<br>não tinha</span></h2>
+    <p>Enquanto a maioria faz de tudo um pouco, somos especialistas dedicados exclusivamente em motorização de portões. Isso faz toda a diferença no diagnóstico, na instalação e no pós-venda.</p>
+    <a href="https://wa.me/5547984483590" target="_blank" class="why-cta">
+      <i data-lucide="message-circle"></i>
+      Fale com um especialista
+    </a>
+  </div>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-icon-wrap"><i data-lucide="zap"></i></div>
+      <div class="why-title">Urgência Real</div>
+      <div class="why-text">Atendimento de emergência 24h, inclusive fins de semana e feriados.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon-wrap"><i data-lucide="file-text"></i></div>
+      <div class="why-title">Nota Fiscal</div>
+      <div class="why-text">Empresa formal, CNPJ ativo. Emitimos NF em 100% dos serviços.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon-wrap"><i data-lucide="shield-check"></i></div>
+      <div class="why-title">Garantia Real</div>
+      <div class="why-text">Garantia mínima de 12 meses em peças e mão de obra instalados.</div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon-wrap"><i data-lucide="settings-2"></i></div>
+      <div class="why-title">Todas as Marcas</div>
+      <div class="why-text">Consertamos qualquer motor, independente da marca ou modelo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFÓLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="header">
+    <div>
+      <div class="eyebrow">Nosso Trabalho</div>
+      <h2 class="section-title light">Instalações<br><span class="italic">reais, resultados reais</span></h2>
+    </div>
+    <span class="portfolio-link">Ver todos →</span>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder">
+        <i data-lucide="image" style="width:32px;height:32px;color:rgba(255,255,255,0.08)"></i>
+        <span>Foto em breve</span>
+      </div>
+      <div class="portfolio-overlay"><div class="portfolio-overlay-label">Portão Deslizante — Itajaí</div></div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder">
+        <i data-lucide="image" style="width:24px;height:24px;color:rgba(255,255,255,0.08)"></i>
+        <span>Foto em breve</span>
+      </div>
+      <div class="portfolio-overlay"><div class="portfolio-overlay-label">Basculante — BC</div></div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder">
+        <i data-lucide="image" style="width:24px;height:24px;color:rgba(255,255,255,0.08)"></i>
+        <span>Foto em breve</span>
+      </div>
+      <div class="portfolio-overlay"><div class="portfolio-overlay-label">Seccional — Condomínio</div></div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder">
+        <i data-lucide="image" style="width:24px;height:24px;color:rgba(255,255,255,0.08)"></i>
+        <span>Foto em breve</span>
+      </div>
+      <div class="portfolio-overlay"><div class="portfolio-overlay-label">Inteligente — Navegantes</div></div>
+    </div>
+    <div class="portfolio-item">
+      <div class="portfolio-placeholder">
+        <i data-lucide="image" style="width:24px;height:24px;color:rgba(255,255,255,0.08)"></i>
+        <span>Foto em breve</span>
+      </div>
+      <div class="portfolio-overlay"><div class="portfolio-overlay-label">Reparo — Itapema</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<!-- ATENÇÃO: depoimentos fictícios — substituir por reviews reais do Google antes do lançamento -->
+<section class="testimonials">
+  <div class="eyebrow">Depoimentos</div>
+  <h2 class="section-title dark">O que nossos<br><span class="italic">clientes dizem</span></h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Portão travado numa sexta à noite. Ligamos e vieram em menos de 1 hora. Problema resolvido, nota fiscal na mão."</p>
+      <div class="test-divider"></div>
+      <div class="test-name">Carlos M.</div>
+      <div class="test-city">Itajaí, SC</div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Instalação impecável. Profissionais pontuais, equipamentos de qualidade e explicaram tudo sobre o funcionamento."</p>
+      <div class="test-divider"></div>
+      <div class="test-name">Ana Paula F.</div>
+      <div class="test-city">Balneário Camboriú, SC</div>
+    </div>
+    <div class="test-card">
+      <div class="test-stars">★★★★★</div>
+      <p class="test-text">"Contratei para o condomínio. Serviço sério, contrato de manutenção justo e atendimento rápido quando precisamos."</p>
+      <div class="test-divider"></div>
+      <div class="test-name">Roberto S.</div>
+      <div class="test-city">Navegantes, SC — Síndico</div>
+    </div>
+  </div>
+</section>
+
+<!-- COBERTURA -->
+<section class="coverage" id="regioes">
+  <div>
+    <div class="eyebrow">Área de Atendimento</div>
+    <h2 class="section-title dark">Atendemos<br><span class="italic">toda a região</span></h2>
+    <div class="cities-wrap">
+      <span class="city-tag">Itajaí</span>
+      <span class="city-tag">Balneário Camboriú</span>
+      <span class="city-tag">Camboriú</span>
+      <span class="city-tag">Navegantes</span>
+      <span class="city-tag">Itapema</span>
+      <span class="city-tag">Brusque</span>
+      <span class="city-tag">Penha</span>
+      <span class="city-tag">Piçarras</span>
+      <span class="city-tag">Porto Belo</span>
+      <span class="city-tag">Bombinhas</span>
+      <span class="city-tag">Gaspar</span>
+      <span class="city-tag">Tijucas</span>
+    </div>
+  </div>
+  <div class="coverage-visual">
+    <div class="coverage-pin"><i data-lucide="map-pin"></i></div>
+    <div class="coverage-label">Raio de 50 km</div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="cta-final-title">
+    <span class="thin">Pronto para ter um portão</span>
+    SEM<br>PREOCUPAÇÃO?
+  </div>
+  <div class="cta-right">
+    <a href="https://wa.me/5547984483590" target="_blank" class="btn-wpp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Orçamento Grátis no WhatsApp
+    </a>
+    <a href="tel:+5547984483590" class="btn-phone">
+      <i data-lucide="phone"></i>
+      (47) 98448-3590
+    </a>
+    <div class="cta-info">Resposta em minutos · Sem compromisso</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><span>AUTO</span>PORTÕES</div>
+      <p class="footer-tagline">Especialistas em automação de portões eletrônicos em Itajaí e região. Instalação profissional, nota fiscal garantida, atendimento de urgência.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Serviços</div>
+      <div class="footer-links">
+        <a href="#servicos" class="footer-link">Portão Deslizante</a>
+        <a href="#servicos" class="footer-link">Portão Basculante</a>
+        <a href="#servicos" class="footer-link">Portão Inteligente</a>
+        <a href="#servicos" class="footer-link">Manutenção &amp; Reparo</a>
+        <a href="#servicos" class="footer-link">Condomínios</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Contato</div>
+      <div class="footer-links">
+        <a href="tel:+5547984483590" class="footer-link">(47) 98448-3590</a>
+        <a href="https://wa.me/5547984483590" target="_blank" class="footer-link">WhatsApp</a>
+        <span class="footer-link">Rua Alberto Werner, 529</span>
+        <span class="footer-link">Itajaí, SC</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 AutoPortões Itajaí. Todos os direitos reservados.</span>
+    <span class="footer-address">Rua Alberto Werner, 529 · Itajaí, SC · (47) 98448-3590</span>
+  </div>
+</footer>
+
+<script>
+// Inicializar Lucide icons
+if (window.lucide) lucide.createIcons();
+
+// Hero video: esconde fallback quando vídeo carrega, mantém se falhar
+const heroVideo = document.getElementById('hero-video');
+const heroBg = document.getElementById('hero-bg-fallback');
+if (heroVideo) {
+  heroVideo.addEventListener('canplaythrough', () => {
+    if (heroBg) heroBg.style.display = 'none';
+  }, { once: true });
+  heroVideo.addEventListener('error', () => {
+    heroVideo.style.display = 'none';
+  }, { once: true });
+}
+
+window.addEventListener('load', () => {
+  // Lucide fallback
+  if (window.lucide) lucide.createIcons();
+
+  // ── NAVBAR scroll ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── HERO fade-in ──
+  gsap.fromTo('#hero-content',
+    { opacity: 0, y: 40 },
+    { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out', delay: 0.35 }
+  );
+
+  // ── STATS ──
+  gsap.from('.stat-item', {
+    scrollTrigger: { trigger: '.stats-bar', start: 'top 85%' },
+    opacity: 0, y: 30, duration: 0.7, stagger: 0.12, ease: 'power2.out',
+  });
+
+  // ── SERVIÇOS ──
+  gsap.from('.service-card', {
+    scrollTrigger: { trigger: '.services-grid', start: 'top 80%' },
+    opacity: 0, y: 40, duration: 0.65, stagger: 0.09, ease: 'power2.out',
+  });
+
+  // ── MARCAS ──
+  gsap.from('.brand-card', {
+    scrollTrigger: { trigger: '.brands-grid', start: 'top 80%' },
+    opacity: 0, y: 30, duration: 0.6, stagger: 0.1, ease: 'power2.out',
+  });
+
+  // ── WHY-US ──
+  gsap.from('.why-left', {
+    scrollTrigger: { trigger: '.why-us', start: 'top 75%' },
+    opacity: 0, x: -50, duration: 0.9, ease: 'power3.out',
+  });
+  gsap.from('.why-item', {
+    scrollTrigger: { trigger: '.why-grid', start: 'top 80%' },
+    opacity: 0, y: 30, duration: 0.6, stagger: 0.1, ease: 'power2.out',
+  });
+
+  // ── PORTFÓLIO ──
+  gsap.from('.portfolio-item', {
+    scrollTrigger: { trigger: '.portfolio-grid', start: 'top 80%' },
+    opacity: 0, scale: 0.96, duration: 0.65, stagger: 0.1, ease: 'power2.out',
+  });
+
+  // ── DEPOIMENTOS ──
+  gsap.from('.test-card', {
+    scrollTrigger: { trigger: '.test-grid', start: 'top 80%' },
+    opacity: 0, y: 30, duration: 0.65, stagger: 0.12, ease: 'power2.out',
+  });
+
+  // ── CIDADES ──
+  gsap.from('.city-tag', {
+    scrollTrigger: { trigger: '.cities-wrap', start: 'top 85%' },
+    opacity: 0, scale: 0.9, duration: 0.4, stagger: 0.04, ease: 'back.out(1.5)',
+  });
+
+  // ── CTA FINAL ──
+  gsap.from('.cta-final-title', {
+    scrollTrigger: { trigger: '.cta-final', start: 'top 75%' },
+    opacity: 0, x: -40, duration: 0.9, ease: 'power3.out',
+  });
+  gsap.from('.cta-right', {
+    scrollTrigger: { trigger: '.cta-final', start: 'top 75%' },
+    opacity: 0, x: 40, duration: 0.9, ease: 'power3.out',
+  });
+
+  // ── HEADINGS universais ──
+  gsap.utils.toArray('.eyebrow, .section-title').forEach(el => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 88%' },
+      opacity: 0, y: 20, duration: 0.7, ease: 'power2.out',
+    });
+  });
+});
+</script>
+</body>
+</html>
