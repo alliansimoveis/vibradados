@@ -180,6 +180,9 @@ ul, ol { list-style: none; }
 
 .btn--xl { padding: 20px 38px; font-size: 1.05rem; }
 
+/* CTA distribuído ao fim de cada seção */
+.section__cta { display: flex; justify-content: center; margin-top: clamp(46px, 6vw, 76px); }
+
 /* ============================================================
    NAV
    ============================================================ */
