@@ -3,6 +3,9 @@
    Estende o design system de /styles.css
    ============================================================ */
 
+/* texto .muted mais legível nesta página (sobrepõe styles.css) */
+.muted { color: rgba(245, 247, 250, 0.66); }
+
 /* ---------- Nav: link destacado para a página ---------- */
 .nav__links a.is-niche { color: var(--ink); }
 .nav__links a.is-niche::after { background: var(--grad); height: 2px; }
