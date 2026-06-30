@@ -215,6 +215,8 @@ ul, ol { list-style: none; }
 }
 .nav__links a:hover { color: var(--ink); }
 .nav__links a:hover::after { width: 100%; }
+.nav__links a.is-niche { color: var(--ink); }
+.nav__links a.is-niche::after { width: 100%; height: 2px; background: var(--grad); }
 
 /* ============================================================
    LAYOUT PRIMITIVES
