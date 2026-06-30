@@ -34,3 +34,4 @@ jobs:
             .nojekyll
             .gitignore
             assets/logo-vibra-marketing.png
+            portoes-itajai/**
