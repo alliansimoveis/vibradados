@@ -31,7 +31,7 @@
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500,400&f[]=general-sans@400,500,600&f[]=cabinet-grotesk@800,700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="/styles.css?v=6" />
-  <link rel="stylesheet" href="/imobiliario/imob.css?v=2" />
+  <link rel="stylesheet" href="/imobiliario/imob.css?v=3" />
 
   <script type="application/ld+json">
   {
@@ -226,6 +226,15 @@
         <p class="section__lead" data-reveal>Construída do zero, integrada ao CRM e conectada às plataformas de mídia. Opera sozinha — sem atualização manual de imóveis.</p>
       </header>
 
+      <div class="showcase" data-reveal>
+        <div class="showcase__glow" aria-hidden="true"></div>
+        <div class="showcase__frame">
+          <div class="showcase__bar" aria-hidden="true"><i></i><i></i><i></i><span class="showcase__url">plataforma de imóveis · busca em tempo real</span></div>
+          <img src="/imobiliario/img/site.jpg?v=1" alt="Plataforma de busca de imóveis de alto padrão construída pela Vibra" loading="lazy" width="1600" height="912" />
+        </div>
+        <p class="showcase__cap">Busca premium, sincronizada com o CRM e rastreada de ponta a ponta.</p>
+      </div>
+
       <div class="feat-grid">
         <article class="feat" data-reveal>
           <div class="feat__ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg></div>
@@ -277,6 +286,15 @@
         </div>
         <p class="section__lead" data-reveal>Gestão, inteligência e performance numa plataforma sob medida — onde cada dado vira sinal de otimização para a mídia.</p>
       </header>
+
+      <div class="showcase" data-reveal>
+        <div class="showcase__glow showcase__glow--crm" aria-hidden="true"></div>
+        <div class="showcase__frame">
+          <div class="showcase__bar" aria-hidden="true"><i></i><i></i><i></i><span class="showcase__url">CRM Vibra · Meta CAPI — Monitoramento</span></div>
+          <img src="/imobiliario/img/crm.jpg?v=1" alt="Painel do CRM Vibra monitorando o envio de eventos CONVERTED para a Meta Conversions API" loading="lazy" width="1600" height="931" />
+        </div>
+        <p class="showcase__cap">Cada negócio fechado vira sinal CONVERTED — o algoritmo aprende com quem realmente compra.</p>
+      </div>
 
       <div class="feat-grid">
         <article class="feat feat--crm" data-reveal>
@@ -439,5 +457,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
   <script src="/main.js?v=5" defer></script>
+  <script>
+    // Mockups 3D: "endireitam" conforme entram na tela (scroll-straighten)
+    window.addEventListener('load', function () {
+      if (!window.gsap || !window.ScrollTrigger) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('.showcase__frame').forEach(function (f) {
+        gsap.fromTo(f, { rotateX: 20, rotateY: -9, y: 60 }, {
+          rotateX: 3, rotateY: -2, y: 0, ease: 'none',
+          scrollTrigger: { trigger: f, start: 'top 90%', end: 'top 42%', scrub: true }
+        });
+      });
+      ScrollTrigger.refresh();
+    });
+  </script>
 </body>
 </html>
