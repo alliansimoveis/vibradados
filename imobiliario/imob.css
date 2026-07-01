@@ -5,6 +5,7 @@
 
 /* texto .muted mais legível nesta página (sobrepõe styles.css) */
 .muted { color: rgba(245, 247, 250, 0.66); }
+html { overflow-x: hidden; }
 
 /* ---------- Nav: link destacado para a página ---------- */
 .nav__links a.is-niche { color: var(--ink); }
@@ -18,10 +19,11 @@
 .imob-hero .hero__title { max-width: 19ch; }
 /* hero 2 colunas (desktop): texto à esquerda, mock do CRM à direita */
 .imob-hero__visual { display: none; }                 /* mobile inalterado: só texto */
-.imob-hero__visual .showcase__img { max-width: 100%; }
+.imob-hero__visualimg { display: block; width: 100%; height: auto; }
 @media (min-width: 921px) {
-  .imob-hero__grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: clamp(24px, 3vw, 48px); align-items: center; }
-  .imob-hero__visual { display: block; }
+  .imob-hero__grid { display: grid; grid-template-columns: 1fr .95fr; gap: clamp(12px, 1.6vw, 26px); align-items: center; }
+  .imob-hero__visual { display: block; position: relative; }
+  .imob-hero__visualimg { width: 128%; max-width: 128%; }  /* aumentado: extrapola a coluna */
   .imob-hero .hero__title { font-size: clamp(2.6rem, 5vw, 4.8rem); max-width: 15ch; }  /* reduz ~40% */
 }
 /* tablet: 4 quadros viram 2x2 pra não espremer */
