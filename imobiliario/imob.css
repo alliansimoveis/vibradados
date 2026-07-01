@@ -17,12 +17,13 @@ html { overflow-x: hidden; }
 /* ---------- HERO ---------- */
 .imob-hero { padding-bottom: clamp(60px, 9vh, 120px); }
 .imob-hero .hero__title { max-width: 19ch; }
-/* hero: mobile empilha (texto, depois mock); desktop vira 2 colunas lado a lado */
-.imob-hero__visual { display: block; margin-top: clamp(32px, 9vw, 52px); }
+/* hero: mobile = grid 1 coluna com mock reordenado pro topo; desktop = 2 colunas lado a lado */
+.imob-hero__grid { display: grid; grid-template-columns: 1fr; }
+.imob-hero__visual { display: block; order: -1; margin-bottom: clamp(28px, 7vw, 44px); }
 .imob-hero__visualimg { display: block; width: 100%; height: auto; }
 @media (min-width: 921px) {
-  .imob-hero__grid { display: grid; grid-template-columns: 1fr .95fr; gap: clamp(12px, 1.6vw, 26px); align-items: center; }
-  .imob-hero__visual { margin-top: 0; position: relative; }
+  .imob-hero__grid { grid-template-columns: 1fr .95fr; gap: clamp(12px, 1.6vw, 26px); align-items: center; }
+  .imob-hero__visual { order: 0; margin-bottom: 0; position: relative; }
   .imob-hero__visualimg { width: 128%; max-width: 128%; }  /* aumentado: extrapola a coluna */
   .imob-hero .hero__title { font-size: clamp(2.6rem, 5vw, 4.8rem); max-width: 15ch; }  /* reduz ~40% */
 }
