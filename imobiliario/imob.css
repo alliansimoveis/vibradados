@@ -83,28 +83,10 @@
 /* tema magenta para a seção CRM */
 .crm-sec .kicker::before { background: var(--magenta); }
 
-/* ---------- SHOWCASE 3D (mockups de produto em perspectiva) ---------- */
-.showcase { position: relative; perspective: 1800px; margin-top: clamp(44px, 6vw, 76px); }
-.showcase__frame {
-  position: relative; z-index: 1; max-width: 1000px; margin: 0 auto;
-  border-radius: 14px; overflow: hidden; background: var(--graphite);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 60px 120px -40px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
-  transform: rotateX(14deg) rotateY(-7deg); transform-style: preserve-3d; will-change: transform;
-}
-.showcase__bar { display: flex; align-items: center; gap: 8px; padding: 11px 16px;
-  background: rgba(255, 255, 255, 0.05); border-bottom: 1px solid var(--hair-soft); }
-.showcase__bar i { width: 11px; height: 11px; border-radius: 50%; display: block; }
-.showcase__bar i:nth-child(1) { background: #ff5f57; }
-.showcase__bar i:nth-child(2) { background: #febc2e; }
-.showcase__bar i:nth-child(3) { background: #28c840; }
-.showcase__url { margin-left: 12px; font-size: .78rem; color: var(--faint); letter-spacing: .02em; }
-.showcase__frame img { display: block; width: 100%; height: auto; }
-.showcase__glow { position: absolute; z-index: 0; left: 50%; top: 6%; width: 76%; height: 72%;
-  transform: translateX(-50%); filter: blur(72px); border-radius: 50%; pointer-events: none;
-  background: radial-gradient(ellipse, rgba(30, 217, 238, .42), rgba(224, 37, 155, .22) 52%, transparent 72%); }
-.showcase__glow--crm { background: radial-gradient(ellipse, rgba(224, 37, 155, .42), rgba(30, 217, 238, .2) 52%, transparent 72%); }
-.showcase__cap { text-align: center; margin-top: 26px; color: var(--muted); font-size: .92rem; }
+/* ---------- SHOWCASE (mockups de monitor prontos, fundo preto) ---------- */
+.showcase { margin-top: clamp(28px, 4vw, 56px); text-align: center; }
+.showcase__img { display: block; width: 100%; max-width: 1080px; height: auto; margin: 0 auto; }
+.showcase__cap { text-align: center; margin-top: 10px; color: var(--muted); font-size: .92rem; }
 
 /* ---------- LOOP de inteligência (diferencial) ---------- */
 .loop { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(40px, 6vw, 80px); align-items: center; }
@@ -162,8 +144,6 @@
   .imob-stats { grid-template-columns: 1fr; }
   .imob-hero__cards { grid-template-columns: 1fr; }
   .loop__viz { max-width: 380px; margin: 0 auto; }
-  .showcase { perspective: 1100px; }
-  .showcase__frame { transform: rotateX(8deg) rotateY(-3deg); }
 }
 @media (max-width: 560px) {
   .feat-grid { grid-template-columns: 1fr; }
