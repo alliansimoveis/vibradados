@@ -82,6 +82,30 @@
   .ad-col ol{margin:12px 12px 12px 30px;font-size:.86em}
   .ad-col .destaque-li{background:#eaf6f1;border-radius:6px;padding:4px 6px;margin-left:-6px}
   @media(max-width:760px){.canais{grid-template-columns:1fr 1fr}.antes-depois{grid-template-columns:1fr}.pos-venda{grid-template-columns:1fr}}
+  /* ---- plano de comissionamento (paleta própria: roxo/dourado) ---- */
+  #comissao h2.sec{color:#4a2472;border-bottom-color:#7c3aed}
+  #comissao h3{color:#5b2d86}
+  #comissao table th{background:#4a2472}
+  #comissao td.gold{background:#fdf6e3 !important;font-weight:700}
+  .faixas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}
+  .faixa{border-radius:12px;overflow:hidden;background:#fff;border:1px solid var(--borda);text-align:center;font-family:Arial,sans-serif}
+  .faixa .cab{padding:12px;color:#fff;font-weight:700;font-size:.95em}
+  .faixa.f1 .cab{background:#8b95a5}
+  .faixa.f2 .cab{background:#7c3aed}
+  .faixa.f3 .cab{background:linear-gradient(135deg,#b07a10,#e0a72e)}
+  .faixa .corpo{padding:14px 12px}
+  .faixa .corpo .vl{font-size:1.5em;font-weight:700;color:#4a2472}
+  .faixa .corpo p{font-size:.8em;color:var(--cinza);margin:6px 0 0}
+  .box.roxo{background:#f5f0fb;border-color:#7c3aed}
+  .box.roxo h4{color:#5b2d86}
+  .box.gold{background:#fdf6e3;border-color:#b07a10}
+  .box.gold h4{color:#b07a10}
+  .barra-ganho{display:flex;align-items:center;gap:8px;font-family:Arial,sans-serif;font-size:.82em;margin:4px 0}
+  .barra-ganho .rotulo{width:130px;text-align:right;color:var(--cinza)}
+  .barra-ganho .barra{height:22px;border-radius:4px;background:#7c3aed;min-width:2px}
+  .barra-ganho.meia .barra{background:#8b95a5}
+  .barra-ganho.premio .barra{background:linear-gradient(90deg,#7c3aed 70%,#e0a72e 70%)}
+  .barra-ganho .valor{font-weight:700;color:#4a2472;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -107,6 +131,7 @@
     <li><a href="#fontes">Fontes</a></li>
     <li><a href="#jornada">Desenho: jornada do cliente (validação mês 1 → operação real)</a></li>
     <li><a href="#custos">Custos e ponto de equilíbrio (2 closers · 12 meses)</a></li>
+    <li><a href="#comissao">Plano de comissionamento dos closers</a></li>
   </ol>
 </nav>
 
@@ -431,8 +456,8 @@
 
 <!-- ============ 12. CUSTOS E PONTO DE EQUILÍBRIO ============ -->
 <section id="custos">
-  <h2 class="sec">12. Quadro de custos e ponto de equilíbrio (12 meses · 2 cenários)</h2>
-  <p>Simulações de 12 meses aplicando a regra de comissão definida (1ª mensalidade 100% do closer + 50% das mensalidades 2, 3 e 4) e os custos operacionais informados pelos sócios. Dois cenários: <b>12.1</b> — mês 1 com 50 contratos (validação) e, do mês 2 em diante, 2 closers a 60 contratos/mês cada (120 novos/mês); <b>12.2</b> — 50 no mês 1, 100/mês nos meses 2–6 e base parada (sem vendas novas) do mês 7 ao 12 <span class="tag decidido">PREMISSAS DOS SÓCIOS</span>:</p>
+  <h2 class="sec">12. Quadro de custos e ponto de equilíbrio (12 meses)</h2>
+  <p>Simulação de 12 meses aplicando a regra de comissão definida (1ª mensalidade 100% do closer + 50% das mensalidades 2, 3 e 4) e os custos operacionais informados pelos sócios: <b>mês 1 com 50 contratos (validação)</b> e, do mês 2 em diante, <b>2 closers a 60 contratos/mês cada (120 novos/mês)</b> <span class="tag decidido">PREMISSAS DOS SÓCIOS</span>:</p>
   <ul>
     <li><b>Tráfego:</b> R$ 2.000/mês</li>
     <li><b>SDR:</b> R$ 2.000 fixo + variável por meta, podendo chegar a R$ 3.500 — a simulação usa <b>R$ 3.500</b> (cenário de meta batida, a favor da segurança)</li>
@@ -466,41 +491,128 @@
     <div class="kpi"><div class="num">+R$ 194 mil</div><div class="lbl">acumulado em 12 meses · MRR final R$ 68,4 mil</div></div>
   </div>
 
-  <h3>12.2 Cenário pedido pelos sócios: 50 no mês 1 + 100/mês nos meses 2–6, depois base parada (sem vendas novas) até o mês 12</h3>
-  <p>Este cenário mostra o que a base construída no 1º semestre entrega sozinha no 2º semestre — útil para enxergar a força da recorrência e o custo real da máquina de vendas:</p>
-  <table>
-    <tr><th>Mês</th><th>Novos</th><th>Contratos ativos</th><th>Receita</th><th>Comissão do mês</th><th>Custos fixos</th><th>Custo total</th><th>Resultado do mês</th><th>Acumulado</th></tr>
-    <tr><td>1 <small>(validação)</small></td><td>50</td><td>50</td><td>R$ 2.495</td><td>R$ 2.495</td><td>R$ 6.500</td><td>R$ 8.995</td><td style="color:#b6382f">−R$ 6.500</td><td style="color:#b6382f">−R$ 6.500</td></tr>
-    <tr><td>2</td><td>100</td><td>150</td><td>R$ 7.485</td><td>R$ 6.238</td><td>R$ 6.500</td><td>R$ 12.738</td><td style="color:#b6382f">−R$ 5.253</td><td style="color:#b6382f">−R$ 11.753</td></tr>
-    <tr><td>3</td><td>100</td><td>250</td><td>R$ 12.475</td><td>R$ 8.733</td><td>R$ 6.500</td><td>R$ 15.233</td><td style="color:#b6382f">−R$ 2.758</td><td style="color:#b6382f">−R$ 14.510</td></tr>
-    <tr><td>4</td><td>100</td><td>350</td><td>R$ 17.465</td><td>R$ 11.228</td><td>R$ 6.500</td><td>R$ 17.728</td><td style="color:#b6382f">−R$ 263</td><td style="color:#b6382f">−R$ 14.773</td></tr>
-    <tr><td class="destaque">5</td><td class="destaque">100</td><td class="destaque">450</td><td class="destaque">R$ 22.455</td><td class="destaque">R$ 12.475</td><td class="destaque">R$ 6.500</td><td class="destaque">R$ 18.975</td><td class="destaque" style="color:#0e8a6d">+R$ 3.480</td><td class="destaque" style="color:#b6382f">−R$ 11.293</td></tr>
-    <tr><td>6</td><td>100</td><td>550</td><td>R$ 27.445</td><td>R$ 12.475</td><td>R$ 6.500</td><td>R$ 18.975</td><td style="color:#0e8a6d">+R$ 8.470</td><td style="color:#b6382f">−R$ 2.823</td></tr>
-    <tr><td class="destaque">7</td><td class="destaque">0</td><td class="destaque">550</td><td class="destaque">R$ 27.445</td><td class="destaque">R$ 7.485</td><td class="destaque">R$ 6.500</td><td class="destaque">R$ 13.985</td><td class="destaque" style="color:#0e8a6d">+R$ 13.460</td><td class="destaque" style="color:#0e8a6d">+R$ 10.638</td></tr>
-    <tr><td>8</td><td>0</td><td>550</td><td>R$ 27.445</td><td>R$ 4.990</td><td>R$ 6.500</td><td>R$ 11.490</td><td style="color:#0e8a6d">+R$ 15.955</td><td style="color:#0e8a6d">+R$ 26.593</td></tr>
-    <tr><td>9</td><td>0</td><td>550</td><td>R$ 27.445</td><td>R$ 2.495</td><td>R$ 6.500</td><td>R$ 8.995</td><td style="color:#0e8a6d">+R$ 18.450</td><td style="color:#0e8a6d">+R$ 45.043</td></tr>
-    <tr><td>10</td><td>0</td><td>550</td><td>R$ 27.445</td><td>R$ 0</td><td>R$ 6.500</td><td>R$ 6.500</td><td style="color:#0e8a6d">+R$ 20.945</td><td style="color:#0e8a6d">+R$ 65.988</td></tr>
-    <tr><td>11</td><td>0</td><td>550</td><td>R$ 27.445</td><td>R$ 0</td><td>R$ 6.500</td><td>R$ 6.500</td><td style="color:#0e8a6d">+R$ 20.945</td><td style="color:#0e8a6d">+R$ 86.933</td></tr>
-    <tr><td>12</td><td>0</td><td>550</td><td>R$ 27.445</td><td>R$ 0</td><td>R$ 6.500</td><td>R$ 6.500</td><td style="color:#0e8a6d">+R$ 20.945</td><td style="color:#0e8a6d">+R$ 107.878</td></tr>
-  </table>
-  <p class="fonte">Custos fixos mantidos em R$ 6.500/mês por prudência mesmo sem vendas novas nos meses 7–12; na prática, tráfego e variável de SDR poderiam ser cortados (~R$ 3,5–5,5 mil/mês a menos), elevando o resultado do 2º semestre. Sem churn: os 550 contratos seguem dentro da fidelidade de 12 meses até o fim do quadro.</p>
-  <div class="kpis">
-    <div class="kpi"><div class="num">550 ativos</div><div class="lbl">base construída em 6 meses · MRR de R$ 27,4 mil</div></div>
-    <div class="kpi"><div class="num">Mês 5</div><div class="lbl">primeiro mês no azul (+R$ 3.480)</div></div>
-    <div class="kpi"><div class="num">−R$ 14.773</div><div class="lbl">pico do investimento (final do mês 4)</div></div>
-    <div class="kpi"><div class="num">Mês 7</div><div class="lbl">payback completo do investimento</div></div>
-    <div class="kpi"><div class="num">+R$ 20.945/mês</div><div class="lbl">resultado recorrente da base parada (meses 10–12, sem comissões)</div></div>
-    <div class="kpi"><div class="num">+R$ 108 mil</div><div class="lbl">acumulado em 12 meses</div></div>
-  </div>
-
-  <h3>12.3 Leitura comparada</h3>
+  <h3>12.2 Leitura para os sócios</h3>
   <div class="box ok">
-    <h4>O que os dois cenários mostram</h4>
-    <p>No cenário principal (12.1), a máquina cheia precisa de <b>~R$ 14 mil de caixa</b>, fica no azul no <b>mês 4</b>, paga todo o investimento no <b>mês 6</b> e fecha o ano com <b>1.370 ativos e +R$ 194 mil acumulados</b> — os 1.000 contratos chegam no mês 9. No cenário 12.2, mesmo <b>parando de vender no mês 7</b>, a base de 550 contratos gera ~R$ 21 mil/mês líquidos no fim do ano (a comissão dos contratos antigos termina no mês 9 e a mensalidade vira quase toda margem). É a demonstração mais clara do valor da recorrência: <b>o ativo do negócio é a base, não a venda do mês</b>. Regra prática dos dois quadros: 300 ativos valida o produto, ~431 ativos paga a máquina cheia, e cada coorte de 100–120 contratos vira ~R$ 5–6 mil/mês de margem plena após o 4º mês de vida.</p>
+    <h4>O que o quadro mostra</h4>
+    <p>A máquina cheia precisa de <b>~R$ 14 mil de caixa</b> (pico no fim do mês 3), fica no azul no <b>mês 4</b>, paga todo o investimento no <b>mês 6</b> e fecha o ano com <b>1.370 ativos e +R$ 194 mil acumulados</b> — os 1.000 contratos chegam no mês 9. Regra prática: <b>300 ativos valida o produto, ~431 ativos paga a máquina cheia</b>, e cada coorte de 120 contratos vira ~R$ 6 mil/mês de margem plena após o 4º mês de vida — o ativo do negócio é a base, não a venda do mês.</p>
   </div>
   <div class="box atencao">
     <h4>Duas notas de realismo</h4>
-    <p>(1) Sem churn/inadimplência nas contas — com 5% de perda mensal, o equilíbrio do cenário principal sobe para ~470–500 ativos e o acumulado cai ~25–30%; no cenário 12.2, a base parada erodiria de 550 para ~410 ativos no mês 12 — a régua de cobrança e o pós-venda defendem esses números. (2) 120 vendas/mês exigem que os canais sem custo de mídia (base, Canal 4 e self-service) entreguem ~90–110 vendas — R$ 2.000 de tráfego cobrem só 10–30 — e 1 SDR qualificando para 2 closers nesse ritmo é o gargalo mais provável; se precisar de mídia para fechar a conta, cada R$ 1.000 extras ≈ 8–15 vendas.</p>
+    <p>(1) Sem churn/inadimplência na conta — com 5% de perda mensal, o equilíbrio sobe para ~470–500 ativos e o acumulado cai ~25–30%; a régua de cobrança e o pós-venda defendem esses números. (2) 120 vendas/mês exigem que os canais sem custo de mídia (base, Canal 4 e self-service) entreguem ~90–110 vendas — R$ 2.000 de tráfego cobrem só 10–30 — e 1 SDR qualificando para 2 closers nesse ritmo é o gargalo mais provável; se precisar de mídia para fechar a conta, cada R$ 1.000 extras ≈ 8–15 vendas.</p>
+  </div>
+</section>
+
+<!-- ============ 13. COMISSIONAMENTO ============ -->
+<section id="comissao">
+  <h2 class="sec">13. Plano de comissionamento dos closers</h2>
+  <p>Plano desenhado para levar o closer que performa a <b>R$ 10–12 mil/mês</b> sem comissionar esse valor de forma direta. A metodologia é o <b>comissionamento escalonado com acelerador retroativo</b> (na literatura de vendas: <i>tiered commission com retroactive accelerator</i>, o "gatilho de meta"): abaixo da meta a comissão vale pela metade; ao cravar os 60 contratos, a taxa cheia passa a valer <b>retroativamente, desde o 1º contrato do mês</b>. O salto no contrato nº 60 é proposital — é ele que faz o closer brigar pelos últimos contratos do mês em vez de "guardar venda" para o mês seguinte. Acima da meta não há teto: cada contrato adicional segue pagando a taxa cheia.</p>
+
+  <div class="faixas" style="grid-template-columns:repeat(2,1fr)">
+    <div class="faixa f1">
+      <div class="cab">FAIXA 1 · até 59 contratos</div>
+      <div class="corpo"><div class="vl">50% da comissão</div><p>R$ 62,38 por contrato<br>(adesão R$ 24,95 + 3× R$ 12,48)</p></div>
+    </div>
+    <div class="faixa f2">
+      <div class="cab">FAIXA 2 · 60+ · META</div>
+      <div class="corpo"><div class="vl">100% retroativo</div><p>R$ 124,75 por contrato<br>(adesão R$ 49,90 + 3× R$ 24,95)<br><b>vale desde o 1º contrato do mês</b> · sem teto acima da meta</p></div>
+    </div>
+  </div>
+
+  <h3>13.1 Tabela demonstrativa: ganho mensal por produção (em regime*)</h3>
+  <table>
+    <tr><th>Contratos no mês</th><th>Faixa</th><th>Taxa aplicada (retroativa)</th><th>GANHO TOTAL NO MÊS</th></tr>
+    <tr><td>30</td><td>1</td><td>R$ 62,38</td><td>R$ 1.871</td></tr>
+    <tr><td>40</td><td>1</td><td>R$ 62,38</td><td>R$ 2.495</td></tr>
+    <tr><td>50</td><td>1</td><td>R$ 62,38</td><td>R$ 3.119</td></tr>
+    <tr><td>59</td><td>1</td><td>R$ 62,38</td><td>R$ 3.680</td></tr>
+    <tr><td class="gold">60 ← META</td><td class="gold">2</td><td class="gold">R$ 124,75 <small>(dobra retroativa)</small></td><td class="gold">R$ 7.485 <small>(+103% vs 59)</small></td></tr>
+    <tr><td>70</td><td>2</td><td>R$ 124,75</td><td>R$ 8.733</td></tr>
+    <tr><td class="gold">80</td><td class="gold">2</td><td class="gold">R$ 124,75</td><td class="gold">R$ 9.980</td></tr>
+    <tr><td>90</td><td>2</td><td>R$ 124,75</td><td>R$ 11.228</td></tr>
+    <tr><td>100</td><td>2</td><td>R$ 124,75</td><td>R$ 12.475</td></tr>
+  </table>
+  <p class="fonte">*"Em regime" = a partir do 4º mês de produção constante, quando as parcelas de comissão dos meses anteriores se sobrepõem (o recebimento mensal passa a equivaler a contratos do mês × taxa). A faixa do mês é definida pela produção do próprio mês; as parcelas 2–4 são pagas na taxa da faixa em que o contrato foi vendido.</p>
+
+  <h3>13.2 O mesmo quadro, visual</h3>
+  <div style="background:#fff;border:1px solid var(--borda);border-radius:12px;padding:18px 20px">
+    <div class="barra-ganho meia"><span class="rotulo">30 contratos</span><div class="barra" style="width:13%"></div><span class="valor">R$ 1.871</span></div>
+    <div class="barra-ganho meia"><span class="rotulo">40 contratos</span><div class="barra" style="width:17%"></div><span class="valor">R$ 2.495</span></div>
+    <div class="barra-ganho meia"><span class="rotulo">50 contratos</span><div class="barra" style="width:22%"></div><span class="valor">R$ 3.119</span></div>
+    <div class="barra-ganho meia"><span class="rotulo">59 contratos</span><div class="barra" style="width:25%"></div><span class="valor">R$ 3.680</span></div>
+    <div class="barra-ganho"><span class="rotulo"><b>60 · META</b></span><div class="barra" style="width:60%"></div><span class="valor">R$ 7.485 — a comissão DOBRA</span></div>
+    <div class="barra-ganho"><span class="rotulo">70 contratos</span><div class="barra" style="width:70%"></div><span class="valor">R$ 8.733</span></div>
+    <div class="barra-ganho"><span class="rotulo">80 contratos</span><div class="barra" style="width:80%"></div><span class="valor">R$ 9.980</span></div>
+    <div class="barra-ganho"><span class="rotulo">90 contratos</span><div class="barra" style="width:90%"></div><span class="valor">R$ 11.228</span></div>
+    <div class="barra-ganho"><span class="rotulo">100 contratos</span><div class="barra" style="width:100%"></div><span class="valor">R$ 12.475</span></div>
+  </div>
+
+  <h3>13.3 Rampa do closer novo (produzindo 80/mês desde o início)</h3>
+  <table>
+    <tr><th>Mês de casa</th><th>O que recebe</th><th>Ganho no mês</th></tr>
+    <tr><td>Mês 1</td><td>80 adesões × R$ 49,90</td><td>R$ 3.992</td></tr>
+    <tr><td>Mês 2</td><td>adesões do mês + parcelas 50% da coorte do mês 1</td><td>R$ 5.988</td></tr>
+    <tr><td>Mês 3</td><td>adesões + parcelas de 2 coortes</td><td>R$ 7.984</td></tr>
+    <tr><td class="gold">Mês 4 em diante (regime)</td><td class="gold">adesões + parcelas de 3 coortes</td><td class="gold">R$ 9.980/mês</td></tr>
+  </table>
+  <p class="fonte">Com 100 contratos/mês, o regime chega a R$ 12.475/mês — a faixa de R$ 10–12 mil definida pelos sócios é atingida com produção de 80–100, sem nenhum custo além da comissão já aprovada.</p>
+
+  <div class="box roxo">
+    <h4>Por que esse desenho funciona (o argumento para os sócios)</h4>
+    <p>O custo por contrato nunca passa do que já foi aprovado: <b>R$ 124,75 no máximo (20,8% da receita do 1º ano do contrato)</b> — e quem produz pouco custa metade. O plano <b>se autofinancia com a performance</b>: não existe custo fixo de vendas, só custo proporcional à venda feita. O salto de +103% no contrato nº 60 concentra toda a energia do time exatamente onde a operação precisa: na meta. Vendedor abaixo de 40–50 contratos por 2–3 meses seguidos não fecha a própria conta e é caso de treinamento ou substituição — o plano também é um filtro.</p>
+  </div>
+  <div class="box gold">
+    <h4>O pitch para o recrutamento (closers vindos do Cartão de Todos)</h4>
+    <p>"Hoje você ganha R$ 1.500–2.200 vendendo um cartão de R$ 33. Aqui, batendo a meta de 60, você leva <b>R$ 7.485</b>. Com 80, <b>R$ 9.980</b>. E não tem teto: 100 contratos pagam <b>R$ 12.475 todo mês</b>." A comissão por contrato aqui é ~15 vezes a que a franquia deles paga.</p>
+  </div>
+  <div class="box info">
+    <h4>Como puxar o closer para os 80 sem prêmio em dinheiro (mantendo o plano intacto)</h4>
+    <p>O próprio plano já paga os 80 (R$ 9.980 vs R$ 7.485 — +R$ 2.495 por esforço marginal); o que falta é tornar os 80 <i>desejáveis e visíveis</i>. Alavancas de custo zero ou quase zero: <b>(1) Prioridade de leads</b> — quem fechou o mês anterior com 80+ escolhe primeiro os leads quentes do Canal 4 e da base no mês seguinte (quem vende mais recebe o funil que faz vender mais; é autofinanciado e é o incentivo mais poderoso da lista); <b>(2) Clube 80</b> — reconhecimento público mensal: painel na operação, post interno, sino/ritual de fechamento — vendedor compete por status tanto quanto por dinheiro; <b>(3) Carreira</b> — 3 meses seguidos de 80+ dão o título de closer sênior e o primeiro lugar na fila para liderar a praça nova quando a expansão vier (com override sobre o time da nova cidade), transformando os 80 no bilhete da expansão; <b>(4) Micrometas semanais</b> — 80/mês vira 20/semana no painel: quebra a meta grande em sprints e evita o desânimo do dia 20; <b>(5) Folga-prêmio</b> — quem crava 80 até o dia 28 ganha meio dia de folga no início do mês seguinte (custo operacional próximo de zero, valor percebido alto).</p>
+  </div>
+  <div class="box atencao">
+    <h4>Regras de governança do plano (para constar no contrato do closer)</h4>
+    <p>(1) A faixa é apurada pela produção do mês-calendário, zerando todo dia 1º; (2) as parcelas 2–4 da comissão só são geradas quando a mensalidade correspondente do cliente é <b>efetivamente paga</b> — inadimplência e cancelamento interrompem as parcelas restantes (proteção natural contra venda forçada); (3) contratos da página self-service, sem intervenção humana, não comissionam e não contam para a faixa; (4) plano válido para a fase dos primeiros 1.000 contratos — depois será redesenhado, conforme decisão dos sócios.</p>
+  </div>
+
+  <h3>13.4 Impacto do plano no quadro de custos: 12 meses com produção de 80/closer</h3>
+  <p>Mesma estrutura do quadro da seção 12, agora com o plano de comissionamento desta seção: <b>mês 1 com 50 contratos</b> (1 closer em validação — cai na faixa 1, meia taxa) e, do mês 2 em diante, <b>2 closers produzindo 80 cada (160 novos/mês)</b>, todos na taxa cheia retroativa. Custos fixos mantidos em R$ 6.500/mês. Sem churn/inadimplência (mesma base de comparação dos quadros anteriores):</p>
+  <table>
+    <tr><th>Mês</th><th>Novos</th><th>Ativos</th><th>Receita</th><th>Comissões*</th><th>Custos fixos</th><th>Custo total</th><th>Resultado</th><th>Acumulado</th></tr>
+    <tr><td>1 <small>(validação)</small></td><td>50</td><td>50</td><td>R$ 2.495</td><td>R$ 1.248</td><td>R$ 6.500</td><td>R$ 7.748</td><td style="color:#b6382f">−R$ 5.253</td><td style="color:#b6382f">−R$ 5.253</td></tr>
+    <tr><td>2</td><td>160</td><td>210</td><td>R$ 10.479</td><td>R$ 8.608</td><td>R$ 6.500</td><td>R$ 15.108</td><td style="color:#b6382f">−R$ 4.629</td><td style="color:#b6382f">−R$ 9.881</td></tr>
+    <tr><td>3</td><td>160</td><td>370</td><td>R$ 18.463</td><td>R$ 12.600</td><td>R$ 6.500</td><td>R$ 19.100</td><td style="color:#b6382f">−R$ 637</td><td style="color:#b6382f">−R$ 10.518</td></tr>
+    <tr><td class="gold">4</td><td class="gold">160</td><td class="gold">530</td><td class="gold">R$ 26.447</td><td class="gold">R$ 16.592</td><td class="gold">R$ 6.500</td><td class="gold">R$ 23.092</td><td class="gold" style="color:#0e8a6d">+R$ 3.355</td><td class="gold" style="color:#b6382f">−R$ 7.163</td></tr>
+    <tr><td class="gold">5</td><td class="gold">160</td><td class="gold">690</td><td class="gold">R$ 34.431</td><td class="gold">R$ 19.960</td><td class="gold">R$ 6.500</td><td class="gold">R$ 26.460</td><td class="gold" style="color:#0e8a6d">+R$ 7.971</td><td class="gold" style="color:#0e8a6d">+R$ 808</td></tr>
+    <tr><td>6</td><td>160</td><td>850</td><td>R$ 42.415</td><td>R$ 19.960</td><td>R$ 6.500</td><td>R$ 26.460</td><td style="color:#0e8a6d">+R$ 15.955</td><td style="color:#0e8a6d">+R$ 16.763</td></tr>
+    <tr><td class="gold">7</td><td class="gold">160</td><td class="gold">1.010</td><td class="gold">R$ 50.399</td><td class="gold">R$ 19.960</td><td class="gold">R$ 6.500</td><td class="gold">R$ 26.460</td><td class="gold" style="color:#0e8a6d">+R$ 23.939</td><td class="gold" style="color:#0e8a6d">+R$ 40.702</td></tr>
+    <tr><td>8</td><td>160</td><td>1.170</td><td>R$ 58.383</td><td>R$ 19.960</td><td>R$ 6.500</td><td>R$ 26.460</td><td style="color:#0e8a6d">+R$ 31.923</td><td style="color:#0e8a6d">+R$ 72.625</td></tr>
+    <tr><td>9</td><td>160</td><td>1.330</td><td>R$ 66.367</td><td>R$ 19.960</td><td>R$ 6.500</td><td>R$ 26.460</td><td style="color:#0e8a6d">+R$ 39.907</td><td style="color:#0e8a6d">+R$ 112.532</td></tr>
+    <tr><td>10</td><td>160</td><td>1.490</td><td>R$ 74.351</td><td>R$ 19.960</td><td>R$ 6.500</td><td>R$ 26.460</td><td style="color:#0e8a6d">+R$ 47.891</td><td style="color:#0e8a6d">+R$ 160.423</td></tr>
+    <tr><td>11</td><td>160</td><td>1.650</td><td>R$ 82.335</td><td>R$ 19.960</td><td>R$ 6.500</td><td>R$ 26.460</td><td style="color:#0e8a6d">+R$ 55.875</td><td style="color:#0e8a6d">+R$ 216.298</td></tr>
+    <tr><td>12</td><td>160</td><td>1.810</td><td>R$ 90.319</td><td>R$ 19.960</td><td>R$ 6.500</td><td>R$ 26.460</td><td style="color:#0e8a6d">+R$ 63.859</td><td style="color:#0e8a6d">+R$ 280.157</td></tr>
+  </table>
+  <p class="fonte">*Coorte do mês 1 comissionada na meia taxa (parcelas de R$ 12,48 até o mês 4); coortes dos meses 2+ na taxa cheia. Comissões estabilizam em R$ 19.960/mês a partir do mês 5 para 160 contratos novos — <b>R$ 124,75 por contrato, ou 20,8% da receita do 1º ano de cada contrato</b>.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="num">Mês 4</div><div class="lbl">primeiro mês no azul (+R$ 3.355), com 530 ativos</div></div>
+    <div class="kpi"><div class="num">531 ativos</div><div class="lbl">ponto de equilíbrio em regime (R$ 26.460 ÷ R$ 49,90)</div></div>
+    <div class="kpi"><div class="num">−R$ 10.518</div><div class="lbl">pico do investimento (final do mês 3) — caixa mínimo</div></div>
+    <div class="kpi"><div class="num">Mês 5</div><div class="lbl">payback completo · os 1.000 contratos são ultrapassados no mês 7 (1.010)</div></div>
+    <div class="kpi"><div class="num">R$ 90,3 mil</div><div class="lbl">MRR no mês 12, com 1.810 ativos</div></div>
+    <div class="kpi"><div class="num">+R$ 280 mil</div><div class="lbl">acumulado em 12 meses — vs +R$ 194 mil no cenário de 120/mês da seção 12</div></div>
+  </div>
+
+  <h3>13.5 Resumo para os sócios: o plano é saudável?</h3>
+  <p><b>Sim.</b> Sem o prêmio fixo, o custo de vendas ficou 100% proporcional: <b>R$ 124,75 por contrato vendido (20,8% da receita do 1º ano), e zero quando não há venda</b>. Comparando com o quadro da seção 12 (120 novos/mês), produzir 160/mês aumenta a receita e o resultado na mesma direção: o acumulado de 12 meses vai de +R$ 194 mil para <b>+R$ 280 mil</b>, o LTV/CAC fica na faixa de 5 e não existe nenhum custo que cresça sem venda correspondente. O plano se autofinancia: quem não performa custa metade; quem performa se paga com sobra.</p>
+  <div class="box info">
+    <h4>🎯 O que buscar (as metas que governam o negócio)</h4>
+    <p><b>60 contratos/closer/mês</b> — a meta oficial, que destrava a taxa cheia e paga R$ 7.485 ao closer; os 80 são o alvo de excelência puxado pelas alavancas não financeiras (quadro acima). <b>531 ativos</b> — o ponto de equilíbrio; até lá, cada mês é investimento. <b>~2.000 leads/mês</b> — 160 vendas a ~8% de conversão exigem esse volume entre base, Canal 4, tráfego e self-service; é a meta do SDR/marketing, não dos closers. <b>Renovação ≥ 60% no mês 13</b> — a meta silenciosa que decide se o ano 2 existe.</p>
+  </div>
+  <div class="box atencao">
+    <h4>👁 O que olhar com atenção</h4>
+    <p><b>(1) O caixa dos meses 1–3:</b> pico de ~R$ 10,5 mil no fim do mês 3 — reserve R$ 15–20 mil de fôlego. <b>(2) O mês 1 do closer:</b> na regra pura, 50 contratos na meia taxa pagam só R$ 1.248 — risco de perder o recrutado na entrada; considere garantia de rampa no 1º mês (ex.: mínimo de R$ 2.500–3.000) ou contar a validação como faixa 2. <b>(3) A régua de cobrança:</b> as parcelas de comissão dependem de mensalidade paga — se a inadimplência subir, os closers sentem no bolso e a pressão cai sobre a cobrança; monitorar semanalmente. <b>(4) Abastecimento do funil:</b> se os leads faltarem, o plano vira frustração — closer na faixa 1 por falta de oportunidade (não por incompetência) pede correção no funil, não no vendedor. <b>(5) Qualidade da venda:</b> meta agressiva + comissão retroativa é convite à venda forçada; o clawback natural (parcelas param se o cliente cancela) protege, mas o pós-venda dos primeiros 90 dias de cada coorte deve ser auditado.</p>
+  </div>
+  <div class="box ok">
+    <h4>🏆 O que comemorar (os marcos, na ordem em que devem chegar)</h4>
+    <p><b>Mês 1:</b> 50 contratos = produto validado. <b>Mês 3:</b> ~370 ativos e closers batendo a meta 2 meses seguidos = máquina comprovada. <b>Mês 4:</b> primeiro mês no azul = a operação se paga. <b>Mês 5:</b> payback completo do investimento. <b>Mês 7:</b> os 1.000 contratos = tese validada. <b>Mês 12:</b> 1.810 ativos, MRR de R$ 90 mil e +R$ 280 mil acumulados = negócio pronto para expandir para novas cidades — com o caixa da própria operação, como os sócios planejaram.</p>
   </div>
 </section>
 
