@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SimedPrev Premium — Estudo Atualizado (v2)</title>
+<style>
+  :root{
+    --azul:#0b3b5c; --azul2:#14547f; --verde:#0e8a6d; --vermelho:#b6382f;
+    --amarelo:#b07a10; --cinza:#5a6472; --fundo:#f6f8fa; --borda:#dde3e9; --texto:#22303c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Georgia,'Times New Roman',serif;color:var(--texto);background:var(--fundo);line-height:1.65;font-size:17px}
+  header{background:linear-gradient(135deg,#0a4a3c 0%,#0e8a6d 100%);color:#fff;padding:56px 24px 44px;text-align:center}
+  header h1{font-size:2.1em;font-weight:700;letter-spacing:.5px}
+  header p.sub{margin-top:12px;font-size:1.05em;opacity:.92;max-width:840px;margin-left:auto;margin-right:auto}
+  header p.meta{margin-top:18px;font-size:.85em;opacity:.78}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 22px 80px}
+  nav.toc{background:#fff;border:1px solid var(--borda);border-radius:10px;padding:22px 28px;margin:-30px auto 40px;max-width:960px;position:relative;box-shadow:0 4px 18px rgba(0,0,0,.07)}
+  nav.toc h2{font-size:1em;text-transform:uppercase;letter-spacing:1px;color:var(--cinza);margin-bottom:10px}
+  nav.toc ol{padding-left:22px;columns:2;column-gap:40px}
+  nav.toc li{margin:4px 0;font-size:.95em}
+  nav.toc a{color:var(--azul2);text-decoration:none}
+  nav.toc a:hover{text-decoration:underline}
+  section{margin-bottom:52px}
+  h2.sec{font-size:1.55em;color:#0a4a3c;border-bottom:3px solid #0e8a6d;padding-bottom:8px;margin-bottom:20px}
+  h3{font-size:1.15em;color:var(--azul2);margin:26px 0 10px}
+  p{margin-bottom:14px}
+  ul,ol{margin:0 0 16px 26px}
+  li{margin-bottom:6px}
+  table{width:100%;border-collapse:collapse;margin:18px 0;background:#fff;font-size:.92em}
+  th{background:#0a4a3c;color:#fff;padding:10px 12px;text-align:left}
+  td{padding:9px 12px;border:1px solid var(--borda);vertical-align:top}
+  tr:nth-child(even) td{background:#fbfcfd}
+  td.destaque{background:#eaf6f1 !important;font-weight:700}
+  .box{border-radius:10px;padding:18px 22px;margin:20px 0;border-left:6px solid}
+  .box h4{margin-bottom:8px;font-size:1.02em}
+  .box.alerta{background:#fdf3f2;border-color:var(--vermelho)}
+  .box.alerta h4{color:var(--vermelho)}
+  .box.ok{background:#f0f9f6;border-color:var(--verde)}
+  .box.ok h4{color:var(--verde)}
+  .box.atencao{background:#fdf8ee;border-color:var(--amarelo)}
+  .box.atencao h4{color:var(--amarelo)}
+  .box.info{background:#eef4fa;border-color:var(--azul2)}
+  .box.info h4{color:var(--azul2)}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:22px 0}
+  .kpi{background:#fff;border:1px solid var(--borda);border-radius:10px;padding:18px;text-align:center}
+  .kpi .num{font-size:1.7em;font-weight:700;color:#0a4a3c}
+  .kpi .lbl{font-size:.8em;color:var(--cinza);margin-top:6px;line-height:1.35}
+  .tag{display:inline-block;font-size:.72em;font-family:Arial,sans-serif;font-weight:700;padding:2px 8px;border-radius:20px;vertical-align:middle;letter-spacing:.4px}
+  .tag.fato{background:#dcefe8;color:#0e6b54}
+  .tag.est{background:#f6ecd7;color:#8a6510}
+  .tag.decidido{background:#dde9f5;color:#14547f}
+  .fonte{font-size:.8em;color:var(--cinza)}
+  .fonte a{color:var(--cinza)}
+  footer{text-align:center;color:var(--cinza);font-size:.85em;padding:30px;border-top:1px solid var(--borda)}
+  @media(max-width:640px){nav.toc ol{columns:1}}
+  /* ---- desenho da jornada ---- */
+  .canais{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0 0}
+  .canal{background:#fff;border:1px solid var(--borda);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .canal .topo{padding:12px 12px 10px;color:#fff;font-family:Arial,sans-serif;font-weight:700;font-size:.88em;text-align:center;line-height:1.3}
+  .canal.c1 .topo{background:#14547f}.canal.c2 .topo{background:#1877f2}.canal.c3 .topo{background:#b07a10}.canal.c4 .topo{background:#0e8a6d}
+  .canal .passo{padding:8px 10px;border-top:1px dashed var(--borda);font-size:.8em;text-align:center;font-family:Arial,sans-serif}
+  .canal .passo b{display:block;font-size:1.25em;color:var(--azul)}
+  .canal .passo span.tx{display:inline-block;margin-top:2px;font-size:.85em;color:var(--cinza)}
+  .canal .resultado{margin-top:auto;padding:10px;text-align:center;background:#eaf6f1;font-family:Arial,sans-serif;font-weight:700;color:#0a4a3c;border-top:2px solid #0e8a6d}
+  .seta-baixo{text-align:center;font-size:1.6em;color:#0e8a6d;line-height:1;margin:6px 0}
+  .etapa-unica{background:#fff;border:2px solid #0e8a6d;border-radius:12px;padding:16px 20px;text-align:center;font-family:Arial,sans-serif;max-width:640px;margin:0 auto}
+  .etapa-unica h4{color:#0a4a3c;font-size:1.05em;margin-bottom:4px}
+  .etapa-unica p{font-size:.85em;color:var(--cinza);margin:0}
+  .etapa-final{background:#0a4a3c;color:#fff;border-radius:12px;padding:18px 20px;text-align:center;font-family:Arial,sans-serif;max-width:640px;margin:0 auto}
+  .etapa-final .grande{font-size:1.8em;font-weight:700}
+  .etapa-final p{margin:4px 0 0;font-size:.85em;opacity:.85}
+  .pos-venda{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:760px;margin:0 auto}
+  .pos-venda div{background:#fff;border:1px solid var(--borda);border-radius:10px;padding:12px;text-align:center;font-family:Arial,sans-serif;font-size:.82em}
+  .pos-venda div b{display:block;color:#0a4a3c;margin-bottom:4px}
+  .antes-depois{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+  .ad-col{background:#fff;border-radius:10px;border:1px solid var(--borda);overflow:hidden}
+  .ad-col .cab{padding:10px;font-family:Arial,sans-serif;font-weight:700;text-align:center;color:#fff}
+  .ad-col.hoje .cab{background:var(--cinza)}
+  .ad-col.novo .cab{background:#0e8a6d}
+  .ad-col ol{margin:12px 12px 12px 30px;font-size:.86em}
+  .ad-col .destaque-li{background:#eaf6f1;border-radius:6px;padding:4px 6px;margin-left:-6px}
+  @media(max-width:760px){.canais{grid-template-columns:1fr 1fr}.antes-depois{grid-template-columns:1fr}.pos-venda{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SimedPrev Premium — Estudo Atualizado</h1>
+  <p class="sub">Versão 2 · Incorpora as decisões dos sócios: preço de R$ 99,90 → R$ 49,90 com fidelidade, cartão de benefícios multi-categoria, agendamento centralizado, check-in digital, comissão de R$ 125/contrato e meta de 1.000 contratos em 6 meses</p>
+  <p class="meta">Documento interno dos sócios (Bruna, Luciano e Mateus) · Julho/2026 · Complementa o estudo v1 (que permanece publicado)</p>
+</header>
+
+<nav class="toc">
+  <h2>Índice</h2>
+  <ol>
+    <li><a href="#resumo">Sumário executivo atualizado</a></li>
+    <li><a href="#partida">O ponto de partida real</a></li>
+    <li><a href="#mercado">Mercado (síntese)</a></li>
+    <li><a href="#precos">Comparativo de preços: onde o R$ 49,90 se encaixa</a></li>
+    <li><a href="#produto">O produto redesenhado</a></li>
+    <li><a href="#vendas">Máquina de vendas: metas, comissão e a conta dos 6 meses</a></li>
+    <li><a href="#caixa">Fluxo de caixa da operação autofinanciada</a></li>
+    <li><a href="#operacao">Operação: agendamento central e check-in digital</a></li>
+    <li><a href="#riscos">Riscos e pontos em aberto</a></li>
+    <li><a href="#fontes">Fontes</a></li>
+    <li><a href="#jornada">Desenho: jornada do cliente (validação mês 1 → operação real)</a></li>
+    <li><a href="#custos">Custos e ponto de equilíbrio (2 closers · 12 meses)</a></li>
+  </ol>
+</nav>
+
+<div class="wrap">
+
+<!-- ============ 1 ============ -->
+<section id="resumo">
+  <h2 class="sec">1. Sumário executivo atualizado</h2>
+  <p>Esta versão incorpora as definições tomadas pelos sócios após o estudo v1. As mudanças mais importantes: o preço caiu para <b>R$ 49,90/mês com fidelidade anual</b> (ancorado em R$ 99,90 sem fidelidade), o cartão deixou de ser só saúde e vira um <b>cartão de benefícios multi-categoria</b> (saúde + farmácias, academias, lojas, restaurantes, lazer e serviços), o <b>agendamento volta a ser centralizado</b> na SimedPrev (resolvendo o problema de validação apontado no v1), e o Luciano constrói o <b>check-in digital</b> internamente. A meta comercial ficou mais agressiva: <b>1.000 contratos em 6 meses</b> (~167/mês), com closers recrutados do próprio Cartão de Todos e comissão total de <b>R$ 125 por contrato</b>.</p>
+  <div class="box ok">
+    <h4>✓ O que melhorou em relação ao v1</h4>
+    <p>O redesenho ataca de frente os dois maiores problemas do estudo original. Com o preço em R$ 49,90 e benefícios de uso frequente (farmácia, academia, lojas), a família passa a ter motivo para <i>usar o cartão todo mês</i> — e não só quando adoece. E com agendamento centralizado + check-in digital, a empresa mantém visibilidade total do uso: o dado que valida a renovação, audita a rede e bloqueia o bypass. O gap de preço contra o Cartão de Todos caiu de 79% para 49% — e a pesquisa desta versão mostrou que o preço de R$ 49,90 é exatamente o praticado por players de benefícios que operam <b>sem rede física nenhuma</b> (só telemedicina). Ter rede física local a esse preço é um diferencial real.</p>
+  </div>
+  <div class="box atencao">
+    <h4>⚠ O que ficou mais apertado</h4>
+    <p>Três números pedem atenção: (1) a base real é de <b>8–10 mil cadastros</b>, não 50 mil — a migração da base, sozinha, dificilmente entrega os 1.000 contratos; a mídia paga deixa de ser complemento e vira motor principal; (2) a meta de <b>80–100 contratos/mês por closer</b> é 2 a 3 vezes o benchmark de inside sales B2C — é atingível só se o closer receber oportunidades prontas (pré-venda qualificando e agendando), não prospecção crua; (3) o desenho da comissão (R$ 124,75 pagos nos 4 primeiros meses de um contrato que fatura R$ 199,60 no período) faz a operação <b>quase empatar nos primeiros 4 meses de cada contrato</b> — o caixa da empresa nasce do 5º mês em diante, o que exige disciplina numa operação autofinanciada crescendo rápido (seção 7).</p>
+  </div>
+  <div class="kpis">
+    <div class="kpi"><div class="num">R$ 49,90</div><div class="lbl">mensalidade com fidelidade anual (âncora: R$ 99,90 sem fidelidade)</div></div>
+    <div class="kpi"><div class="num">R$ 598,80</div><div class="lbl">ticket anual por família — break-even do cliente caiu ~17% vs v1</div></div>
+    <div class="kpi"><div class="num">R$ 49.900</div><div class="lbl">receita mensal recorrente com 1.000 contratos ativos</div></div>
+    <div class="kpi"><div class="num">R$ 125</div><div class="lbl">comissão total por contrato (1ª parcela + 50% das 3 seguintes)</div></div>
+    <div class="kpi"><div class="num">167/mês</div><div class="lbl">ritmo de vendas necessário para 1.000 contratos em 6 meses</div></div>
+    <div class="kpi"><div class="num">300</div><div class="lbl">contratos = marco de validação que destrava a expansão</div></div>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="partida">
+  <h2 class="sec">2. O ponto de partida real</h2>
+  <p>Dados internos corrigidos pelos sócios <span class="tag decidido">DADO INTERNO</span>:</p>
+  <ul>
+    <li><b>Base de cadastros: 8 a 10 mil pessoas</b> na região (Itajaí, BC, Navegantes e Camboriú).</li>
+    <li><b>Faturamento atual: até R$ 8 mil/mês</b> na média dos últimos 12 meses — a operação está em baixa e perdendo clientes para a Medprev, que compete no mesmo modelo gratuito com muito mais capital e estrutura.</li>
+    <li><b>Decisão: migrar toda a base</b> para o novo modelo. Não há o que proteger no modelo antigo — a canibalização apontada no v1 deixa de ser um dilema: com R$ 8 mil/mês de faturamento, o modelo atual não é um ativo a preservar, é uma plataforma de lançamento. A empresa atual permanece 100% da Bruna e <b>não haverá cobrança de royalties/licença</b> entre as empresas.</li>
+    <li><b>Rede credenciada: nada muda para as clínicas.</b> Elas já recebem o preço de custo hoje; o assinante passa a pagar esse mesmo preço diretamente. A relação comercial com a rede segue idêntica — o que muda é apenas quem paga a diferença (ninguém: a margem de intermediação deixa de existir para o assinante e é substituída pela mensalidade).</li>
+  </ul>
+  <div class="box info">
+    <h4>Leitura estratégica</h4>
+    <p>Isso reposiciona o projeto: não é uma "segunda empresa" ao lado de um negócio saudável — é o <b>relançamento</b> do negócio em um modelo defensável. Contra a Medprev, o modelo gratuito é uma guerra de mídia que a SimedPrev não tem caixa para vencer. O modelo de assinatura muda o campo de batalha: receita recorrente, relação de longo prazo com o cliente e um clube de benefícios que a Medprev não tem. A pressa dos sócios em lançar tem fundamento — cada mês no modelo atual é um mês de erosão da base para a Medprev.</p>
+  </div>
+  <div class="box atencao">
+    <h4>Consequência prática da base menor</h4>
+    <p>Com 8–10 mil cadastros, converter 1.000 contratos só da base exigiria 10–12,5% de conversão — muito acima do que bases mornas costumam entregar. Cenário realista: <b>5% da base = 400–500 contratos</b> (metade da meta). É um excelente ponto de partida e o teste de produto mais barato que existe (disparo de WhatsApp custa centavos), mas confirma a decisão dos sócios: <b>migração da base e mídia paga precisam rodar juntas desde o dia 1</b>.</p>
+  </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="mercado">
+  <h2 class="sec">3. Mercado (síntese do v1)</h2>
+  <p>Os fundamentos de mercado do v1 permanecem válidos e favoráveis <span class="tag fato">FATO</span>:</p>
+  <ul>
+    <li><b>~542 mil habitantes</b> no núcleo Itajaí + Balneário Camboriú + Navegantes (IBGE), com crescimento de ~11% em 3 anos na região da AMFRI.</li>
+    <li><b>~350–400 mil pessoas sem plano de saúde</b> no núcleo (~120–180 mil famílias endereçáveis). A meta de 1.000 contratos é menos de 1% desse universo.</li>
+    <li>Família brasileira gasta em média <b>~R$ 364/mês com saúde</b> (POF/IBGE); na classe C/D o gasto é "do bolso", em farmácia e consultas avulsas — exatamente o gasto que o cartão reduz.</li>
+    <li>O modelo de assinatura de saúde está validado em escala: Cartão de Todos com ~R$ 6 bi/ano e 5 milhões de famílias ativas; dr.consulta com ~400 mil assinantes de cartão.</li>
+    <li>A tese dos sócios sobre o apelo emocional é consistente com o mercado: saúde é tema de <b>segurança familiar</b> — a fila do SUS é o "inimigo comum" que vende o produto, não a comparação técnica de tabelas.</li>
+  </ul>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="precos">
+  <h2 class="sec">4. Comparativo de preços: onde o R$ 49,90 se encaixa</h2>
+  <p>Pesquisa de preços realizada em julho/2026, incluindo o levantamento do "Dr. Saúde" solicitado pelos sócios. Existem várias marcas parecidas; as relevantes para comparação são o <b>dr.consulta</b> (referência nacional de assinatura), a <b>Doctor Saúde</b> (assinatura com rede credenciada, modelo mais próximo do SimedPrev Premium) e a <b>Santa Saúde</b> — descoberta desta pesquisa: um cartão de benefícios <b>sediado em Itajaí</b>, com clube de descontos multi-categoria e telemedicina, cobrando exatamente R$ 49,90 no plano família.</p>
+  <table>
+    <tr><th>Produto</th><th>Preço familiar</th><th>O que entrega</th><th>O que NÃO entrega</th></tr>
+    <tr><td>Cartão de Todos</td><td>R$ 33,40/mês + R$ 33,40 adesão + R$ 10/carteirinha dependente (12 meses de contrato)</td><td>Consultas R$ 30–40 em clínica própria (AmorSaúde), descontos em ~5.000 parceiros, farmácia, educação</td><td>Qualidade: atendimento em até 15 dias, consultas em modelo de meta/volume, exames terceirizados caros; apenas 45% dos reclamantes voltariam a contratar; reclamações locais graves na unidade Itajaí</td></tr>
+    <tr><td>dr.consulta (nacional)</td><td>R$ 29,90/mês (até 4 dependentes); online R$ 9,90; empresas R$ 34,90</td><td>Consultas a partir de R$ 39, até 30% off em exames, odonto +R$ 4,90</td><td>Sem unidades na região de Itajaí — rede própria concentrada em SP/grandes centros</td></tr>
+    <tr><td>Doctor Saúde</td><td>Familiar R$ 74,50/mês (anual: R$ 62,08/mês), até 5 pessoas, sem fidelidade</td><td>Rede credenciada declarada de 5.000+ parceiros, consultas R$ 60–90, exames até 80% off, app com carteirinha virtual</td><td>Rede concentrada fora da região; agendamento por conta do cliente direto no parceiro</td></tr>
+    <tr><td>Santa Saúde (Itajaí)</td><td>Família R$ 49,90/mês (até 4 dependentes); planos de R$ 26,90 a R$ 89,90</td><td>Telemedicina 24h, clube de descontos (farmácias, Amazon, Magalu, Cinemark), assistências residencial/funeral</td><td><b>Nenhuma rede física de clínicas e exames</b> — é telemedicina + descontos de varejo</td></tr>
+    <tr><td class="destaque">SimedPrev Premium (proposto)</td><td class="destaque">R$ 99,90/mês sem fidelidade → R$ 49,90/mês com fidelidade anual</td><td class="destaque">Rede física local de 40+ clínicas particulares a preço de custo (consultas e 800+ exames), uso ilimitado, agendamento feito pela central, + clube de benefícios multi-categoria (farmácias, academias, lojas, restaurantes, lazer)</td><td class="destaque">A construir: clube multi-categoria, check-in digital, prova social</td></tr>
+  </table>
+  <div class="box ok">
+    <h4>Leitura do posicionamento</h4>
+    <p>O R$ 49,90 encontrou um encaixe defensável: é o preço que o mercado local já aceita pagar por um cartão <b>sem rede física</b> (Santa Saúde). O SimedPrev Premium entrega, pelo mesmo preço, tudo o que a Santa Saúde entrega em conceito (clube de descontos) <b>mais</b> a rede médica física local a preço de custo — e contra o Cartão de Todos, o argumento dos sócios se sustenta: "por que pagar R$ 33 por algo ruim de usar, demorado, com consulta de linha de produção e exame caro, se por R$ 16 a mais a família é atendida pelo mesmo médico do paciente particular, agendado pela nossa central, sem fila?". A âncora de R$ 99,90 → R$ 49,90 com fidelidade dá ao closer a mecânica de oferta ("50% de desconto pelo compromisso de 1 ano") que justifica a fidelidade com contrapartida real.</p>
+  </div>
+  <p class="fonte">Nota: também existem "Doutor Saúde" (cartaodoutorsaude.com.br, taxa anual única, outra praça) e "Dr. Saúde ES" (drsaudees.com.br, sem mensalidade). Nenhum com presença relevante na região. Links na seção 10.</p>
+</section>
+
+<!-- ============ 5 ============ -->
+<section id="produto">
+  <h2 class="sec">5. O produto redesenhado</h2>
+  <h3>5.1 Definições tomadas <span class="tag decidido">DECIDIDO</span></h3>
+  <ul>
+    <li><b>Preço:</b> R$ 99,90/mês avulso; <b>R$ 49,90/mês com fidelidade anual</b> (contrapartida clara do desconto de 50%).</li>
+    <li><b>Uso ilimitado, sem exceções.</b> Nenhum limite de utilização será aplicado — é pilar da promessa da marca.</li>
+    <li><b>Cartão multi-categoria:</b> além da rede de saúde, o cartão dará desconto em farmácias, academias, lojas, restaurantes, lazer e prestadores de serviços. O credenciamento desses parceiros é esforço comercial simples (o parceiro ganha fluxo de clientes sem custo) e transforma o cartão em ferramenta de uso semanal, não anual.</li>
+    <li><b>Agendamento centralizado:</b> todo agendamento médico passa pela SimedPrev (sistema ou atendimento). Resolve na raiz a validação, mantém o dado de uso e preserva a experiência guiada que é o diferencial contra a recepção de clínica popular.</li>
+    <li><b>Check-in digital:</b> QR/token dinâmico validado no atendimento, construído internamente pelo Luciano (prazo estimado: ~1 semana).</li>
+  </ul>
+
+  <h3>5.2 A matemática do cliente com o novo desenho</h3>
+  <p>Com R$ 598,80/ano (vs R$ 718,80 no v1), o break-even só em saúde cai para <b>~12 consultas ou ~6 exames/ano</b> — ainda alto para a família saudável. É exatamente aqui que o clube multi-categoria muda o jogo: o valor deixa de depender de adoecer.</p>
+  <table>
+    <tr><th>Perfil da família (por ano)</th><th>Economia em saúde</th><th>Economia no clube (estimativa conservadora)*</th><th>Resultado vs R$ 598,80</th></tr>
+    <tr><td>2 consultas + 1 exame, usa farmácia e 1 academia</td><td>~R$ 200</td><td>~R$ 400–600</td><td style="color:#0e8a6d"><b>Empata ou ganha</b></td></tr>
+    <tr><td>4 consultas + 3 exames + clube</td><td>~R$ 500</td><td>~R$ 400–600</td><td style="color:#0e8a6d"><b>Ganha R$ 300–500</b></td></tr>
+    <tr><td>Uso intenso (crônicos) + clube</td><td>R$ 1.000+</td><td>~R$ 400–600</td><td style="color:#0e8a6d"><b>Ganha R$ 800+</b></td></tr>
+  </table>
+  <p class="fonte">*Premissa: farmácia R$ 25–40/mês de desconto efetivo (gasto médio de farmácia da classe C é o maior item de saúde do bolso — POF/IBGE) + academia/lojas/restaurantes R$ 10–15/mês. Validar com os primeiros parceiros credenciados. <span class="tag est">ESTIMATIVA</span></p>
+  <div class="box info">
+    <h4>Implicação de comunicação</h4>
+    <p>A régua de valor deve ser mensal e visível: o extrato "sua família economizou R$ X este mês" (alimentado pelo check-in digital e pelos parceiros do clube) é o produto da renovação. A promessa central de marketing: <b>"o cartão que se paga sozinho"</b> — mensurável e comprovável, cliente a cliente.</p>
+  </div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="vendas">
+  <h2 class="sec">6. Máquina de vendas: metas, comissão e a conta dos 6 meses</h2>
+
+  <h3>6.1 Definições tomadas <span class="tag decidido">DECIDIDO</span></h3>
+  <ul>
+    <li><b>Meta: 1.000 contratos em 6 meses</b> (~167/mês). Validação da operação em <b>300 contratos</b> destrava a expansão.</li>
+    <li><b>Meta por closer: 80–100 contratos/mês.</b> Recrutamento ativo de closers que já vendem Cartão de Todos, com proposta de renda muito superior.</li>
+    <li><b>Comissão (regime especial dos primeiros 1.000):</b> 1ª mensalidade 100% do closer + 50% das mensalidades 2, 3 e 4 → <b>R$ 124,75 (~R$ 125) por contrato</b>. Renovação com comissão bem menor — o foco do closer é sempre contrato novo. Após os 1.000, o regime será redesenhado.</li>
+    <li><b>Página de vendas self-service:</b> contratos fechados sem intervenção humana não pagam comissão — canal de CAC mínimo a ser testado desde o início.</li>
+    <li><b>Funil:</b> migração da base + mídia paga (Google/Meta) simultâneas, com pré-vendas qualificando e closers fechando. Premissa de mídia do Luciano: <b>lead a até R$ 5</b>.</li>
+  </ul>
+
+  <h3>6.2 O pitch de recrutamento (matemática a favor)</h3>
+  <p>O vendedor do Cartão de Todos ganha fixo de ~R$ 1.000–1.700 + variável média de ~R$ 500 (Indeed/Glassdoor) — comissão implícita de ~R$ 8–20 por adesão. No SimedPrev Premium, um closer que bata a meta de 80–100 contratos/mês constrói, a partir do 4º mês (quando as parcelas de comissão se sobrepõem), renda de <b>~R$ 10.000–12.500/mês</b> — 4 a 6 vezes o que ganha hoje. É um pitch de recrutamento fortíssimo e realista, porque a comissão de R$ 125 é ~15x a do concorrente. <span class="tag fato">Benchmark salarial: FATO</span> <span class="tag est">Projeção: depende de bater a meta</span></p>
+  <div class="box atencao">
+    <h4>Mas a meta de 80–100/mês precisa de contexto</h4>
+    <p>O benchmark de closer B2C em assinaturas é de 30–40 fechamentos/mês. 80–100 significa 4–5 vendas por dia útil — só possível se o closer <b>não prospectar</b>: ele precisa receber agenda cheia de oportunidades qualificadas pela pré-venda (ou pelo formulário da página). Aos 8% de conversão lead→venda, 100 vendas/mês exigem ~1.250 leads/mês <i>por closer</i>. A meta é atingível, mas é uma meta de <b>funil</b>, não de esforço individual: se a geração de leads falhar, o closer não tem como compensar. Recomendação: contratar pela régua de 60 contratos/mês no ramp-up (mês 1–2) e 80–100 em regime, e medir a taxa de conversão real antes de escalar o time.</p>
+  </div>
+
+  <h3>6.3 A conta dos 1.000 em 6 meses</h3>
+  <table>
+    <tr><th>Item</th><th>Premissa do Luciano (CPL R$ 5)</th><th>Benchmark de mercado (CPL R$ 12–18)</th></tr>
+    <tr><td>Vendas necessárias</td><td colspan="2">1.000 em 6 meses (~167/mês), sendo 400–500 da base (5% de 8–10 mil) + 500–600 da mídia/página</td></tr>
+    <tr><td>Leads de mídia (8% de conversão)</td><td colspan="2">~6.300–7.500 leads no semestre (~1.050–1.250/mês)</td></tr>
+    <tr><td>Investimento em mídia</td><td><b>~R$ 32–38 mil no semestre</b> (~R$ 5–6 mil/mês)</td><td>~R$ 76–135 mil no semestre (R$ 13–22 mil/mês)</td></tr>
+    <tr><td>Comissões (1.000 × R$ 124,75)</td><td colspan="2">~R$ 125 mil, pagos ao longo de 9 meses (parcelas acompanham as mensalidades 1–4 de cada contrato)</td></tr>
+    <tr><td>CAC total por contrato (mídia + comissão)</td><td><b>~R$ 160–190</b></td><td>~R$ 200–260</td></tr>
+    <tr><td>Time necessário</td><td colspan="2">2 closers (meta 80–100) + 1–2 pré-vendas + atendimento/agendamento; página self-service absorvendo o excedente sem comissão</td></tr>
+  </table>
+  <p>Nos dois cenários o CAC cabe na regra de escala: com churn de 5%/mês, o LTV é ~R$ 998 e o teto saudável de CAC é ~R$ 330. <b>Mesmo no benchmark conservador, a conta fecha</b> — o CPL de R$ 5 é o cenário de excelência (o benchmark de saúde popular no Meta é R$ 8–20; a experiência do Luciano em tráfego + oferta forte + público local podem chegar lá, mas o orçamento deve ser planejado pelo benchmark e comemorado no R$ 5). <span class="tag est">ESTIMATIVA com premissas explícitas</span></p>
+  <div class="box info">
+    <h4>Teste barato antes da escala</h4>
+    <p>A sequência de menor risco: semana 1–2, disparo de migração para a base (custo ~R$ 0,34/mensagem ≈ R$ 3,4 mil para 10 mil contatos) + página self-service no ar. O resultado desse teste calibra tudo: se a base converter bem, a meta fica fácil; se converter mal, o problema é oferta/preço — e é melhor descobrir isso por R$ 3,4 mil do que por R$ 100 mil de mídia.</p>
+  </div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section id="caixa">
+  <h2 class="sec">7. Fluxo de caixa da operação autofinanciada</h2>
+  <p>Definição dos sócios: a própria operação banca o crescimento, com pequeno investimento inicial e reinvestimento total. O desenho da comissão tem uma consequência de caixa que precisa estar clara <span class="tag est">SIMULAÇÃO</span>:</p>
+  <table>
+    <tr><th>Por contrato</th><th>Mês 1</th><th>Mês 2</th><th>Mês 3</th><th>Mês 4</th><th>Mês 5+</th></tr>
+    <tr><td>Receita</td><td>R$ 49,90</td><td>R$ 49,90</td><td>R$ 49,90</td><td>R$ 49,90</td><td>R$ 49,90</td></tr>
+    <tr><td>Comissão</td><td>−R$ 49,90</td><td>−R$ 24,95</td><td>−R$ 24,95</td><td>−R$ 24,95</td><td>—</td></tr>
+    <tr><td>Mídia (rateada, cenário R$ 5–15 de CPL)</td><td>−R$ 62 a −R$ 190</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>Caixa líquido</b></td><td style="color:#b6382f"><b>−R$ 62 a −R$ 190</b></td><td>+R$ 24,95</td><td>+R$ 24,95</td><td>+R$ 24,95</td><td style="color:#0e8a6d"><b>+R$ 49,90</b></td></tr>
+  </table>
+  <p>Ou seja: cada contrato consome caixa no mês da venda e só vira contribuição plena no mês 5. Numa operação que <i>acelera</i> (cada mês vende mais que o anterior), o consumo de caixa dos contratos novos supera a contribuição dos antigos durante toda a rampa. Simulação do semestre no cenário base (rampa 60→100→150→180→200→210 vendas/mês, CPL R$ 10, folha enxuta de pré-venda/atendimento ~R$ 8–12 mil/mês, ferramentas R$ 3 mil/mês):</p>
+  <ul>
+    <li><b>Pico de necessidade de caixa: ~R$ 60–100 mil</b>, entre os meses 3 e 5.</li>
+    <li>Break-even mensal de caixa: por volta do <b>mês 5–6</b>; a partir daí a base de contratos "maduros" (mês 5+) sustenta a máquina.</li>
+    <li>No CPL de R$ 5 do Luciano, o pico cai para <b>~R$ 35–60 mil</b>. Na conversão forte da base (que não tem custo de mídia e pode ter comissão reduzida se vier pela página), cai mais ainda.</li>
+    <li>Alavancas para reduzir o pico: (a) cobrar a <b>anuidade à vista com desconto</b> como opção (antecipa 12 meses de receita); (b) taxa de adesão simbólica (o concorrente cobra R$ 33,40); (c) empurrar o máximo de volume para a página sem comissão; (d) escalonar a contratação do 2º closer para depois do marco de 300.</li>
+  </ul>
+  <div class="box atencao">
+    <h4>Regra de segurança sugerida</h4>
+    <p>Definir antes do lançamento: caixa reservado mínimo (sugestão: R$ 80–100 mil disponíveis, mesmo que não usados) e o <i>kill switch</i> — se o CAC total passar de R$ 330 por 8 semanas seguidas, a mídia pausa e a operação volta para base + página até recalibrar a oferta.</p>
+  </div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section id="operacao">
+  <h2 class="sec">8. Operação: agendamento central e check-in digital</h2>
+  <p>A mudança para agendamento centralizado resolve a maior vulnerabilidade apontada no v1 (validação humana nas recepções). O fluxo desenhado:</p>
+  <ol>
+    <li><b>Assinante solicita o agendamento</b> pela central (WhatsApp/sistema/telefone) — como a base já está acostumada a fazer hoje.</li>
+    <li><b>A central agenda e emite a autorização digital</b> (QR/token dinâmico vinculado ao CPF do titular/dependente, com validade curta).</li>
+    <li><b>Na clínica, o check-in</b> valida o token — resposta simples "ativo/inativo" — e registra o atendimento.</li>
+    <li><b>O registro alimenta o extrato de economia</b> do cliente (régua de renovação) e a auditoria da rede (volumes por clínica, red flags de bypass).</li>
+  </ol>
+  <ul>
+    <li><b>Anti-fraude sem limitar o uso:</b> uso ilimitado é pilar do produto; o controle é de identidade, não de volume — dependentes nomeados com documento, foto no cadastro, token pessoal e intransferível. Padrões anômalos geram verificação, nunca bloqueio automático.</li>
+    <li><b>Anti-bypass:</b> como o preço de assinante só existe via autorização da central, a clínica que atender "por fora" está simplesmente atendendo um particular — o vazamento estrutural do modelo antigo desaparece. Cliente oculto trimestral (~R$ 100/visita) confere preço e experiência na ponta.</li>
+    <li><b>Clube multi-categoria:</b> nos parceiros de varejo (farmácia, academia, lojas), a validação usa o mesmo cartão digital; o credenciamento é vendido ao parceiro como canal de fluxo gratuito de clientes.</li>
+    <li><b>Construção interna:</b> Luciano desenvolve o sistema (experiência prévia; estimativa de ~1 semana para o MVP do check-in). Recomendação: incluir no MVP o extrato de economia — é a peça que paga a renovação.</li>
+  </ul>
+</section>
+
+<!-- ============ 9 ============ -->
+<section id="riscos">
+  <h2 class="sec">9. Riscos e pontos em aberto</h2>
+  <table>
+    <tr><th>Risco</th><th>Grau</th><th>Mitigação definida / pendente</th></tr>
+    <tr><td>Meta de 167 vendas/mês depender de CPL R$ 5 (benchmark: R$ 8–20)</td><td>Médio-alto</td><td>Planejar orçamento pelo benchmark; teste da base nas semanas 1–2 calibra a conversão real antes de escalar mídia</td></tr>
+    <tr><td>Caixa da rampa (pico ~R$ 60–100 mil entre meses 3–5)</td><td>Médio-alto</td><td>Anuidade à vista com desconto, adesão simbólica, página sem comissão, reserva mínima + kill switch (seção 7)</td></tr>
+    <tr><td>Meta de 80–100 contratos/closer sem funil que a alimente</td><td>Médio</td><td>Meta escalonada (60 no ramp-up); pré-venda qualificando; medir conversão real no marco de 300</td></tr>
+    <tr><td>Churn/renovação no mês 13 (proxy de mercado: 55–70% renovam)</td><td>Médio</td><td>Clube multi-categoria + extrato de economia mensal + onboarding com primeiro uso garantido em 30 dias</td></tr>
+    <tr><td>Santa Saúde (Itajaí) já vende clube de benefícios a R$ 49,90</td><td>Médio</td><td>Diferencial: rede médica física local — comunicar "clube + médico de verdade"; monitorar a resposta deles</td></tr>
+    <tr><td>Inadimplência de público C/D em recorrência (5–8%/mês com régua boa)</td><td>Médio</td><td>Prioridade para recorrência em cartão + Pix; régua de retentativa; pendente: escolher gateway</td></tr>
+    <tr><td>Cartão de Todos reagir localmente (preço/campanha)</td><td>Baixo-médio</td><td>Velocidade de lançamento (decisão dos sócios); recrutar os melhores vendedores deles primeiro</td></tr>
+    <tr><td>Migração da base decepcionar (&lt;3% de conversão)</td><td>Sinal crítico</td><td>Se ocorrer: pausa na mídia e revisão de oferta/preço antes de escalar — o problema seria de produto, não de tráfego</td></tr>
+  </table>
+  <p>Pontos em aberto para a fase de plano de negócio: contrato de adesão e regras de cancelamento/fidelidade (revisão profissional antes do 1º contrato), escolha do gateway de cobrança recorrente, marca (SimedPrev Premium vs marca nova — a confusão com "Medprev" segue no radar), estrutura da nova PJ e acordo de sócios, e a lista dos 20 primeiros parceiros do clube multi-categoria.</p>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="fontes">
+  <h2 class="sec">10. Fontes desta versão</h2>
+  <p class="fonte">Complementam as fontes do estudo v1 (demografia IBGE, ANS, benchmarks comerciais — ver página v1).</p>
+  <ul class="fonte">
+    <li>Cartão de Todos — preço oficial: <a href="https://www.cartaodetodos.com.br/ajuda/quanto-custa-o-cartao-de-todos/">Central de Ajuda</a> (verificado em 17/07/2026)</li>
+    <li>dr.consulta — <a href="https://drconsulta.com/conteudo/assinatura-dr-consulta/">Assinatura (R$ 29,90/mês, até 4 dependentes)</a> · <a href="https://drconsulta.com/conteudo/assinatura-dr-consulta-online-telessaude/">Plano online R$ 9,90</a> · <a href="https://exame.com/negocios/cartao-dr-consulta-para-empresas-mensalidades-por-3490/">Empresas R$ 34,90 (Exame)</a></li>
+    <li>Doctor Saúde — <a href="https://doctorsaude.com.br/nossas-assinaturas">Planos e preços</a> (Individual R$ 37,25/mês; Familiar R$ 74,50/mês, até 5 pessoas; verificado em 17/07/2026)</li>
+    <li>Santa Saúde (Itajaí) — <a href="https://cartaosantasaude.com.br/">Site oficial</a> (Família R$ 49,90/mês com 4 dependentes; telemedicina 24h + clube de descontos; verificado em 17/07/2026)</li>
+    <li>Outras marcas "Dr./Doutor Saúde" — <a href="https://www.cartaodoutorsaude.com.br/">cartaodoutorsaude.com.br</a> · <a href="https://drsaudees.com.br/">drsaudees.com.br</a> · <a href="https://doutorsaudesorocaba.com.br/">doutorsaudesorocaba.com.br</a></li>
+    <li>Salários de vendedores do Cartão de Todos — <a href="https://br.indeed.com/cmp/Cart%C3%A3o-De-Todos/salaries/Vendedor">Indeed</a> · <a href="https://www.glassdoor.com.br/Pagamento-mensal/Cart%C3%A3o-de-Todos-Vendedor-Externo-Pagamento-mensal-E2484383_D_KO16,32.htm">Glassdoor</a></li>
+    <li>Benchmarks de CPL/conversão/churn — ver seção 11 do estudo v1</li>
+    <li>Dados internos SimedPrev (base de 8–10 mil cadastros; faturamento médio ≤ R$ 8 mil/mês) — informados pelos sócios em 17/07/2026</li>
+  </ul>
+</section>
+
+<!-- ============ 11. JORNADA ============ -->
+<section id="jornada">
+  <h2 class="sec">11. Desenho: jornada do cliente — validação no 1º mês (1 closer · 100 contratos)</h2>
+  <p>Desenho operacional do <b>1º mês (fase de validação)</b>, para apresentação aos sócios: <b>um único closer</b>, alimentado por <b>4 canais</b>, com as taxas de qualificação e conversão estimadas em cada etapa. Os 100 contratos do 1º mês servem para <b>validar o produto e organizar processos, sistema e rede</b> — depois disso a operação entra no modo real, rumo aos 1.000 contratos em 6 meses. Números com base nos benchmarks das seções 6 do v2 e 7 do v1 <span class="tag est">ESTIMATIVA a calibrar nas primeiras 4 semanas</span>.</p>
+
+  <div class="canais">
+    <!-- Canal 1 -->
+    <div class="canal c1">
+      <div class="topo">CANAL 1<br>Migração da base<br><small>8–10 mil cadastros</small></div>
+      <div class="passo"><b>2.500</b>disparos WhatsApp/mês</div>
+      <div class="passo"><b>300</b>respondem <span class="tx">↳ 12%</span></div>
+      <div class="passo"><b>150</b>qualificados <span class="tx">↳ 50%</span></div>
+      <div class="passo"><b>30</b>fecham com o closer <span class="tx">↳ 20%</span></div>
+      <div class="resultado">≈ 30 contratos</div>
+    </div>
+    <!-- Canal 2 -->
+    <div class="canal c2">
+      <div class="topo">CANAL 2<br>Meta Ads<br><small>público frio local</small></div>
+      <div class="passo"><b>400</b>leads/mês (CPL R$ 5–15)</div>
+      <div class="passo"><b>280</b>conectados <span class="tx">↳ 70%</span></div>
+      <div class="passo"><b>140</b>qualificados <span class="tx">↳ 50%</span></div>
+      <div class="passo"><b>20</b>fecham com o closer <span class="tx">↳ 15%</span></div>
+      <div class="resultado">≈ 20 contratos</div>
+    </div>
+    <!-- Canal 3 -->
+    <div class="canal c3">
+      <div class="topo">CANAL 3<br>Google Ads<br><small>busca local (intenção alta)</small></div>
+      <div class="passo"><b>120</b>leads/mês</div>
+      <div class="passo"><b>96</b>conectados <span class="tx">↳ 80%</span></div>
+      <div class="passo"><b>58</b>qualificados <span class="tx">↳ 60%</span></div>
+      <div class="passo"><b>12</b>fecham com o closer <span class="tx">↳ 20%</span></div>
+      <div class="resultado">≈ 12 contratos</div>
+    </div>
+    <!-- Canal 4 -->
+    <div class="canal c4">
+      <div class="topo">CANAL 4 ★<br>Agendamentos do dia a dia<br><small>50 contatos/dia · 95% WhatsApp</small></div>
+      <div class="passo"><b>1.100</b>interações/mês (50 × 22 dias)</div>
+      <div class="passo"><b>715</b>aptas ao pitch <span class="tx">↳ 65% (exclui repetidos/assinantes)</span></div>
+      <div class="passo"><b>570</b>recebem a oferta na confirmação <span class="tx">↳ 80%</span></div>
+      <div class="passo"><b>40</b>fecham na hora <span class="tx">↳ 7%</span></div>
+      <div class="resultado">≈ 40 contratos</div>
+    </div>
+  </div>
+
+  <div class="seta-baixo">▼ ▼ ▼ ▼</div>
+  <div class="etapa-unica">
+    <h4>PRÉ-VENDA / ATENDIMENTO — qualifica e agenda</h4>
+    <p>Atendente responde, qualifica (família? mora na região? já usa a rede?) e entrega ao closer só conversa pronta para fechar. O closer não prospecta — ele só fecha.</p>
+  </div>
+  <div class="seta-baixo">▼</div>
+  <div class="etapa-unica">
+    <h4>CLOSER (1 pessoa) — ~102 fechamentos/mês</h4>
+    <p>~35–45 conversas comerciais/dia via WhatsApp (curtas, cliente já qualificado). Oferta única: R$ 99,90 → R$ 49,90 com fidelidade anual. Comissão: R$ 124,75/contrato ≈ <b>R$ 12,7 mil/mês em regime</b>.</p>
+  </div>
+  <div class="seta-baixo">▼</div>
+  <div class="etapa-final">
+    <div class="grande">MÊS 1 ≈ 100 contratos — VALIDAÇÃO</div>
+    <p>Objetivo do 1º mês: validar oferta, taxas de conversão, sistema e processos — não é a meta de regime</p>
+  </div>
+  <div class="seta-baixo">▼</div>
+  <div class="etapa-unica" style="border-color:#14547f">
+    <h4 style="color:#14547f">MÊS 2 EM DIANTE — MODO OPERAÇÃO REAL</h4>
+    <p>Validado o 1º mês, entram novos closers (meta de <b>60 contratos/mês no ramp-up</b>, 80–100 em regime) e a mídia escala · Trajetória: <b>1.000 contratos acumulados até o mês 6</b> (~100 → 150 → 180 → 190 → 190 → 190) · Marco de 300 contratos (expansão destravada) por volta do mês 2–3</p>
+  </div>
+  <div class="seta-baixo">▼</div>
+  <div class="pos-venda">
+    <div><b>Onboarding (30 dias)</b>Garantir o 1º uso: agendamento de boas-vindas + ativação do clube de descontos</div>
+    <div><b>Uso contínuo</b>Agendamento central + check-in digital registram cada economia da família</div>
+    <div><b>Renovação (mês 12)</b>Extrato anual "sua família economizou R$ X" + oferta de renovação</div>
+  </div>
+
+  <h3>O Canal 4 em detalhe: a troca de quem confirma o agendamento</h3>
+  <p>É o canal mais barato da operação (custo zero de mídia — o cliente já ligou) e o momento mais quente possível: a pessoa acabou de agendar e está com a saúde na cabeça. A única mudança no processo é <b>quem devolve a confirmação</b>:</p>
+  <div class="antes-depois">
+    <div class="ad-col hoje">
+      <div class="cab">COMO É HOJE</div>
+      <ol>
+        <li>Cliente chama no WhatsApp</li>
+        <li>Atendente abre o cadastro no sistema</li>
+        <li>Atendente lança a solicitação de agendamento</li>
+        <li>Clínica confirma dia/horário</li>
+        <li>Atendente retorna com dia, horário e local</li>
+        <li>Fim da conversa</li>
+      </ol>
+    </div>
+    <div class="ad-col novo">
+      <div class="cab">COMO PASSA A SER</div>
+      <ol>
+        <li>Cliente chama no WhatsApp</li>
+        <li>Atendente abre o cadastro e qualifica (família, frequência de uso)</li>
+        <li>Atendente lança o agendamento normalmente</li>
+        <li>Clínica confirma dia/horário</li>
+        <li class="destaque-li"><b>O closer</b> retorna com dia, horário e local — e emenda a oferta: "esse exame sairia R$ X a menos no plano; pela sua frequência, sua família economizaria R$ Y por ano"</li>
+        <li class="destaque-li">Fechou → contrato digital na hora · Não fechou → entra na régua de remarketing (é lead qualificado de graça)</li>
+      </ol>
+    </div>
+  </div>
+  <div class="box info">
+    <h4>Regras para o Canal 4 não estragar o atendimento</h4>
+    <p>(1) A oferta vem <b>depois</b> da confirmação — o cliente sempre recebe primeiro o que pediu; (2) uma oferta por cliente por ciclo (quem recusou entra em pausa de 60–90 dias, sem insistência); (3) o pitch usa o dado real do cliente ("você fez 3 agendamentos este ano — teria economizado R$ 280"), que o sistema do check-in passa a calcular automaticamente; (4) medir separadamente a conversão deste canal — se confirmar os ~7%, ele sozinho paga a operação de validação.</p>
+  </div>
+  <p class="fonte">Nota de leitura: os 4 canais somam ~102 contratos/mês com 1 closer no limite saudável de carga. Se algum canal performar acima do desenho, o excedente vai para a página self-service (sem comissão) — não para sobrecarga do closer.</p>
+</section>
+
+<!-- ============ 12. CUSTOS E PONTO DE EQUILÍBRIO ============ -->
+<section id="custos">
+  <h2 class="sec">12. Quadro de custos e ponto de equilíbrio (12 meses · 2 cenários)</h2>
+  <p>Simulações de 12 meses aplicando a regra de comissão definida (1ª mensalidade 100% do closer + 50% das mensalidades 2, 3 e 4) e os custos operacionais informados pelos sócios. Dois cenários: <b>12.1</b> — mês 1 com 50 contratos (validação) e, do mês 2 em diante, 2 closers a 60 contratos/mês cada (120 novos/mês); <b>12.2</b> — 50 no mês 1, 100/mês nos meses 2–6 e base parada (sem vendas novas) do mês 7 ao 12 <span class="tag decidido">PREMISSAS DOS SÓCIOS</span>:</p>
+  <ul>
+    <li><b>Tráfego:</b> R$ 2.000/mês</li>
+    <li><b>SDR:</b> R$ 2.000 fixo + variável por meta, podendo chegar a R$ 3.500 — a simulação usa <b>R$ 3.500</b> (cenário de meta batida, a favor da segurança)</li>
+    <li><b>Outros custos:</b> R$ 1.000/mês (ferramentas, telefonia, cartões etc.)</li>
+    <li><b>Custo fixo total: R$ 6.500/mês</b> · Mensalidade R$ 49,90 · Closers são 100% comissionados (sem fixo) · Sem churn nem inadimplência na simulação (ver nota ao final)</li>
+  </ul>
+
+  <h3>12.1 Cenário principal: 50 contratos no mês 1 (validação) + 120/mês do mês 2 em diante</h3>
+  <table>
+    <tr><th>Mês</th><th>Novos</th><th>Contratos ativos</th><th>Receita<br>(ativos × R$ 49,90)</th><th>Comissão do mês*</th><th>Custos fixos</th><th>Custo total</th><th>Resultado do mês</th><th>Acumulado</th></tr>
+    <tr><td>1 <small>(validação)</small></td><td>50</td><td>50</td><td>R$ 2.495</td><td>R$ 2.495</td><td>R$ 6.500</td><td>R$ 8.995</td><td style="color:#b6382f">−R$ 6.500</td><td style="color:#b6382f">−R$ 6.500</td></tr>
+    <tr><td>2</td><td>120</td><td>170</td><td>R$ 8.483</td><td>R$ 7.236</td><td>R$ 6.500</td><td>R$ 13.736</td><td style="color:#b6382f">−R$ 5.253</td><td style="color:#b6382f">−R$ 11.753</td></tr>
+    <tr><td>3</td><td>120</td><td>290</td><td>R$ 14.471</td><td>R$ 10.230</td><td>R$ 6.500</td><td>R$ 16.730</td><td style="color:#b6382f">−R$ 2.259</td><td style="color:#b6382f">−R$ 14.011</td></tr>
+    <tr><td class="destaque">4</td><td class="destaque">120</td><td class="destaque">410</td><td class="destaque">R$ 20.459</td><td class="destaque">R$ 13.224</td><td class="destaque">R$ 6.500</td><td class="destaque">R$ 19.724</td><td class="destaque" style="color:#0e8a6d">+R$ 736</td><td class="destaque" style="color:#b6382f">−R$ 13.276</td></tr>
+    <tr><td>5</td><td>120</td><td>530</td><td>R$ 26.447</td><td>R$ 14.970</td><td>R$ 6.500</td><td>R$ 21.470</td><td style="color:#0e8a6d">+R$ 4.977</td><td style="color:#b6382f">−R$ 8.299</td></tr>
+    <tr><td class="destaque">6</td><td class="destaque">120</td><td class="destaque">650</td><td class="destaque">R$ 32.435</td><td class="destaque">R$ 14.970</td><td class="destaque">R$ 6.500</td><td class="destaque">R$ 21.470</td><td class="destaque" style="color:#0e8a6d">+R$ 10.965</td><td class="destaque" style="color:#0e8a6d">+R$ 2.667</td></tr>
+    <tr><td>7</td><td>120</td><td>770</td><td>R$ 38.423</td><td>R$ 14.970</td><td>R$ 6.500</td><td>R$ 21.470</td><td style="color:#0e8a6d">+R$ 16.953</td><td style="color:#0e8a6d">+R$ 19.620</td></tr>
+    <tr><td>8</td><td>120</td><td>890</td><td>R$ 44.411</td><td>R$ 14.970</td><td>R$ 6.500</td><td>R$ 21.470</td><td style="color:#0e8a6d">+R$ 22.941</td><td style="color:#0e8a6d">+R$ 42.561</td></tr>
+    <tr><td>9</td><td>120</td><td>1.010</td><td>R$ 50.399</td><td>R$ 14.970</td><td>R$ 6.500</td><td>R$ 21.470</td><td style="color:#0e8a6d">+R$ 28.929</td><td style="color:#0e8a6d">+R$ 71.490</td></tr>
+    <tr><td>10</td><td>120</td><td>1.130</td><td>R$ 56.387</td><td>R$ 14.970</td><td>R$ 6.500</td><td>R$ 21.470</td><td style="color:#0e8a6d">+R$ 34.917</td><td style="color:#0e8a6d">+R$ 106.407</td></tr>
+    <tr><td>11</td><td>120</td><td>1.250</td><td>R$ 62.375</td><td>R$ 14.970</td><td>R$ 6.500</td><td>R$ 21.470</td><td style="color:#0e8a6d">+R$ 40.905</td><td style="color:#0e8a6d">+R$ 147.312</td></tr>
+    <tr><td>12</td><td>120</td><td>1.370</td><td>R$ 68.363</td><td>R$ 14.970</td><td>R$ 6.500</td><td>R$ 21.470</td><td style="color:#0e8a6d">+R$ 46.893</td><td style="color:#0e8a6d">+R$ 194.205</td></tr>
+  </table>
+  <p class="fonte">*Comissão do mês: novos × R$ 49,90 (1ª parcela integral dos closers) + coortes dos 3 meses anteriores × R$ 24,95 (50% das mensalidades 2–4). Estabiliza em R$ 14.970/mês a partir do mês 5 (R$ 7.485 por closer com 60 vendas/mês cada). Sem churn na simulação: os contratos ainda estão dentro da fidelidade no horizonte do quadro.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="num">Mês 4</div><div class="lbl">primeiro mês no azul (+R$ 736), com 410 ativos</div></div>
+    <div class="kpi"><div class="num">431 ativos</div><div class="lbl">ponto de equilíbrio em regime (R$ 21.470 ÷ R$ 49,90)</div></div>
+    <div class="kpi"><div class="num">−R$ 14.011</div><div class="lbl">pico do investimento (final do mês 3) — caixa mínimo necessário</div></div>
+    <div class="kpi"><div class="num">Mês 6</div><div class="lbl">acumulado vira positivo (payback completo)</div></div>
+    <div class="kpi"><div class="num">Mês 9</div><div class="lbl">os 1.000 contratos são ultrapassados (1.010 ativos)</div></div>
+    <div class="kpi"><div class="num">+R$ 194 mil</div><div class="lbl">acumulado em 12 meses · MRR final R$ 68,4 mil</div></div>
+  </div>
+
+  <h3>12.2 Cenário pedido pelos sócios: 50 no mês 1 + 100/mês nos meses 2–6, depois base parada (sem vendas novas) até o mês 12</h3>
+  <p>Este cenário mostra o que a base construída no 1º semestre entrega sozinha no 2º semestre — útil para enxergar a força da recorrência e o custo real da máquina de vendas:</p>
+  <table>
+    <tr><th>Mês</th><th>Novos</th><th>Contratos ativos</th><th>Receita</th><th>Comissão do mês</th><th>Custos fixos</th><th>Custo total</th><th>Resultado do mês</th><th>Acumulado</th></tr>
+    <tr><td>1 <small>(validação)</small></td><td>50</td><td>50</td><td>R$ 2.495</td><td>R$ 2.495</td><td>R$ 6.500</td><td>R$ 8.995</td><td style="color:#b6382f">−R$ 6.500</td><td style="color:#b6382f">−R$ 6.500</td></tr>
+    <tr><td>2</td><td>100</td><td>150</td><td>R$ 7.485</td><td>R$ 6.238</td><td>R$ 6.500</td><td>R$ 12.738</td><td style="color:#b6382f">−R$ 5.253</td><td style="color:#b6382f">−R$ 11.753</td></tr>
+    <tr><td>3</td><td>100</td><td>250</td><td>R$ 12.475</td><td>R$ 8.733</td><td>R$ 6.500</td><td>R$ 15.233</td><td style="color:#b6382f">−R$ 2.758</td><td style="color:#b6382f">−R$ 14.510</td></tr>
+    <tr><td>4</td><td>100</td><td>350</td><td>R$ 17.465</td><td>R$ 11.228</td><td>R$ 6.500</td><td>R$ 17.728</td><td style="color:#b6382f">−R$ 263</td><td style="color:#b6382f">−R$ 14.773</td></tr>
+    <tr><td class="destaque">5</td><td class="destaque">100</td><td class="destaque">450</td><td class="destaque">R$ 22.455</td><td class="destaque">R$ 12.475</td><td class="destaque">R$ 6.500</td><td class="destaque">R$ 18.975</td><td class="destaque" style="color:#0e8a6d">+R$ 3.480</td><td class="destaque" style="color:#b6382f">−R$ 11.293</td></tr>
+    <tr><td>6</td><td>100</td><td>550</td><td>R$ 27.445</td><td>R$ 12.475</td><td>R$ 6.500</td><td>R$ 18.975</td><td style="color:#0e8a6d">+R$ 8.470</td><td style="color:#b6382f">−R$ 2.823</td></tr>
+    <tr><td class="destaque">7</td><td class="destaque">0</td><td class="destaque">550</td><td class="destaque">R$ 27.445</td><td class="destaque">R$ 7.485</td><td class="destaque">R$ 6.500</td><td class="destaque">R$ 13.985</td><td class="destaque" style="color:#0e8a6d">+R$ 13.460</td><td class="destaque" style="color:#0e8a6d">+R$ 10.638</td></tr>
+    <tr><td>8</td><td>0</td><td>550</td><td>R$ 27.445</td><td>R$ 4.990</td><td>R$ 6.500</td><td>R$ 11.490</td><td style="color:#0e8a6d">+R$ 15.955</td><td style="color:#0e8a6d">+R$ 26.593</td></tr>
+    <tr><td>9</td><td>0</td><td>550</td><td>R$ 27.445</td><td>R$ 2.495</td><td>R$ 6.500</td><td>R$ 8.995</td><td style="color:#0e8a6d">+R$ 18.450</td><td style="color:#0e8a6d">+R$ 45.043</td></tr>
+    <tr><td>10</td><td>0</td><td>550</td><td>R$ 27.445</td><td>R$ 0</td><td>R$ 6.500</td><td>R$ 6.500</td><td style="color:#0e8a6d">+R$ 20.945</td><td style="color:#0e8a6d">+R$ 65.988</td></tr>
+    <tr><td>11</td><td>0</td><td>550</td><td>R$ 27.445</td><td>R$ 0</td><td>R$ 6.500</td><td>R$ 6.500</td><td style="color:#0e8a6d">+R$ 20.945</td><td style="color:#0e8a6d">+R$ 86.933</td></tr>
+    <tr><td>12</td><td>0</td><td>550</td><td>R$ 27.445</td><td>R$ 0</td><td>R$ 6.500</td><td>R$ 6.500</td><td style="color:#0e8a6d">+R$ 20.945</td><td style="color:#0e8a6d">+R$ 107.878</td></tr>
+  </table>
+  <p class="fonte">Custos fixos mantidos em R$ 6.500/mês por prudência mesmo sem vendas novas nos meses 7–12; na prática, tráfego e variável de SDR poderiam ser cortados (~R$ 3,5–5,5 mil/mês a menos), elevando o resultado do 2º semestre. Sem churn: os 550 contratos seguem dentro da fidelidade de 12 meses até o fim do quadro.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="num">550 ativos</div><div class="lbl">base construída em 6 meses · MRR de R$ 27,4 mil</div></div>
+    <div class="kpi"><div class="num">Mês 5</div><div class="lbl">primeiro mês no azul (+R$ 3.480)</div></div>
+    <div class="kpi"><div class="num">−R$ 14.773</div><div class="lbl">pico do investimento (final do mês 4)</div></div>
+    <div class="kpi"><div class="num">Mês 7</div><div class="lbl">payback completo do investimento</div></div>
+    <div class="kpi"><div class="num">+R$ 20.945/mês</div><div class="lbl">resultado recorrente da base parada (meses 10–12, sem comissões)</div></div>
+    <div class="kpi"><div class="num">+R$ 108 mil</div><div class="lbl">acumulado em 12 meses</div></div>
+  </div>
+
+  <h3>12.3 Leitura comparada</h3>
+  <div class="box ok">
+    <h4>O que os dois cenários mostram</h4>
+    <p>No cenário principal (12.1), a máquina cheia precisa de <b>~R$ 14 mil de caixa</b>, fica no azul no <b>mês 4</b>, paga todo o investimento no <b>mês 6</b> e fecha o ano com <b>1.370 ativos e +R$ 194 mil acumulados</b> — os 1.000 contratos chegam no mês 9. No cenário 12.2, mesmo <b>parando de vender no mês 7</b>, a base de 550 contratos gera ~R$ 21 mil/mês líquidos no fim do ano (a comissão dos contratos antigos termina no mês 9 e a mensalidade vira quase toda margem). É a demonstração mais clara do valor da recorrência: <b>o ativo do negócio é a base, não a venda do mês</b>. Regra prática dos dois quadros: 300 ativos valida o produto, ~431 ativos paga a máquina cheia, e cada coorte de 100–120 contratos vira ~R$ 5–6 mil/mês de margem plena após o 4º mês de vida.</p>
+  </div>
+  <div class="box atencao">
+    <h4>Duas notas de realismo</h4>
+    <p>(1) Sem churn/inadimplência nas contas — com 5% de perda mensal, o equilíbrio do cenário principal sobe para ~470–500 ativos e o acumulado cai ~25–30%; no cenário 12.2, a base parada erodiria de 550 para ~410 ativos no mês 12 — a régua de cobrança e o pós-venda defendem esses números. (2) 120 vendas/mês exigem que os canais sem custo de mídia (base, Canal 4 e self-service) entreguem ~90–110 vendas — R$ 2.000 de tráfego cobrem só 10–30 — e 1 SDR qualificando para 2 closers nesse ritmo é o gargalo mais provável; se precisar de mídia para fechar a conta, cada R$ 1.000 extras ≈ 8–15 vendas.</p>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  SimedPrev Premium — Estudo Atualizado (v2) · Documento interno · Julho/2026<br>
+  Próxima etapa: teste de migração da base + plano de negócio
+</footer>
+
+</body>
+</html>
