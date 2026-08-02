@@ -106,6 +106,45 @@
   .barra-ganho.meia .barra{background:#8b95a5}
   .barra-ganho.premio .barra{background:linear-gradient(90deg,#7c3aed 70%,#e0a72e 70%)}
   .barra-ganho .valor{font-weight:700;color:#4a2472;white-space:nowrap}
+  /* ---- clube de benefícios (paleta própria: laranja) ---- */
+  #clube h2.sec{color:#9a3d0c;border-bottom-color:#e8873a}
+  #clube h3{color:#b05515}
+  #clube table th{background:#9a3d0c}
+  .tag.prop{background:#fdeada;color:#b05515}
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+  .tier{background:#fff;border:1px solid var(--borda);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .tier .topo{padding:11px 10px;color:#fff;font-family:Arial,sans-serif;font-weight:700;font-size:.85em;text-align:center}
+  .tier.t1 .topo{background:#0e8a6d}.tier.t2 .topo{background:#14547f}.tier.t3 .topo{background:#b07a10}.tier.t4 .topo{background:#c2416b}
+  .tier .freq{padding:5px 10px;text-align:center;font-family:Arial,sans-serif;font-size:.7em;color:var(--cinza);border-bottom:1px dashed var(--borda);letter-spacing:.4px;text-transform:uppercase}
+  .tier ul.cats{list-style:none;margin:0;padding:10px 12px;flex:1}
+  .tier ul.cats li{font-family:Arial,sans-serif;font-size:.79em;margin:0 0 8px;line-height:1.4}
+  .tier .papel{margin-top:auto;padding:9px 8px;text-align:center;font-family:Arial,sans-serif;font-size:.72em;font-weight:700;border-top:2px solid;background:#fbfcfd;line-height:1.35}
+  .tier.t1 .papel{color:#0e8a6d;border-color:#0e8a6d}
+  .tier.t2 .papel{color:#14547f;border-color:#14547f}
+  .tier.t3 .papel{color:#b07a10;border-color:#b07a10}
+  .tier.t4 .papel{color:#c2416b;border-color:#c2416b}
+  .kit20{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0 8px}
+  .kit20 .p{background:#fff;border:1px solid var(--borda);border-radius:8px;padding:8px 10px;font-family:Arial,sans-serif;font-size:.76em;display:flex;align-items:center;gap:8px;line-height:1.3}
+  .kit20 .p .n{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:#9a3d0c;color:#fff;font-weight:700;font-size:.85em;display:flex;align-items:center;justify-content:center}
+  .kit20 .p.pilar{border-color:#e8873a;background:#fff7f0;box-shadow:0 0 0 1px #e8873a inset}
+  .kit20 .p.ghost{opacity:.72;border-style:dashed}
+  .kit20 .p.ghost .n{background:#8b95a5}
+  .kit20 .p small{display:block;color:var(--cinza)}
+  .motor{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:18px 0 4px}
+  .motor .pm{background:#fff;border:1px solid var(--borda);border-radius:10px;padding:12px 10px;text-align:center;font-family:Arial,sans-serif;font-size:.75em;line-height:1.4}
+  .motor .pm .ico{font-size:1.5em;display:block;margin-bottom:5px}
+  .motor .pm b{color:#9a3d0c;display:block;margin-bottom:3px}
+  .loopback{display:flex;align-items:center;gap:10px;font-family:Arial,sans-serif;font-size:.78em;color:#9a3d0c;font-weight:700;margin:0 0 14px}
+  .loopback .linha{flex:1;border-top:2px dashed #e8873a}
+  .pilha{max-width:620px;margin:18px auto;font-family:Arial,sans-serif}
+  .pilha .camada{color:#fff;text-align:center;padding:10px 14px;border-radius:8px;margin:6px auto;font-size:.82em;font-weight:700;line-height:1.35}
+  .pilha .camada .custo{display:block;font-weight:400;font-size:.85em;opacity:.92;margin-top:2px}
+  .encanto{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+  .encanto div{background:#fff;border:1px solid var(--borda);border-radius:10px;padding:12px 10px;text-align:center;font-family:Arial,sans-serif;font-size:.76em;line-height:1.4}
+  .encanto .ico{font-size:1.4em;display:block;margin-bottom:4px}
+  .encanto b{color:#9a3d0c}
+  @media(max-width:820px){.tiers,.motor{grid-template-columns:1fr 1fr}.kit20{grid-template-columns:repeat(2,1fr)}.encanto{grid-template-columns:1fr 1fr}}
+  @media(max-width:470px){.tiers,.motor,.kit20,.encanto{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -131,6 +170,7 @@
     <li><a href="#jornada">Desenho: jornada do cliente (validação mês 1 → operação real)</a></li>
     <li><a href="#custos">Custos e ponto de equilíbrio (2 closers · 12 meses)</a></li>
     <li><a href="#comissao">Plano de comissionamento dos closers</a></li>
+    <li><a href="#clube">Clube de benefícios: os 20 primeiros parceiros e o motor semanal</a></li>
   </ol>
 </nav>
 
@@ -306,7 +346,7 @@
     <tr><td>Cartão de Todos reagir localmente (preço/campanha)</td><td>Baixo-médio</td><td>Velocidade de lançamento (decisão dos sócios); recrutar os melhores vendedores deles primeiro</td></tr>
     <tr><td>Migração da base decepcionar (&lt;3% de conversão)</td><td>Sinal crítico</td><td>Se ocorrer: pausa na mídia e revisão de oferta/preço antes de escalar — o problema seria de produto, não de tráfego</td></tr>
   </table>
-  <p>Pontos em aberto para a fase de plano de negócio: contrato de adesão e regras de cancelamento/fidelidade (revisão profissional antes do 1º contrato), escolha do gateway de cobrança recorrente, marca (SimedPrev Premium vs marca nova — a confusão com "Medprev" segue no radar), estrutura da nova PJ e acordo de sócios, e a lista dos 20 primeiros parceiros do clube multi-categoria.</p>
+  <p>Pontos em aberto para a fase de plano de negócio: contrato de adesão e regras de cancelamento/fidelidade (revisão profissional antes do 1º contrato), escolha do gateway de cobrança recorrente, marca (SimedPrev Premium vs marca nova — a confusão com "Medprev" segue no radar), estrutura da nova PJ e acordo de sócios, e a lista dos 20 primeiros parceiros do clube multi-categoria — <b>endereçada na <a href="#clube">seção 13</a></b>.</p>
 </section>
 
 <!-- ============ 10 ============ -->
@@ -591,10 +631,189 @@
   </div>
 </section>
 
+<!-- ============ 13. CLUBE ============ -->
+<section id="clube">
+  <h2 class="sec">13. Clube de benefícios: os 20 primeiros parceiros e o motor semanal</h2>
+  <p>Esta seção fecha o último ponto em aberto da seção 8 (<i>"a lista dos 20 primeiros parceiros do clube multi-categoria"</i>) e desenha o mecanismo que entrega a promessa da seção 5.2: <b>R$ 400–600/ano de economia por família</b> — o valor que faz o cartão "se pagar sozinho" <b>sem depender de adoecer</b>. <span class="tag prop">PROPOSTA</span></p>
+
+  <div class="box info">
+    <h4>A regra de ouro do credenciamento: frequência antes de ticket</h4>
+    <p>O clube existe para a família <b>lembrar do cartão toda semana</b>. Desconto grande em compra que acontece 1x/ano não segura renovação; desconto modesto em compra semanal, sim. Por isso as parcerias se organizam em quatro camadas — e a prioridade de credenciamento vai da esquerda para a direita: primeiro o motor semanal, depois o resto.</p>
+  </div>
+
+  <h3>13.1 As quatro camadas de uso</h3>
+  <div class="tiers">
+    <div class="tier t1">
+      <div class="topo">🔁 USO SEMANAL</div>
+      <div class="freq">toda semana · prioridade nº 1</div>
+      <ul class="cats">
+        <li>💊 <b>Farmácia</b> — 15–30% em perfumaria e genéricos + oferta da semana</li>
+        <li>🛒 <b>Mercadinho / hortifruti / açougue</b> — 5–8% em dia fixo ("terça do conveniado")</li>
+        <li>🥖 <b>Padaria</b> — combo café da manhã de sócio</li>
+        <li>🔥 <b>Gás e água galão</b> — R$ 5 off no botijão, entrega em casa</li>
+        <li>⛽ <b>Posto</b> — R$ 0,10/litro em dia fixo</li>
+      </ul>
+      <div class="papel">FAZ LEMBRAR DO CARTÃO<br>TODA SEMANA</div>
+    </div>
+    <div class="tier t2">
+      <div class="topo">📅 USO MENSAL</div>
+      <div class="freq">todo mês · recorrência</div>
+      <ul class="cats">
+        <li>🏋️ <b>Academia</b> (1 por cidade) — sem matrícula + mensalidade de sócio</li>
+        <li>💈 <b>Barbearia / salão</b> — corte da família com % fixo</li>
+        <li>🐶 <b>Pet shop + vet popular</b> — banho/tosa e consulta</li>
+        <li>📶 <b>Provedor de internet regional</b> — desconto na mensalidade</li>
+        <li>🔧 <b>Troca de óleo / mecânica leve</b></li>
+      </ul>
+      <div class="papel">MANTÉM O HÁBITO —<br>A MENSALIDADE "SE PAGA"</div>
+    </div>
+    <div class="tier t3">
+      <div class="topo">🎯 ALTO TICKET</div>
+      <div class="freq">algumas vezes ao ano · o "uau"</div>
+      <ul class="cats">
+        <li>👓 <b>Ótica</b> — oftalmo na rede a preço de custo + óculos 20–30% off (jornada completa)</li>
+        <li>🦷 <b>Odonto</b> — avaliação grátis + % no tratamento</li>
+        <li>🚗 <b>Autoescola</b> — 1ª habilitação com desconto</li>
+        <li>🎓 <b>Cursos / polo EAD</b> — bolsa de 10–30% (custa zero pra eles)</li>
+        <li>📚 <b>Papelaria (volta às aulas)</b> · 👟 <b>Calçados</b> · 🧱 <b>Construção</b></li>
+      </ul>
+      <div class="papel">O ARGUMENTO DE VENDA<br>DO CLOSER</div>
+    </div>
+    <div class="tier t4">
+      <div class="topo">🎡 LAZER / EMOÇÃO</div>
+      <div class="freq">quando o coração pede</div>
+      <ul class="cats">
+        <li>🍕 <b>Pizzaria / rodízio família</b> — "criança não paga" pro conveniado</li>
+        <li>🍦 <b>Sorveteria / açaí</b> — barato, resgate altíssimo</li>
+        <li>🎂 <b>Buffet infantil</b> — festa dos filhos com desconto</li>
+        <li>🎬 <b>Cinema</b> (shoppings) — via voucher corporativo</li>
+        <li>🎢 <b>Beto Carrero · Unipraias · Cristo Luz</b> — âncoras fase 2</li>
+      </ul>
+      <div class="papel">O QUE A FAMÍLIA<br>CONTA PRO VIZINHO</div>
+    </div>
+  </div>
+
+  <h3>13.2 A proposta dos 20 primeiros credenciamentos</h3>
+  <div class="kit20">
+    <div class="p pilar"><span class="n">1</span><span>💊 <b>Farmácia piloto</b> (relação direta dos sócios)<small>Itajaí · começa aqui</small></span></div>
+    <div class="p"><span class="n">2</span><span>💊 Farmácia<small>Balneário Camboriú</small></span></div>
+    <div class="p"><span class="n">3</span><span>💊 Farmácia<small>Navegantes</small></span></div>
+    <div class="p"><span class="n">4</span><span>💊 Farmácia<small>Camboriú</small></span></div>
+    <div class="p"><span class="n">5</span><span>⚗️ Farmácia de manipulação<small>Itajaí</small></span></div>
+    <div class="p"><span class="n">6</span><span>🛒 Mercadinho de bairro<small>Itajaí</small></span></div>
+    <div class="p"><span class="n">7</span><span>🛒 Mercadinho de bairro<small>Navegantes</small></span></div>
+    <div class="p"><span class="n">8</span><span>🥖 Padaria<small>Itajaí</small></span></div>
+    <div class="p"><span class="n">9</span><span>🔥 Distribuidora gás + água<small>regional (entrega)</small></span></div>
+    <div class="p"><span class="n">10</span><span>⛽ Posto de combustível<small>Itajaí</small></span></div>
+    <div class="p"><span class="n">11</span><span>🏋️ Academia<small>Itajaí</small></span></div>
+    <div class="p"><span class="n">12</span><span>🏋️ Academia<small>Balneário Camboriú</small></span></div>
+    <div class="p"><span class="n">13</span><span>🏋️ Academia<small>Camboriú / Navegantes</small></span></div>
+    <div class="p"><span class="n">14</span><span>💈 Barbearia + salão<small>Itajaí</small></span></div>
+    <div class="p"><span class="n">15</span><span>🐶 Pet shop / vet popular<small>Itajaí</small></span></div>
+    <div class="p"><span class="n">16</span><span>👓 Ótica<small>Itajaí</small></span></div>
+    <div class="p"><span class="n">17</span><span>🦷 Odonto<small>Itajaí ou BC</small></span></div>
+    <div class="p"><span class="n">18</span><span>🍕 Pizzaria rodízio família<small>Itajaí</small></span></div>
+    <div class="p"><span class="n">19</span><span>🍦 Sorveteria / açaí<small>Balneário Camboriú</small></span></div>
+    <div class="p"><span class="n">20</span><span>🎂 Buffet infantil<small>Itajaí</small></span></div>
+    <div class="p ghost"><span class="n">+</span><span>🚗 Autoescola<small>2ª leva</small></span></div>
+    <div class="p ghost"><span class="n">+</span><span>🎓 Curso de idiomas / polo EAD<small>2ª leva</small></span></div>
+    <div class="p ghost"><span class="n">+</span><span>🎬 Cinema (shoppings)<small>negociação maior</small></span></div>
+    <div class="p ghost"><span class="n">+</span><span>🎢 Beto Carrero · Unipraias · Cristo Luz<small>negociação maior</small></span></div>
+  </div>
+  <p class="fonte">Composição proposta: cobre as 4 cidades, com peso na camada semanal (10 dos 20). Meta: <b>10 credenciados no ar antes do disparo de migração da base</b> (seção 6.3) — o pitch nasce com clube real, não com promessa. <span class="tag prop">PROPOSTA</span></p>
+
+  <h3>13.3 O motor semanal: "Ofertas da Semana"</h3>
+  <p>A mecânica que mantém o cartão vivo na cabeça da família (ideia validada com o parceiro piloto da farmácia):</p>
+  <div class="motor">
+    <div class="pm"><span class="ico">🤝</span><b>1 · Parceiro dá a oferta</b>Desconto exclusivo de verdade, contrapartida do credenciamento</div>
+    <div class="pm"><span class="ico">📲</span><b>2 · Quinta: disparo único</b>8–10 ofertas no WhatsApp da base, validade de 7 dias</div>
+    <div class="pm"><span class="ico">🛍️</span><b>3 · Família resgata</b>Mostrando o cartão digital (mesmo QR do check-in)</div>
+    <div class="pm"><span class="ico">🧾</span><b>4 · Resgate registrado</b>Alimenta o extrato "sua família economizou R$ X"</div>
+    <div class="pm"><span class="ico">🔁</span><b>5 · Parceiro vê o fluxo</b>E briga por destaque com oferta mais forte na próxima</div>
+  </div>
+  <div class="loopback"><span class="linha"></span>↺ o ciclo recomeça toda semana — e o cartão volta à mente da família<span class="linha"></span></div>
+  <div class="box atencao">
+    <h4>As 5 regras para não virar spam</h4>
+    <p><b>(1)</b> 1 disparo por semana, dia fixo — nem mais, nem menos; <b>(2)</b> só desconto exclusivo de verdade, com mínimo acordado em contrato (nada de "desconto de vitrine" que existe pra todo mundo); <b>(3)</b> toda oferta com validade de 7 dias — urgência real; <b>(4)</b> rotação: cada parceiro entra ≥1x/mês, quem dá oferta mais agressiva ganha o destaque; <b>(5)</b> opt-out fácil e respeitado.</p>
+  </div>
+  <div class="box gold">
+    <h4>💰 Receita futura embutida</h4>
+    <p>Com a base grande (1.000+ famílias), o <b>destaque na lista da semana vira mídia paga para o parceiro</b> — uma linha de receita nova com custo zero, no canal que vocês mesmos construíram.</p>
+  </div>
+
+  <h3>13.4 A troca com o parceiro — e o parceiro como canal de venda</h3>
+  <div class="antes-depois">
+    <div class="ad-col novo">
+      <div class="cab">O QUE O PARCEIRO GANHA (custo pra ele: R$ 0)</div>
+      <ol>
+        <li>Fluxo de <b>milhares de famílias da região</b> na loja</li>
+        <li class="destaque-li"><b>Divulgação semanal grátis</b> no WhatsApp da base</li>
+        <li><b>Exclusividade de categoria na cidade</b> (condicionada à performance da oferta)</li>
+        <li>Relatório de resgates (quantos clientes o cartão levou)</li>
+        <li>Ação "Dia D" mensal na loja com a marca SimedPrev</li>
+      </ol>
+    </div>
+    <div class="ad-col hoje">
+      <div class="cab">O QUE O PARCEIRO DÁ EM TROCA</div>
+      <ol>
+        <li>Desconto <b>exclusivo e real</b> para o conveniado (mínimo em contrato)</li>
+        <li>1 oferta forte por mês para a lista da semana</li>
+        <li>Aceitar a validação pelo cartão digital</li>
+        <li class="destaque-li"><b>Display com QR no caixa</b> → página self-service</li>
+      </ol>
+    </div>
+  </div>
+  <div class="box info">
+    <h4>O pulo do gato: 20 parceiros = 20 pontos de venda com CAC ~zero</h4>
+    <p>O display no caixa aponta para a <b>página self-service — que não paga comissão</b> (seção 6.1). Cada parceiro vira um vendedor passivo do cartão. O piloto natural é a farmácia com relação direta dos sócios, incluindo o primeiro "Dia D" (ex.: aferição de pressão gratuita com a marca SimedPrev — gera venda no ponto e prova social).</p>
+  </div>
+
+  <h3>13.5 Camadas extras de valor: empatar no nacional, ganhar no local</h3>
+  <div class="pilha">
+    <div class="camada" style="width:52%;background:#c2416b">5 · ENCANTAMENTO<span class="custo">aniversário · indique e ganhe · wallet — custo ~R$ 0</span></div>
+    <div class="camada" style="width:64%;background:#7c3aed">4 · TELEMEDICINA 24h (white-label)<span class="custo">a cotar — neutraliza o argumento da Santa Saúde</span></div>
+    <div class="camada" style="width:76%;background:#14547f">3 · CLUBE NACIONAL (white-label: Amazon, Magalu, cinema)<span class="custo">a cotar — ordem de R$ 2–5/família/mês</span></div>
+    <div class="camada" style="width:88%;background:#0e8a6d">2 · CLUBE LOCAL EXCLUSIVO — os 20 parceiros desta seção<span class="custo">custo R$ 0/mês — é o que ninguém copia</span></div>
+    <div class="camada" style="width:100%;background:#0a4a3c">1 · REDE MÉDICA LOCAL A PREÇO DE CUSTO — já existe<span class="custo">o alicerce: 40+ clínicas, 800+ exames, agendamento central</span></div>
+  </div>
+  <div class="box atencao">
+    <h4>Atenção à margem antes de empilhar</h4>
+    <p>As camadas <b>1, 2 e 5 custam ~zero</b> e já entregam os R$ 400–600/ano prometidos na seção 5.2 — são o lançamento. As camadas <b>3 e 4 consomem margem</b> (sobre uma mensalidade de R$ 49,90, cada R$ 5/família/mês = 10% da receita): entram só depois de cotação formal e, idealmente, depois do marco dos 300 contratos. <span class="tag est">ESTIMATIVA — cotar</span></p>
+  </div>
+  <table>
+    <tr><th>O que a família recebe</th><th>SimedPrev Premium</th><th>Santa Saúde</th><th>Cartão de Todos</th></tr>
+    <tr><td>Rede médica física local a preço de custo</td><td style="text-align:center;color:#0e8a6d"><b>✓</b></td><td style="text-align:center;color:#b6382f">✗</td><td style="text-align:center;color:#b07a10">parcial (clínica própria, modelo de volume)</td></tr>
+    <tr><td>Agendamento feito pela central</td><td style="text-align:center;color:#0e8a6d"><b>✓</b></td><td style="text-align:center;color:#b6382f">✗</td><td style="text-align:center;color:#b6382f">✗</td></tr>
+    <tr><td>Clube <b>local</b> exclusivo com ofertas semanais</td><td style="text-align:center;color:#0e8a6d"><b>✓</b></td><td style="text-align:center;color:#b6382f">✗</td><td style="text-align:center;color:#b6382f">✗</td></tr>
+    <tr><td>Descontos de marcas nacionais</td><td style="text-align:center;color:#b07a10"><b>◐</b> via white-label (a cotar)</td><td style="text-align:center;color:#0e8a6d">✓</td><td style="text-align:center;color:#0e8a6d">✓</td></tr>
+    <tr><td>Telemedicina 24h</td><td style="text-align:center;color:#b07a10"><b>◐</b> a cotar</td><td style="text-align:center;color:#0e8a6d">✓</td><td style="text-align:center;color:#8b95a5">—</td></tr>
+    <tr><td>Extrato mensal "quanto minha família economizou"</td><td class="destaque" style="text-align:center">✓ só aqui</td><td style="text-align:center;color:#b6382f">✗</td><td style="text-align:center;color:#b6382f">✗</td></tr>
+  </table>
+  <p class="fonte">Comparativo conceitual a partir da pesquisa de preços da seção 4.</p>
+  <div class="encanto">
+    <div><span class="ico">🎂</span><b>Aniversário do conveniado</b><br>Brinde no parceiro (sorvete, corte grátis) — custo ~R$ 0, encantamento máximo</div>
+    <div><span class="ico">🤝</span><b>Indique e ganhe</b><br>1 mês grátis por família indicada que assinar — CAC ~R$ 50 vs R$ 160–330 da mídia</div>
+    <div><span class="ico">📱</span><b>Cartão na carteira do celular</b><br>Apple/Google Wallet com o mesmo QR do check-in que o Luciano já vai construir</div>
+    <div><span class="ico">🚀</span><b>Onboarding do clube</b><br>Meta: 1º resgate em 7 dias, junto do agendamento de boas-vindas</div>
+  </div>
+
+  <h3>13.6 As métricas que governam o clube</h3>
+  <div class="kpis">
+    <div class="kpi"><div class="num">≥ 40%</div><div class="lbl">dos assinantes com ≥1 resgate no clube por mês — o indicador antecedente da renovação</div></div>
+    <div class="kpi"><div class="num">R$ 35–50</div><div class="lbl">economia média mensal da família ativa — fecha os R$ 400–600/ano da seção 5.2</div></div>
+    <div class="kpi"><div class="num">10</div><div class="lbl">parceiros no ar antes do disparo de migração da base</div></div>
+    <div class="kpi"><div class="num">1/semana</div><div class="lbl">ritmo fixo do disparo de ofertas — constância sem spam</div></div>
+  </div>
+  <div class="box ok">
+    <h4>Por que o clube decide o ano 2</h4>
+    <p>Família que resgata todo mês <b>não cancela no mês 13</b>. O clube é a defesa direta da meta silenciosa de renovação ≥ 60% (seção 12.5) — e é o ativo que nem a Medprev (modelo gratuito, sem clube) nem a Santa Saúde (clube nacional, sem rede médica nem parceiro local exclusivo) conseguem copiar rápido. O credenciamento local é trabalho de rua, relação e região: exatamente o jogo em que os sócios têm vantagem.</p>
+  </div>
+</section>
+
 </div>
 
 <footer>
-  SimedPrev Premium — Estudo Atualizado (v2) · Documento interno · Julho/2026<br>
+  SimedPrev Premium — Estudo Atualizado (v2) · Documento interno · Julho/2026 · Seção 13 (clube de benefícios) adicionada em 02/08/2026<br>
   Próxima etapa: teste de migração da base + plano de negócio
 </footer>
 
