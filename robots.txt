@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /plano/
 
 Sitemap: https://vibradados.com.br/sitemap.xml

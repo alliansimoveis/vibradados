@@ -1,0 +1,8 @@
+AuthType Basic
+AuthName "Acesso restrito"
+AuthUserFile /home/vibradadoscombr/public_html/plano/.htpasswd
+Require valid-user
+
+<Files ".htpasswd">
+  Require all denied
+</Files>
