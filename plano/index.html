@@ -95,7 +95,6 @@
 
         <h3><span class="n">3.1</span> Natureza jurídica da fase</h3>
         <p>Parceria de fato, sem contrato social. As ações são desenvolvidas em conjunto, sem vínculo societário formalizado.</p>
-        <div class="doc__note"><b>Recomendação:</b> mesmo sem contrato social, registrar por escrito um <b>memorando de entendimento simples (MoU)</b> de 1 a 2 páginas — só para fixar divisão de custos, divisão de proventos, propriedade dos ativos digitais e critério de encerramento. Isso não constitui empresa, mas evita mal-entendidos.</div>
 
         <h3><span class="n">3.2</span> Objetivos da fase</h3>
         <ol class="plain">
@@ -164,7 +163,6 @@
           <li>Velocidade e Core Web Vitals adequados à mídia paga</li>
           <li>Consentimento de cookies compatível com LGPD</li>
         </ul>
-        <div class="doc__note"><b>Pendência identificada — WhatsApp:</b> o clique já é rastreado (existem gatilhos de intenção e de confirmação, com eventos disparados para GA4 e Meta). O que falta é a <b>conversa</b>: o WhatsApp não está integrado ao CRM, então o que acontece depois do clique — se respondeu, o que perguntou, se virou visita — fica fora do sistema. Como boa parte do tráfego de alto ticket entra por ali, esse é o buraco mais caro da estrutura atual: o lead entra, mas não completa o ciclo de retroalimentação da seção 4.6.</div>
 
         <h3><span class="n">4.2</span> Captação de estoque via integradores</h3>
         <p>Contrato com <b>DWV</b> e <b>Fast Sale</b> para receber e atualizar automaticamente os imóveis no site.</p>
@@ -203,18 +201,6 @@
 
         <h3>Event Match Quality</h3>
         <p>Via CAPI, enviamos dados de contato com hash (e-mail, telefone, nome, cidade, IP, user agent) para elevar a correspondência entre o evento e a pessoa real. Quanto maior o EMQ, melhor o algoritmo aprende. É o parâmetro que mais separa uma conta bem estruturada de uma comum — e a meta é acompanhá-lo como indicador fixo, não olhá-lo uma vez na implantação.</p>
-
-        <h3>O que precisa ser ajustado antes de escalar mídia</h3>
-        <p>Auditoria curta, alto retorno:</p>
-        <ol class="plain">
-          <li><b>Risco de duplicação de eventos na Meta.</b> O mesmo evento hoje pode sair por três caminhos: tags HTML manuais do pixel, a tag nativa do Meta Pixel e o gateway de CAPI. Se o <code>event_id</code> não estiver consistente entre eles, o Gerenciador de Eventos conta o mesmo lead várias vezes — e o algoritmo otimiza para um número que não existe. <b>Primeira coisa a validar.</b></li>
-          <li><b>Tags pausadas.</b> Há pelo menos três em pausa — o CAPI de todos os eventos no servidor, o <code>click_whatsapp</code> do GA4 e o evento de formulário de contato. Confirmar se a pausa foi decisão consciente (evitar duplicidade) ou herança esquecida. Cada uma tem efeito diferente sobre o dado.</li>
-          <li><b>Extensão da taxonomia de estágios.</b> Hoje o CRM devolve dois estágios: Qualificado e Ouro. Precisamos de <b>Visita agendada, Visita realizada, Proposta e Venda</b>, cada um com valor monetário próprio, para habilitar lances por valor. É o item 4.6 completo.</li>
-          <li><b>Enhanced Conversions for Leads no Google Ads:</b> confirmar se o envio de dados de primeira parte com hash está ativo nas duas contas.</li>
-          <li><b>Duas contas Google Ads:</b> definir qual é a conta operacional da sociedade, ou se ambas seguem ativas com papéis distintos. Conversão duplicada entre contas distorce leitura de custo.</li>
-          <li><b>Consentimento:</b> verificar quanto de tráfego é perdido por recusa de cookies e se o Consent Mode avançado está preenchendo essa lacuna com dados modelados.</li>
-          <li><b>Sinais comportamentais subutilizados:</b> o clique em galeria premium é um marcador de intenção alta que já está sendo capturado. Deve virar público de remarketing e critério de lead scoring — hoje parece estar só medido.</li>
-        </ol>
 
         <h3>Estratégia de perseguição (remarketing em camadas)</h3>
         <p>O visitante não é tratado como um bloco único. Ele é segmentado por <b>profundidade de intenção</b>:</p>
@@ -263,29 +249,11 @@
         </ol>
         <p>Este ciclo é o que separa uma conta que gera 200 leads ruins de uma que gera 20 leads compradores.</p>
         <div class="doc__note"><b>Consequência operacional:</b> a disciplina de Kathia em atualizar o CRM não é burocracia — é o insumo do algoritmo. Precisa estar claro entre os dois.</div>
-
-        <h3><span class="n">4.7</span> Recursos adicionais a avaliar</h3>
-        <ul>
-          <li><b>IA no pré-atendimento:</b> triagem inicial e qualificação por WhatsApp fora do horário comercial, entregando o lead pré-qualificado para Kathia</li>
-          <li><b>Transcrição e análise de atendimentos</b> para identificar objeções recorrentes e realimentar copy e criativos</li>
-          <li><b>Vídeo curto vertical</b> como formato principal de criativo — hoje é o que tem melhor custo de aquisição no segmento</li>
-          <li><b>E-mail e WhatsApp de nutrição</b> para lead que não está no tempo de comprar (a maioria)</li>
-          <li><b>LGPD:</b> política de privacidade, base legal para tratamento e opt-out — obrigatório com captura de dados nesse volume</li>
-        </ul>
       </section>
 
       <section id="s5">
         <h2><span class="n">05</span> Estratégia comercial e de conteúdo</h2>
         <p><b>Posicionamento:</b> curadoria, não corretagem de volume. A oferta não é "temos imóveis", é "sabemos qual imóvel faz sentido para você e por quê".</p>
-
-        <h3>Eixos de conteúdo</h3>
-        <ul>
-          <li>Análise de produto — por que este empreendimento e não o vizinho</li>
-          <li>Leitura de mercado das três praças — valorização, entregas, oferta e demanda</li>
-          <li>Investimento — rentabilidade de locação, potencial de valorização, comparativos</li>
-          <li>Bastidores e autoridade — visitas, obra, opinião técnica</li>
-          <li>Prova social — clientes, negócios fechados, depoimentos</li>
-        </ul>
 
         <h3>Estratégia de oferta</h3>
         <p>Cada produto anunciado recebe um ângulo próprio — condição comercial, escassez real, exclusividade de informação ou análise proprietária. Nunca "anúncio de imóvel". Sempre uma oferta. E todo cliente que chega por um âncora entra em uma conversa sobre o que ele realmente busca, com alternativas semelhantes do portfólio à mão.</p>
@@ -319,7 +287,6 @@
           <li><b>Revisão mensal (90 min):</b> desempenho do mês, custos, decisões de produto, ajuste de estratégia</li>
           <li><b>Canal diário</b> para o operacional (leads urgentes, dúvidas de produto)</li>
           <li><b>Painel único</b> de indicadores, visível para os dois, atualizado automaticamente</li>
-          <li><b>Regra de decisão:</b> decisões operacionais dentro da própria área são autônomas; decisões de custo, produto ou posicionamento são conjuntas</li>
         </ul>
       </section>
 
@@ -332,8 +299,6 @@
           <li>Constituição da pessoa jurídica com contrato social</li>
           <li>Definição de tipo societário, participação, administração, retirada, cláusula de saída e regra de sucessão</li>
           <li>Enquadramento tributário</li>
-          <li>Registro da PJ no CRECI-J, com Kathia como responsável técnica</li>
-          <li>O desenho societário e tributário deve ser validado com advogado e contador</li>
         </ul>
 
         <h3><span class="n">8.2</span> Modelo operacional enxuto</h3>
@@ -343,9 +308,6 @@
           <li>Corretor entra com produção; a empresa entra com lead qualificado, marca, tecnologia e método</li>
           <li>Metodologia diferenciada a desenvolver em conjunto: script, playbook de atendimento, régua de follow-up, padrão de apresentação de produto</li>
         </ul>
-
-        <h3><span class="n">8.3</span> Capital</h3>
-        <p>O resultado da Fase 1 é reinvestido para financiar a Fase 2. Definir na virada: <b>qual percentual do lucro fica na operação e qual é distribuído.</b> Sugestão para discussão: reter a maior parte nos primeiros meses.</p>
       </section>
 
     </article>
