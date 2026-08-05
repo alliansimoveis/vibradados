@@ -1,0 +1,466 @@
+/* ============================================================
+   SIMEDPREV SAÚDE — Manual do Closer (material interno)
+   Layout de leitura longa. Estende o design system /styles.css.
+   Identidade do material: petróleo + âmbar sobre o tema escuro do site.
+   ============================================================ */
+
+:root {
+  --sp-petrol:      #0C3D48;
+  --sp-petrol-lo:   #0B333D;
+  --sp-teal:        #1C8378;
+  --sp-teal-mid:    #2A9187;
+  --sp-teal-bright: #3BB2A6;
+  --sp-amber:       #E8973A;
+  --sp-amber-lo:    #F0A94E;
+  --sp-red:         #D25C5C;
+  --sp-red-deep:    #B84545;
+  --sp-green:       #4AA772;
+}
+
+body { cursor: auto; }
+.cursor { display: none; }
+
+/* ---------- Marca no topo (wordmark SimedPrev) ---------- */
+.sp-wordmark {
+  font-family: var(--font-display); font-weight: 600; font-size: 1.18rem;
+  letter-spacing: -.01em; color: var(--ink); text-decoration: none;
+}
+.sp-wordmark b { color: var(--sp-amber); font-weight: 600; }
+
+/* ============================================================
+   CABEÇALHO DO DOCUMENTO
+   ============================================================ */
+.doc-header {
+  position: relative; z-index: 2; max-width: 940px; margin: 0 auto;
+  padding: clamp(60px, 9vh, 110px) var(--gutter) clamp(34px, 5vw, 56px);
+}
+.doc-eyebrow {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--font-display);
+  font-size: .74rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--sp-teal-bright); margin-bottom: 24px;
+}
+.doc-header h1 {
+  font-family: var(--font-display); font-weight: 600; letter-spacing: -.02em;
+  font-size: clamp(2.1rem, 5.2vw, 3.7rem); line-height: 1.04; max-width: 15ch;
+}
+.doc-header .subtitle {
+  margin-top: 20px; font-size: 1.06rem; color: var(--muted); line-height: 1.6; max-width: 60ch;
+}
+.doc-header .subtitle b { color: var(--ink); font-weight: 600; }
+
+/* cartões 01..04 da capa */
+.sp-cover-cards {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  max-width: 940px; margin: 40px auto 0; padding: 0 var(--gutter);
+  position: relative; z-index: 2;
+}
+.sp-cover-card {
+  border: 1px solid var(--hair); border-radius: 14px; padding: 20px 18px 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.005));
+}
+.sp-cover-card .num {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; color: var(--sp-amber);
+  line-height: 1;
+}
+.sp-cover-card .t { display: block; margin: 12px 0 8px; font-weight: 600; color: var(--ink); font-size: .98rem; }
+.sp-cover-card .d { font-size: .86rem; color: var(--muted); line-height: 1.45; }
+
+.doc-meta {
+  max-width: 940px; margin: 34px auto 0; padding: 0 var(--gutter);
+  display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: .84rem; color: var(--faint);
+  position: relative; z-index: 2;
+}
+.doc-meta span b { color: var(--muted); font-weight: 600; }
+.doc-meta .sp-tag {
+  display: inline-flex; align-items: center; gap: 7px; color: var(--sp-amber);
+  border: 1px solid rgba(232,151,58,.4); border-radius: 100px; padding: 5px 13px;
+  font-family: var(--font-display); font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+}
+
+/* ============================================================
+   SUMÁRIO
+   ============================================================ */
+.doc-toc {
+  position: relative; z-index: 2; max-width: 940px; margin: clamp(34px,5vw,56px) auto 0;
+  padding: 0 var(--gutter);
+}
+.doc-toc__box {
+  border: 1px solid var(--hair-soft); border-radius: 18px; padding: 28px 30px;
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.006));
+}
+.doc-toc__title {
+  font-family: var(--font-display);
+  font-size: .76rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--faint); margin-bottom: 18px;
+}
+.doc-toc ol { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 34px; }
+.doc-toc li { list-style: none; }
+.doc-toc a {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: baseline;
+  font-size: .95rem; color: var(--muted); padding: 9px 0; border-bottom: 1px solid var(--hair-soft);
+  transition: color .25s var(--ease);
+}
+.doc-toc a b { color: var(--sp-amber); font-family: var(--font-display); font-weight: 600; }
+.doc-toc a .pt { color: var(--faint); font-size: .82rem; white-space: nowrap; }
+.doc-toc a:hover { color: var(--ink); }
+
+/* tese central */
+.sp-thesis {
+  max-width: 940px; margin: 26px auto 0; padding: 0 var(--gutter); position: relative; z-index: 2;
+}
+.sp-thesis__inner {
+  background: linear-gradient(135deg, var(--sp-petrol), var(--sp-petrol-lo));
+  border: 1px solid rgba(59,178,166,.18); border-radius: 18px; padding: 30px 34px;
+}
+.sp-thesis .lbl {
+  font-family: var(--font-display); font-size: .74rem; font-weight: 600; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--sp-amber); margin-bottom: 14px;
+}
+.sp-thesis p {
+  font-family: var(--font-display); font-weight: 500; font-size: 1.18rem; line-height: 1.5; color: #EAF3F2;
+}
+.sp-thesis .src {
+  max-width: 940px; margin: 18px auto 0; font-size: .92rem; color: var(--muted); line-height: 1.55;
+}
+.sp-thesis .src em { color: var(--faint); }
+
+/* ============================================================
+   CORPO DO DOCUMENTO
+   ============================================================ */
+.doc { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; padding: 0 var(--gutter) clamp(60px,8vh,110px); }
+.doc section { padding-top: clamp(52px, 7vw, 84px); }
+
+.sp-part-eyebrow {
+  font-family: var(--font-display); font-size: .76rem; font-weight: 600; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--sp-teal-bright); margin-bottom: 12px;
+}
+.doc h2 {
+  font-family: var(--font-display); font-weight: 600; letter-spacing: -.01em;
+  font-size: clamp(1.55rem, 3vw, 2.15rem); line-height: 1.16;
+  padding-bottom: 16px; margin-bottom: 26px; border-bottom: 2px solid rgba(232,151,58,.5);
+}
+.doc h3 {
+  font-family: var(--font-display); font-weight: 600; font-size: 1.24rem;
+  margin: 36px 0 12px; color: var(--ink);
+}
+.doc h4 {
+  font-family: var(--font-display); font-weight: 600; font-size: 1.04rem;
+  margin: 26px 0 10px; color: var(--ink);
+}
+.doc p { color: var(--muted); line-height: 1.72; margin-bottom: 15px; font-size: 1.02rem; }
+.doc p b, .doc li b, .doc td b, .doc th { color: var(--ink); font-weight: 600; }
+.doc em { color: rgba(245,247,250,.72); font-style: italic; }
+
+/* listas com marcador âmbar quadrado */
+.doc ul { margin: 6px 0 20px; padding-left: 0; }
+.doc ul li {
+  list-style: none; position: relative; padding-left: 24px; margin-bottom: 11px;
+  color: var(--muted); line-height: 1.62; font-size: 1.01rem;
+}
+.doc ul li::before {
+  content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 2px;
+  background: var(--sp-amber);
+}
+/* lista numerada */
+.doc ol.plain { margin: 6px 0 20px; padding-left: 0; counter-reset: item; }
+.doc ol.plain li {
+  list-style: none; counter-increment: item; position: relative; padding-left: 34px;
+  margin-bottom: 11px; color: var(--muted); line-height: 1.62; font-size: 1.01rem;
+}
+.doc ol.plain li::before {
+  content: counter(item); position: absolute; left: 0; top: 0;
+  font-family: var(--font-display); font-weight: 600; font-size: .82rem; color: var(--sp-amber);
+  width: 22px; height: 22px; display: grid; place-items: center; border-radius: 50%;
+  border: 1px solid rgba(232,151,58,.45);
+}
+
+/* ============================================================
+   BLOCOS / BOXES
+   ============================================================ */
+.sp-box { border-radius: 14px; padding: 22px 26px; margin: 24px 0; }
+.sp-box .lbl {
+  font-family: var(--font-display); font-size: .74rem; font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; margin-bottom: 12px; display: block;
+}
+.sp-box p { margin-bottom: 10px; }
+.sp-box p:last-child { margin-bottom: 0; }
+
+/* petróleo escuro + eyebrow âmbar (REGRA DE OURO, OBJETIVO CUMPRIDO, LEIA O GRÁFICO) */
+.sp-box--dark {
+  background: linear-gradient(135deg, var(--sp-petrol), var(--sp-petrol-lo));
+  border: 1px solid rgba(59,178,166,.16);
+}
+.sp-box--dark .lbl { color: var(--sp-amber); }
+.sp-box--dark p { color: #E7F1F0; }
+.sp-box--dark p b { color: #fff; }
+
+/* teal tint + borda esquerda teal (ADAPTAÇÃO, TRADUÇÃO, APLICAÇÃO) */
+.sp-box--teal {
+  background: rgba(28,131,120,.10); border: 1px solid rgba(59,178,166,.18);
+  border-left: 3px solid var(--sp-teal-bright);
+}
+.sp-box--teal .lbl { color: var(--sp-teal-bright); }
+
+/* vermelho tint + borda esquerda (FILTRO DO RESTAURANTE, REGRA CONDIÇÃO ÚNICA) */
+.sp-box--red {
+  background: rgba(210,92,92,.09); border: 1px solid rgba(210,92,92,.22);
+  border-left: 3px solid var(--sp-red);
+}
+.sp-box--red .lbl { color: var(--sp-red); }
+
+/* citação — borda âmbar + legenda teal */
+.sp-quote { margin: 26px 0; padding: 22px 28px; border-left: 3px solid var(--sp-amber);
+  background: linear-gradient(90deg, rgba(232,151,58,.07), transparent 70%); border-radius: 0 12px 12px 0; }
+.sp-quote p { font-family: var(--font-display); font-weight: 400; font-style: italic;
+  font-size: 1.14rem; line-height: 1.5; color: var(--ink); margin: 0; }
+.sp-quote .cap { display: block; margin-top: 14px; font-family: var(--font-display); font-style: normal;
+  font-size: .76rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--sp-teal-bright); line-height: 1.5; }
+
+/* nota discreta */
+.sp-note { margin: 20px 0; padding: 15px 20px; border-radius: 12px; font-size: .95rem; line-height: 1.6;
+  color: var(--muted); border: 1px solid rgba(232,151,58,.22); background: rgba(232,151,58,.05); }
+.sp-note b { color: var(--sp-amber); }
+
+/* ============================================================
+   CARDS DE CONTRASTE (2 colunas: vermelho | teal)
+   ============================================================ */
+.sp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+.sp-card { border: 1px solid var(--hair-soft); border-radius: 14px; padding: 22px 24px;
+  background: rgba(255,255,255,.015); }
+.sp-card--red { border-top: 3px solid var(--sp-red); }
+.sp-card--teal { border-top: 3px solid var(--sp-teal-bright); }
+.sp-card h5 { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; margin-bottom: 10px; }
+.sp-card--red h5 { color: var(--sp-red); }
+.sp-card--teal h5 { color: var(--sp-teal-bright); }
+.sp-card p { font-size: .96rem; margin-bottom: 0; }
+
+/* ============================================================
+   SCRIPT (diálogo CLOSER / CLIENTE)
+   ============================================================ */
+.sp-script {
+  margin: 24px 0; border-radius: 14px; padding: 24px 28px;
+  background: linear-gradient(135deg, var(--sp-petrol), var(--sp-petrol-lo));
+  border: 1px solid rgba(59,178,166,.16);
+}
+.sp-script .lbl {
+  font-family: var(--font-display); font-size: .74rem; font-weight: 600; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--sp-amber); margin-bottom: 16px; display: block; line-height: 1.5;
+}
+.sp-script p { color: #E7F1F0; margin-bottom: 12px; line-height: 1.62; font-size: 1rem; }
+.sp-script p:last-child { margin-bottom: 0; }
+.sp-script .who { font-family: var(--font-display); font-weight: 600; font-size: .82rem; letter-spacing: .04em;
+  color: var(--sp-teal-bright); margin-right: 4px; }
+.sp-script .who--cli { color: var(--sp-amber-lo); }
+.sp-script .obs { font-style: italic; color: rgba(231,241,240,.62); font-size: .93rem; }
+
+/* ============================================================
+   GRÁFICO DE BARRAS (Figura 1 — perfis)
+   ============================================================ */
+.sp-figtitle { font-family: var(--font-display); font-weight: 600; font-size: .98rem; color: var(--ink);
+  margin: 26px 0 18px; }
+.sp-barchart { margin: 0 0 14px; }
+.sp-bar-row { display: grid; grid-template-columns: 150px 1fr; align-items: center; gap: 14px; margin-bottom: 12px; }
+.sp-bar-row .bl { font-family: var(--font-display); font-weight: 600; font-size: .9rem; color: var(--ink); }
+.sp-bar-track { display: flex; align-items: center; gap: 10px; }
+.sp-bar { height: 26px; border-radius: 5px; background: var(--sp-teal-mid); }
+.sp-bar--win { background: var(--sp-teal); }
+.sp-bar--lose { background: var(--sp-red-deep); }
+.sp-bar-row .pv { font-family: var(--font-display); font-weight: 700; font-size: .95rem; color: var(--ink); }
+.sp-figcap { font-size: .86rem; color: var(--faint); line-height: 1.55; font-style: italic; margin: 8px 0 6px; }
+
+/* ============================================================
+   MEHRABIAN (Figura 3 — barras empilhadas)
+   ============================================================ */
+.sp-meh { margin: 18px 0 6px; }
+.sp-meh .cap { font-family: var(--font-display); font-weight: 600; font-size: .9rem; color: var(--ink); margin: 16px 0 8px; }
+.sp-meh-bar { display: flex; height: 40px; border-radius: 7px; overflow: hidden; }
+.sp-meh-seg { display: flex; align-items: center; justify-content: center; padding: 0 10px;
+  font-family: var(--font-display); font-weight: 600; font-size: .78rem; color: #fff; text-align: center; line-height: 1.15;
+  white-space: nowrap; overflow: hidden; }
+.sp-meh-seg.s1 { background: var(--sp-petrol); }
+.sp-meh-seg.s2 { background: var(--sp-teal); }
+.sp-meh-seg.s3 { background: var(--sp-teal-mid); color: #06282b; }
+
+/* ============================================================
+   FUNIL INVERTIDO — níveis de consciência (Figura 4)
+   ============================================================ */
+.sp-pyr { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 22px 0 6px; }
+.sp-pyr-l { width: 100%; max-width: 640px; text-align: center; color: #fff;
+  padding: 18px 48px; border-radius: 8px; }
+.sp-pyr-l .t { font-family: var(--font-display); font-weight: 600; font-size: .92rem; letter-spacing: .06em; text-transform: uppercase; }
+.sp-pyr-l .d { display: block; margin-top: 6px; font-size: .9rem; opacity: .88; }
+.sp-pyr-l.l1 { background: var(--sp-teal-mid); max-width: 640px; clip-path: polygon(0 0,100% 0,93% 100%,7% 100%); color:#06282b; }
+.sp-pyr-l.l2 { background: var(--sp-teal); max-width: 560px; clip-path: polygon(0 0,100% 0,91% 100%,9% 100%); }
+.sp-pyr-l.l3 { background: var(--sp-petrol); max-width: 520px; clip-path: polygon(0 0,100% 0,89% 100%,11% 100%); padding-bottom: 24px; }
+.sp-pyr-l.l3 .t { color: var(--sp-amber); }
+
+/* ============================================================
+   FUNIL DA CALL — fluxograma dos 6 estágios (Figura 2)
+   ============================================================ */
+.sp-flow { margin: 24px 0 6px; display: flex; flex-direction: column; align-items: center; }
+.sp-flow-stage { width: 100%; max-width: 560px; border-radius: 10px; padding: 16px 20px; text-align: center; }
+.sp-flow-stage .t { font-family: var(--font-display); font-weight: 600; font-size: .98rem; color: var(--sp-amber); }
+.sp-flow-stage .d { display: block; margin-top: 5px; font-size: .88rem; color: #DCEBEA; line-height: 1.4; }
+.sp-flow-stage.dark { background: var(--sp-petrol); }
+.sp-flow-stage.teal { background: var(--sp-teal); }
+.sp-flow-stage.teal .t { color: #fff; }
+.sp-flow-arrow { width: 2px; height: 26px; background: rgba(245,247,250,.3); position: relative; }
+.sp-flow-arrow::after { content: ""; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid rgba(245,247,250,.4); }
+.sp-flow-final { width: 100%; max-width: 460px; border-radius: 100px; padding: 16px 20px; text-align: center;
+  background: var(--sp-green); }
+.sp-flow-final .t { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; color: #06251a; }
+.sp-flow-final .d { display: block; margin-top: 3px; font-size: .86rem; color: rgba(6,37,26,.8); }
+.sp-flow-filter { max-width: 560px; width: 100%; margin: 10px 0; }
+.sp-flow-filter .fbox {
+  margin-left: auto; width: 250px; border: 1px solid rgba(210,92,92,.4); background: rgba(210,92,92,.09);
+  border-radius: 10px; padding: 11px 14px; text-align: center; font-size: .85rem; color: var(--sp-red);
+  font-weight: 600; line-height: 1.4;
+}
+.sp-flow-filter .fbox em { display: block; color: var(--muted); font-weight: 400; font-size: .82rem; }
+.sp-flow-note {
+  max-width: 560px; width: 100%; margin: 0 0 14px; border: 1px solid rgba(232,151,58,.35);
+  background: rgba(232,151,58,.06); border-radius: 10px; padding: 14px 16px;
+}
+.sp-flow-note .lbl { font-family: var(--font-display); font-size: .68rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--sp-amber); margin-bottom: 8px; display: block; }
+.sp-flow-note p { font-size: .86rem; color: var(--muted); margin: 0 0 6px; line-height: 1.45; }
+.sp-flow-note p:last-child { margin-bottom: 0; }
+
+/* ============================================================
+   PIT 02 — 3 cards (Figura 6)
+   ============================================================ */
+.sp-pit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0 6px; }
+.sp-pit-card { border-radius: 12px; padding: 20px 18px; text-align: center; }
+.sp-pit-card .t { font-family: var(--font-display); font-weight: 700; font-size: .92rem; letter-spacing: .04em;
+  text-transform: uppercase; margin-bottom: 12px; }
+.sp-pit-card p { font-size: .88rem; line-height: 1.5; margin-bottom: 9px; }
+.sp-pit-card p:last-child { margin-bottom: 0; }
+.sp-pit-card.c1 { background: var(--sp-petrol); }
+.sp-pit-card.c1 .t { color: var(--sp-amber); } .sp-pit-card.c1 p { color: #DCEBEA; }
+.sp-pit-card.c2 { background: var(--sp-teal); }
+.sp-pit-card.c2 .t, .sp-pit-card.c2 p b { color: #fff; } .sp-pit-card.c2 p { color: #EAF6F4; }
+.sp-pit-card.c3 { background: var(--sp-amber); }
+.sp-pit-card.c3 .t { color: #3a2405; } .sp-pit-card.c3 p { color: #4a3007; } .sp-pit-card.c3 p b { color: #241500; }
+
+/* ============================================================
+   TIMELINE DA CALL (Figura 7)
+   ============================================================ */
+.sp-tl-title { font-family: var(--font-display); font-weight: 600; font-size: .9rem; color: var(--ink); margin: 20px 0 10px; }
+.sp-tl { display: flex; height: 58px; border-radius: 8px; overflow: hidden; }
+.sp-tl-seg { display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #fff; text-align: center; padding: 0 4px; line-height: 1.15; overflow: hidden; }
+.sp-tl-seg .s { font-family: var(--font-display); font-weight: 700; font-size: .78rem; }
+.sp-tl-seg .m { font-size: .72rem; opacity: .9; }
+.sp-tl-seg.e1 { background: var(--sp-petrol); }
+.sp-tl-seg.e2 { background: var(--sp-teal); }
+.sp-tl-seg.e3 { background: var(--sp-petrol-lo); }
+.sp-tl-seg.e4 { background: var(--sp-teal-mid); }
+.sp-tl-seg.e5 { background: var(--sp-amber); color: #3a2405; }
+.sp-tl-seg.e6 { background: var(--sp-green); color: #06251a; }
+.sp-tl-ends { display: flex; justify-content: space-between; margin-top: 6px; font-size: .78rem; color: var(--faint); }
+
+/* ============================================================
+   TABELAS
+   ============================================================ */
+.doc-table-wrap { overflow-x: auto; margin: 22px 0 26px; border-radius: 14px; border: 1px solid var(--hair-soft); }
+.doc table { width: 100%; border-collapse: collapse; font-size: .94rem; min-width: 520px; }
+.doc thead th {
+  text-align: left; font-family: var(--font-display); font-weight: 600; font-size: .82rem;
+  letter-spacing: .02em; color: #EAF3F2; padding: 14px 18px;
+  background: var(--sp-petrol); border-bottom: 1px solid rgba(59,178,166,.2);
+}
+.doc tbody td { padding: 14px 18px; color: var(--muted); border-bottom: 1px solid var(--hair-soft); vertical-align: top; line-height: 1.55; }
+.doc tbody tr:last-child td { border-bottom: none; }
+.doc tbody tr:nth-child(even) td { background: rgba(255,255,255,.014); }
+.doc td b { color: var(--ink); }
+
+/* ============================================================
+   CHECKLIST / FRASES
+   ============================================================ */
+.sp-check { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 22px 0; }
+.sp-check-col { border: 1px solid var(--hair-soft); border-radius: 14px; padding: 20px 22px; background: rgba(255,255,255,.015); }
+.sp-check-col h5 { font-family: var(--font-display); font-weight: 600; font-size: .78rem; letter-spacing: .14em;
+  text-transform: uppercase; margin-bottom: 14px; }
+.sp-check-col.no h5 { color: var(--sp-red); }
+.sp-check-col.yes h5 { color: var(--sp-green); }
+.sp-check-col.pre h5 { color: var(--sp-teal-bright); }
+.sp-check-col ul { margin: 0; }
+.sp-check-col li { padding-left: 26px; font-size: .95rem; margin-bottom: 10px; }
+.sp-check-col li::before { content: none; }
+.sp-check-col.no li { position: relative; }
+.sp-check-col.no li::after { content: "✕"; position: absolute; left: 0; top: 0; color: var(--sp-red); font-weight: 700; }
+.sp-check-col.yes li::after { content: "✓"; position: absolute; left: 0; top: 0; color: var(--sp-green); font-weight: 700; }
+.sp-check-col.pre li::after { content: "▪"; position: absolute; left: 2px; top: 0; color: var(--sp-teal-bright); }
+.sp-check-col li { position: relative; list-style: none; }
+
+/* ============================================================
+   RODAPÉ POR SEÇÃO + RODAPÉ GERAL
+   ============================================================ */
+.sp-secfoot { margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--hair-soft);
+  display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  font-size: .78rem; color: var(--faint); font-family: var(--font-display); letter-spacing: .02em; }
+.sp-secfoot b { color: var(--muted); font-weight: 600; }
+
+.doc-footer {
+  position: relative; z-index: 2; max-width: 820px; margin: 0 auto; padding: 44px var(--gutter) 90px;
+  border-top: 1px solid var(--hair-soft); display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 14px;
+}
+.doc-footer .wm { font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; color: var(--ink); }
+.doc-footer .wm b { color: var(--sp-amber); }
+.doc-footer span { font-size: .82rem; color: var(--faint); }
+
+/* ============================================================
+   TELA DE LOGIN
+   ============================================================ */
+.sp-gate { position: relative; z-index: 2; min-height: 100vh; display: grid; place-items: center; padding: 30px var(--gutter); }
+.sp-gate__card {
+  width: 100%; max-width: 400px; text-align: center;
+  border: 1px solid var(--hair-soft); border-radius: 20px; padding: 44px 38px;
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008));
+  backdrop-filter: blur(4px);
+}
+.sp-gate__brand { font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; color: var(--ink); letter-spacing: -.01em; }
+.sp-gate__brand b { color: var(--sp-amber); font-weight: 600; }
+.sp-gate__sub { margin-top: 10px; font-size: .82rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--sp-teal-bright); font-family: var(--font-display); font-weight: 600; }
+.sp-gate__lock { width: 46px; height: 46px; margin: 0 auto 22px; border-radius: 50%;
+  display: grid; place-items: center; border: 1px solid rgba(232,151,58,.4); background: rgba(232,151,58,.08); color: var(--sp-amber); }
+.sp-gate form { margin-top: 28px; }
+.sp-gate input[type=password] {
+  width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--hair);
+  background: rgba(0,0,0,.25); color: var(--ink); font-size: 1rem; font-family: var(--font-body);
+  outline: none; transition: border-color .2s var(--ease);
+}
+.sp-gate input[type=password]:focus { border-color: var(--sp-amber); }
+.sp-gate button {
+  width: 100%; margin-top: 14px; padding: 14px 16px; border: none; border-radius: 12px; cursor: pointer;
+  font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: #241500;
+  background: linear-gradient(120deg, var(--sp-amber), var(--sp-amber-lo));
+  transition: transform .15s var(--ease), filter .2s var(--ease);
+}
+.sp-gate button:hover { filter: brightness(1.06); }
+.sp-gate button:active { transform: translateY(1px); }
+.sp-gate__err { margin-top: 16px; font-size: .9rem; color: var(--sp-red); min-height: 1em; }
+.sp-gate__foot { margin-top: 26px; font-size: .74rem; color: var(--faint); letter-spacing: .04em; }
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 760px) {
+  .sp-cover-cards { grid-template-columns: 1fr 1fr; }
+  .doc-toc ol { grid-template-columns: 1fr; }
+  .sp-cards, .sp-check { grid-template-columns: 1fr; }
+  .sp-pit { grid-template-columns: 1fr; }
+  .sp-bar-row { grid-template-columns: 120px 1fr; }
+  .sp-flow-filter .fbox { width: 100%; }
+  .sp-tl { height: auto; flex-direction: column; }
+  .sp-tl-seg { flex-direction: row; gap: 8px; justify-content: flex-start; padding: 10px 14px; min-height: 0; }
+  .sp-meh-seg { font-size: .68rem; padding: 0 5px; }
+}
+@media (max-width: 460px) {
+  .sp-cover-cards { grid-template-columns: 1fr; }
+}

@@ -35,3 +35,4 @@ jobs:
             .gitignore
             assets/logo-vibra-marketing.png
             portoes-itajai/**
+            **/_preview.html
