@@ -33,10 +33,13 @@ $line = sprintf("[%s] %s | id=%s | status=%s | value=%s | sub=%s | ext=%s\n",
 );
 @file_put_contents($logFile, $line, FILE_APPEND | LOCK_EX);
 
-/* Notifica a equipe quando o pagamento entra */
-if (in_array($event, ['PAYMENT_CONFIRMED', 'PAYMENT_RECEIVED'], true) && !empty($cfg['notifyEmail'])) {
+/* Notifica a equipe: pagamentos e eventos que exigem atenção */
+$paidEvents  = ['PAYMENT_CONFIRMED', 'PAYMENT_RECEIVED'];
+$alertEvents = ['PAYMENT_OVERDUE', 'PAYMENT_REFUNDED', 'PAYMENT_CHARGEBACK_REQUESTED', 'PAYMENT_CREDIT_CARD_CAPTURE_REFUSED'];
+if (!empty($cfg['notifyEmail']) && (in_array($event, $paidEvents, true) || in_array($event, $alertEvents, true))) {
   $valor = isset($pay['value']) ? number_format($pay['value'], 2, ',', '.') : '?';
-  $assunto = 'Novo pagamento CRM — R$ ' . $valor . ' (' . ($pay['externalReference'] ?? '') . ')';
+  $tipo  = in_array($event, $paidEvents, true) ? 'Novo pagamento' : 'ATENCAO';
+  $assunto = '[' . $tipo . '] CRM — R$ ' . $valor . ' · ' . $event . ' (' . ($pay['externalReference'] ?? '') . ')';
   $corpo = "Evento: $event\n"
          . 'Cobrança: ' . ($pay['id'] ?? '-') . "\n"
          . 'Assinatura: ' . ($pay['subscription'] ?? '-') . "\n"
