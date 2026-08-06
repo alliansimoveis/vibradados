@@ -83,35 +83,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 $erro = 'O pagamento ainda está sendo configurado. Fale com a Vibra pelo WhatsApp.';
   else {
     $apiKey = $cfg['apiKey'];
-    $obs = 'Contrato CRM v1 aceito em '.date('d/m/Y H:i:s').' | IP '.($_SERVER['REMOTE_ADDR']??'?')
-         .' | Plano '.$plano['nome'].' | Mensal R$ '.number_format($plano['valor'],2,',','.')
-         .' | Anual R$ '.number_format($anual,2,',','.').' | Multa '.$MULTA_PCT.'% vincendas';
-    // registro de aceite (acima do public_html)
+    // registro de aceite do contrato (acima do public_html)
     @file_put_contents(dirname($_SERVER['DOCUMENT_ROOT']).'/contratos-aceites.log',
-      sprintf("[%s] %s | doc=%s | %s | %s | %s/%s | IP=%s | plano=%s | anual=%.2f\n",
-        date('Y-m-d H:i:s'),$nome,$doc,$email,$fone,$cidade,$uf,($_SERVER['REMOTE_ADDR']??'?'),$plano['nome'],$anual),
+      sprintf("[%s] %s | doc=%s | %s | %s | %s/%s | IP=%s | plano=%s | mensal=%.2f | anual=%.2f | multa=%d%% | aceite=SIM\n",
+        date('Y-m-d H:i:s'),$nome,$doc,$email,$fone,$cidade,$uf,($_SERVER['REMOTE_ADDR']??'?'),$plano['nome'],$plano['valor'],$anual,$MULTA_PCT),
       FILE_APPEND|LOCK_EX);
 
-    $cli = asaas('POST','/customers',[
-      'name'=>$nome,'cpfCnpj'=>$doc,'email'=>$email,'mobilePhone'=>$fone,
-      'postalCode'=>$cep,'address'=>$logr,'addressNumber'=>$num,'complement'=>$compl,'province'=>$bairro,
-      'externalReference'=>'crm-'.$key,'observations'=>$obs,
+    // Asaas Checkout — SOMENTE cartao de credito (sem debito) + assinatura recorrente mensal.
+    $host = (empty($_SERVER['HTTPS'])?'http':'https').'://'.$_SERVER['HTTP_HOST'];
+    $base = $host.'/crm-alta-conversao/planos/checkout';
+    $chk = asaas('POST','/checkouts',[
+      'billingTypes'    => ['CREDIT_CARD'],
+      'chargeTypes'     => ['RECURRENT'],
+      'minutesToExpire' => 60,
+      'externalReference' => 'crm-'.$key,
+      'callback' => [
+        'successUrl' => $base.'/obrigado.php',
+        'cancelUrl'  => $base.'/?plano='.$key,
+        'expiredUrl' => $host.'/crm-alta-conversao/planos/',
+      ],
+      'items' => [[
+        'name'        => 'Plano '.$plano['nome'].' - CRM Vibra',
+        'description' => $plano['desc'].' (assinatura mensal)',
+        'quantity'    => 1,
+        'value'       => $plano['valor'],
+      ]],
+      'customerData' => [
+        'name'=>$nome,'cpfCnpj'=>$doc,'email'=>$email,'phone'=>$fone,
+        'postalCode'=>$cep,'address'=>$logr,'addressNumber'=>$num,'complement'=>$compl,'province'=>$bairro,
+      ],
+      'subscription' => ['cycle'=>'MONTHLY','nextDueDate'=>date('Y-m-d')],
     ],$apiBase,$apiKey);
 
-    if ($cli['http']>=200 && $cli['http']<300 && !empty($cli['data']['id'])) {
-      $subPayload = [
-        'customer'=>$cli['data']['id'],'billingType'=>'CREDIT_CARD','value'=>$plano['valor'],
-        'nextDueDate'=>date('Y-m-d'),'cycle'=>'MONTHLY','description'=>$plano['desc'],'externalReference'=>'crm-'.$key,
-      ];
-      if (!empty($cfg['callbackUrl'])) $subPayload['callback'] = ['successUrl'=>$cfg['callbackUrl'],'autoRedirect'=>true];
-      $sub = asaas('POST','/subscriptions',$subPayload,$apiBase,$apiKey);
-      if ($sub['http']>=200 && $sub['http']<300 && !empty($sub['data']['id'])) {
-        $pay = asaas('GET','/subscriptions/'.$sub['data']['id'].'/payments',null,$apiBase,$apiKey);
-        $inv = $pay['data']['data'][0]['invoiceUrl'] ?? '';
-        if ($inv) { header('Location: '.$inv); exit; }
-        $erro = 'Assinatura criada, mas não recebemos o link de pagamento. Fale com a Vibra.';
-      } else $erro = asaasErr($sub);
-    } else $erro = asaasErr($cli);
+    if ($chk['http']>=200 && $chk['http']<300 && !empty($chk['data']['link'])) {
+      header('Location: '.$chk['data']['link']); exit;
+    } else $erro = asaasErr($chk);
   }
 }
 
