@@ -1,0 +1,79 @@
+/* ============================================================
+   CRM de Alta Conversão — Checkout (Asaas)
+   Estende /styles.css (tema escuro premium).
+   ============================================================ */
+
+.ck-wrap { position: relative; z-index: 2; max-width: 920px; margin: 0 auto;
+  padding: clamp(60px, 9vh, 110px) var(--gutter) clamp(60px, 9vh, 110px); }
+
+.ck-eyebrow { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-display);
+  font-size: .74rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--cyan);
+  border: 1px solid rgba(30,217,238,.28); border-radius: 100px; padding: 7px 16px; background: rgba(30,217,238,.06); margin-bottom: 22px; }
+.ck-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--grad); }
+
+.ck-title { font-family: var(--font-display); font-weight: 600; letter-spacing: -.01em;
+  font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.1; }
+.ck-title .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+.ck-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 26px; margin-top: 34px; align-items: start; }
+
+/* resumo do pedido */
+.ck-summary { border: 1px solid var(--hair-soft); border-radius: 20px; padding: 28px 30px;
+  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008)); position: sticky; top: 24px; }
+.ck-summary h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; }
+.ck-summary .plan-tag { display: inline-block; margin-top: 4px; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--cyan); font-family: var(--font-display); font-weight: 600; }
+.ck-price { margin: 20px 0 6px; display: flex; align-items: flex-end; gap: 7px; }
+.ck-price .cur { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--muted); margin-bottom: 6px; }
+.ck-price .val { font-family: var(--font-display); font-weight: 700; font-size: 2.8rem; line-height: 1; color: var(--ink); }
+.ck-price .per { font-size: .9rem; color: var(--muted); margin-bottom: 6px; }
+.ck-cycle { font-size: .84rem; color: var(--faint); }
+.ck-cycle b { color: var(--muted); font-weight: 600; }
+.ck-summary ul { list-style: none; margin: 22px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.ck-summary li { position: relative; padding-left: 26px; font-size: .93rem; color: var(--muted); line-height: 1.4; }
+.ck-summary li svg { position: absolute; left: 0; top: 2px; width: 16px; height: 16px; stroke: var(--cyan); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.ck-summary .switch { margin-top: 20px; font-size: .84rem; }
+.ck-summary .switch a { color: var(--cyan); }
+
+/* formulário */
+.ck-form { border: 1px solid var(--hair-soft); border-radius: 20px; padding: 30px 32px;
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.006)); }
+.ck-form h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; margin-bottom: 4px; }
+.ck-form .sub { font-size: .9rem; color: var(--muted); margin-bottom: 22px; }
+.ck-field { margin-bottom: 16px; }
+.ck-field label { display: block; font-size: .82rem; font-weight: 600; color: var(--ink); margin-bottom: 7px; font-family: var(--font-display); }
+.ck-field input { width: 100%; padding: 13px 15px; border-radius: 12px; border: 1px solid var(--hair);
+  background: rgba(0,0,0,.25); color: var(--ink); font-size: 1rem; font-family: var(--font-body); outline: none;
+  transition: border-color .2s var(--ease); }
+.ck-field input:focus { border-color: var(--cyan); }
+.ck-field input::placeholder { color: var(--faint); }
+.ck-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.ck-submit { width: 100%; margin-top: 8px; justify-content: center; }
+.ck-secure { margin-top: 16px; display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--faint); line-height: 1.4; }
+.ck-secure svg { width: 16px; height: 16px; stroke: var(--cyan); fill: none; stroke-width: 2; flex-shrink: 0; }
+
+.ck-error { margin-bottom: 20px; padding: 14px 18px; border-radius: 12px; font-size: .92rem; line-height: 1.5;
+  color: #ffd9d9; border: 1px solid rgba(224,37,155,.35); background: rgba(224,37,155,.08); }
+.ck-error b { color: #fff; }
+
+/* estados finais (obrigado) */
+.ck-final { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; text-align: center;
+  padding: clamp(90px, 16vh, 180px) var(--gutter) 120px; }
+.ck-final .ico { width: 64px; height: 64px; margin: 0 auto 26px; border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid rgba(30,217,238,.4); background: rgba(30,217,238,.08); }
+.ck-final .ico svg { width: 30px; height: 30px; stroke: var(--cyan); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ck-final h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.12; }
+.ck-final h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.ck-final p { margin: 18px auto 0; color: var(--muted); line-height: 1.6; font-size: 1.04rem; max-width: 48ch; }
+
+.ck-footer { position: relative; z-index: 2; border-top: 1px solid var(--hair-soft); max-width: 920px; margin: 0 auto;
+  padding: 30px var(--gutter) 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.ck-footer img { height: 28px; opacity: .8; }
+.ck-footer span { font-size: .8rem; color: var(--faint); }
+
+@media (max-width: 760px) {
+  .ck-grid { grid-template-columns: 1fr; }
+  .ck-summary { position: static; order: 2; }
+  .ck-row { grid-template-columns: 1fr; }
+}
