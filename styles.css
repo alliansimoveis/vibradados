@@ -480,7 +480,7 @@ body.nav-open .nav__burger span:nth-child(3) { transform: translateY(-7px) rotat
     position: fixed; inset: 0; z-index: 850;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
     padding: 96px 24px 120px;
-    background: rgba(8,9,12,.975); backdrop-filter: blur(16px) saturate(140%);
+    background: rgba(7,8,11,.995); backdrop-filter: blur(18px) saturate(140%);
     opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s var(--ease);
   }
   .nav__links a { font-size: 1.4rem; padding: 6px 0; }
