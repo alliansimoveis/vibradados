@@ -67,8 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ], $apiBase, $apiKey);
 
     if ($cli['http'] >= 200 && $cli['http'] < 300 && !empty($cli['data']['id'])) {
-      $base = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . '://' . $_SERVER['HTTP_HOST'];
-      $sub = asaas('POST', '/subscriptions', [
+      $subPayload = [
         'customer'     => $cli['data']['id'],
         'billingType'  => 'CREDIT_CARD',
         'value'        => $plano['valor'],
@@ -76,8 +75,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'cycle'        => 'MONTHLY',
         'description'  => $plano['desc'],
         'externalReference' => 'crm-' . $key,
-        'callback'     => ['successUrl' => $base . '/crm-alta-conversao/planos/checkout/obrigado.php', 'autoRedirect' => true],
-      ], $apiBase, $apiKey);
+      ];
+      // URL de retorno só é aceita se o domínio estiver cadastrado na conta Asaas.
+      // Ative em asaas-config.php ('callbackUrl' => 'https://vibradados.com.br/...') após cadastrar o domínio.
+      if (!empty($cfg['callbackUrl'])) {
+        $subPayload['callback'] = ['successUrl' => $cfg['callbackUrl'], 'autoRedirect' => true];
+      }
+      $sub = asaas('POST', '/subscriptions', $subPayload, $apiBase, $apiKey);
 
       if ($sub['http'] >= 200 && $sub['http'] < 300 && !empty($sub['data']['id'])) {
         $pay = asaas('GET', '/subscriptions/' . $sub['data']['id'] . '/payments', null, $apiBase, $apiKey);
