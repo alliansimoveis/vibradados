@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
   <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500,400&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css?v=8" />
-  <link rel="stylesheet" href="/crm-alta-conversao/planos/checkout/checkout.css?v=3" />
+  <link rel="stylesheet" href="/crm-alta-conversao/planos/checkout/checkout.css?v=4" />
 </head>
 <body>
   <div class="bg-grain" aria-hidden="true"></div>
