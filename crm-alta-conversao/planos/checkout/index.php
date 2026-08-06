@@ -34,7 +34,8 @@ function asaas($method, $path, $body, $apiBase, $apiKey) {
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_CUSTOMREQUEST  => $method,
     CURLOPT_TIMEOUT        => 30,
-    CURLOPT_HTTPHEADER     => ['Content-Type: application/json', 'access_token: ' . $apiKey],
+    CURLOPT_USERAGENT      => 'VibraCRM/1.0 (vibradados.com.br)',
+    CURLOPT_HTTPHEADER     => ['Content-Type: application/json', 'User-Agent: VibraCRM/1.0', 'access_token: ' . $apiKey],
   ]);
   if ($body !== null) curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
   $resp = curl_exec($ch);
