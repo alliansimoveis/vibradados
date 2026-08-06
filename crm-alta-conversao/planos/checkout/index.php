@@ -288,6 +288,7 @@ $V = function($k){ return htmlspecialchars($_POST[$k] ?? '', ENT_QUOTES, 'UTF-8'
         <p>3.1. Considerando que o valor é apurado com base no período anual de 12 (doze) meses, em caso de <b>rescisão antecipada e imotivada pela CONTRATANTE</b> antes do término da vigência, será devida <b>multa rescisória equivalente a <span id="ct-multapct"></span>% do valor das mensalidades vincendas</b>, isto é, proporcional aos meses faltantes para o encerramento do contrato.</p>
         <p>3.2. A multa é calculada pela fórmula: <b><span id="ct-multapct2"></span>% × R$ <span id="ct-mensal2"></span> × (nº de meses restantes até o 12º mês)</b>. Exemplo: restando 8 meses, a multa seria R$ <span id="ct-multaex"></span>.</p>
         <p>3.3. Não haverá multa em caso de rescisão por descumprimento contratual pela CONTRATADA, nem ao término natural da vigência.</p>
+        <p>3.4. O <b>cancelamento deverá ser solicitado exclusivamente por e-mail</b>, para o endereço <b>cancelamento@vibradados.com.br</b>. Considera-se como data do cancelamento a do recebimento da solicitação nesse e-mail, data essa utilizada para o cálculo de eventual multa proporcional prevista nesta cláusula.</p>
 
         <h2 class="ct-h2">Cláusula 4 — Obrigações da CONTRATADA</h2>
         <p>4.1. Disponibilizar a Plataforma e realizar a configuração e operação do rastreamento e integrações descritos na Cláusula 1, empregando os melhores esforços para o funcionamento adequado dos serviços.</p>
