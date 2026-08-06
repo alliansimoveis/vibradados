@@ -147,7 +147,11 @@
 
 /* ---------- RESPONSIVO ---------- */
 @media (max-width: 860px) {
+  body { overflow-x: hidden; }
   .pl-plans { grid-template-columns: 1fr; max-width: 460px; gap: 34px; }
   .plan--pop { order: -1; }
-  .pl-steps { grid-template-columns: 1fr; }
+  .pl-steps { grid-template-columns: 1fr !important; }
+  .pl-step { min-width: 0; }
+  .pl-step p, .plan__feats li { overflow-wrap: break-word; }
+  .pl-billing { flex-wrap: wrap; justify-content: center; max-width: 100%; text-align: center; line-height: 1.6; }
 }
