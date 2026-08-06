@@ -483,7 +483,11 @@ body.nav-open .nav__burger span:nth-child(3) { transform: translateY(-7px) rotat
     background: rgba(7,8,11,.995); backdrop-filter: blur(18px) saturate(140%);
     opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s var(--ease);
   }
-  .nav__links a { font-size: 1.4rem; padding: 6px 0; }
+  .nav__links a { font-family: var(--font-display); font-weight: 600; font-size: 1.5rem;
+    color: var(--ink); text-align: center; line-height: 1.25; padding: 14px 22px; border-radius: 14px;
+    border: 1px solid var(--hair-soft); background: rgba(255,255,255,.03); width: min(86vw, 360px); }
+  .nav__links a::after { display: none; }
+  .nav__links a:active { background: rgba(255,255,255,.07); }
   .nav__cta { position: fixed; left: 50%; bottom: 9vh; transform: translateX(-50%); z-index: 855;
     opacity: 0; visibility: hidden; transition: opacity .3s var(--ease), visibility .3s var(--ease); }
   body.nav-open { overflow: hidden; }
