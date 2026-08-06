@@ -68,8 +68,9 @@
 .ck-final p { margin: 18px auto 0; color: var(--muted); line-height: 1.6; font-size: 1.04rem; max-width: 48ch; }
 
 .ck-footer { position: relative; z-index: 2; border-top: 1px solid var(--hair-soft); max-width: 920px; margin: 0 auto;
-  padding: 30px var(--gutter) 60px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-.ck-footer img { height: 28px; opacity: .8; }
+  padding: 44px var(--gutter) 60px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 18px; }
+.ck-footer img { height: clamp(120px, 16vw, 164px); width: auto; opacity: .85; }
 .ck-footer span { font-size: .8rem; color: var(--faint); }
 
 .ck-hint { display: block; margin-top: 6px; font-size: .8rem; }

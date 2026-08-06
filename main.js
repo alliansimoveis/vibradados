@@ -231,3 +231,16 @@
   if (window.gsap) boot();
   else window.addEventListener("load", boot);
 })();
+
+/* ===== Menu sanduíche (mobile) ===== */
+(function () {
+  const burger = document.querySelector(".nav__burger");
+  if (!burger) return;
+  const close = () => { document.body.classList.remove("nav-open"); burger.setAttribute("aria-expanded", "false"); };
+  burger.addEventListener("click", () => {
+    const open = document.body.classList.toggle("nav-open");
+    burger.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.querySelectorAll(".nav__links a, .nav__cta").forEach((a) => a.addEventListener("click", close));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+})();
