@@ -147,6 +147,15 @@
 .pl-footer span { font-size: .82rem; color: var(--faint); }
 
 /* ---------- RESPONSIVO ---------- */
+/* Alinha preços, boxes e botões entre os cards (mesma altura por linha) */
+@media (min-width: 861px) {
+  .pl-plans { align-items: stretch; }
+  .plan__name  { min-height: 78px; }
+  .plan__desc  { min-height: 94px; }
+  .plan__price { min-height: 104px; }
+  .plan__cycle { min-height: 62px; }
+  .plan__seats { min-height: 148px; }
+}
 @media (max-width: 1150px) {
   .pl-plans { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
 }
