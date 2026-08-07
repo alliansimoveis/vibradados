@@ -14,6 +14,8 @@ $PLANOS = [
                  'desc'=>'CRM de Alta Conversão — Plano Avançado (até 3 usuários)'],
   'pro'      => ['nome'=>'Pro','valor'=>250.00,'usuarios'=>'Usuários ilimitados',
                  'desc'=>'CRM de Alta Conversão — Plano Pro (usuários ilimitados)'],
+  'prosite'  => ['nome'=>'Pro + Site','valor'=>459.00,'usuarios'=>'Usuários ilimitados',
+                 'desc'=>'CRM de Alta Conversão — Pro + Site otimizado para campanhas de alta conversão'],
 ];
 $MULTA_PCT = 50; // % da multa rescisória sobre as mensalidades vincendas (proporcional aos meses restantes)
 
