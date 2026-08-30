@@ -1,0 +1,143 @@
+/* ============================================================
+   VAGA — Closer de Vendas (PJ) — self-contained, extends root tokens
+   ============================================================ */
+
+body { background: var(--black); }
+
+.vg-bg { position: fixed; inset: 0; z-index: -2; pointer-events: none; }
+.vg-bg::before {
+  content: ""; position: absolute; top: -20%; right: -10%; width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(30,217,238,.14), transparent 65%);
+  filter: blur(10px);
+}
+.vg-bg::after {
+  content: ""; position: absolute; bottom: -25%; left: -15%; width: 55vw; height: 55vw;
+  background: radial-gradient(circle, rgba(224,37,155,.12), transparent 65%);
+}
+
+.vg-shell { max-width: 640px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* ---- header ---- */
+.vg-header { display: flex; justify-content: center; padding: 26px 0 6px; }
+.vg-header img { height: 34px; }
+
+/* ---- hero ---- */
+.vg-hero { text-align: center; padding: 20px 0 30px; }
+.vg-kicker {
+  display: inline-flex; align-items: center; gap: 8px; font-size: .78rem; letter-spacing: .04em;
+  color: var(--muted); padding: 8px 15px; border: 1px solid var(--hair); border-radius: 100px; margin-bottom: 22px;
+}
+.vg-kicker::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--grad); flex-shrink: 0; }
+.vg-hero h1 {
+  font-family: var(--font-display); font-weight: 600; letter-spacing: -.02em; line-height: 1.06;
+  font-size: clamp(2rem, 7vw, 2.7rem); margin-bottom: 16px;
+}
+.vg-hero .hook {
+  font-family: var(--font-display); font-weight: 600; font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  margin-bottom: 14px;
+}
+.vg-hero p { color: var(--muted); font-size: 1rem; line-height: 1.6; max-width: 46ch; margin: 0 auto; }
+
+.vg-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 22px; }
+.vg-pill {
+  font-size: .78rem; color: var(--muted); border: 1px solid var(--hair); border-radius: 100px;
+  padding: 7px 13px; background: rgba(255,255,255,.02);
+}
+
+/* ---- form card ---- */
+.vg-card {
+  margin-top: 34px; border: 1px solid var(--hair); border-radius: 22px; background: rgba(255,255,255,.02);
+  padding: clamp(22px, 5vw, 36px); backdrop-filter: blur(6px);
+}
+
+.vg-section + .vg-section { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--hair-soft); }
+.vg-section__label {
+  font-family: var(--font-display); font-weight: 600; font-size: .78rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--faint); margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+}
+.vg-section__label::before { content: ""; width: 16px; height: 1px; background: var(--grad-soft); }
+
+.vg-field { margin-bottom: 18px; }
+.vg-field:last-child { margin-bottom: 0; }
+.vg-field label {
+  display: block; font-size: .85rem; font-weight: 600; color: var(--ink); margin-bottom: 8px; line-height: 1.4;
+}
+.vg-field label .opt { color: var(--faint); font-weight: 400; }
+
+.vg-field input[type=text], .vg-field input[type=email], .vg-field input[type=tel],
+.vg-field select, .vg-field textarea {
+  width: 100%; padding: 14px 15px; border-radius: 12px; border: 1px solid var(--hair);
+  background: rgba(255,255,255,.03); color: var(--ink); font-family: var(--font-body); font-size: .95rem;
+  transition: border-color .2s;
+}
+.vg-field input:focus, .vg-field select:focus, .vg-field textarea:focus {
+  outline: none; border-color: var(--cyan);
+}
+.vg-field input::placeholder, .vg-field textarea::placeholder { color: var(--faint); }
+.vg-field textarea { resize: vertical; min-height: 110px; line-height: 1.55; }
+.vg-field select {
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F5F7FA' stroke-width='1.4' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='.6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 15px center; padding-right: 38px;
+}
+.vg-hint { display: block; margin-top: 7px; font-size: .78rem; color: var(--faint); }
+
+/* honeypot — visually hidden, kept in flow for bots */
+.vg-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* radio / checkbox pill groups */
+.vg-choices { display: flex; flex-wrap: wrap; gap: 9px; }
+.vg-choice { position: relative; }
+.vg-choice input { position: absolute; opacity: 0; inset: 0; cursor: pointer; margin: 0; }
+.vg-choice span {
+  display: block; padding: 11px 16px; border: 1px solid var(--hair); border-radius: 100px;
+  font-size: .88rem; color: var(--muted); cursor: pointer; transition: border-color .2s, color .2s, background .2s;
+}
+.vg-choice input:checked + span {
+  border-color: var(--cyan); color: var(--ink); background: rgba(30,217,238,.08);
+}
+.vg-choice input:focus-visible + span { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+.vg-choices--block { flex-direction: column; }
+.vg-choices--block .vg-choice span { width: 100%; border-radius: 12px; }
+
+/* confirmation checkbox */
+.vg-check {
+  display: flex; align-items: flex-start; gap: 12px; font-size: .88rem; color: var(--muted);
+  line-height: 1.5; cursor: pointer; padding: 16px; border: 1px solid var(--hair); border-radius: 14px;
+  background: rgba(255,255,255,.02);
+}
+.vg-check input { width: 20px; height: 20px; margin-top: 1px; flex-shrink: 0; accent-color: var(--cyan); cursor: pointer; }
+.vg-check b { color: var(--ink); }
+
+/* submit */
+.vg-submit {
+  width: 100%; margin-top: 28px; padding: 17px 20px; border: none; border-radius: 100px;
+  font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: #04121a;
+  background: var(--grad); background-size: 160% 160%; cursor: pointer; transition: transform .2s, opacity .2s;
+}
+.vg-submit:hover { transform: translateY(-1px); }
+.vg-submit:disabled { opacity: .55; cursor: default; transform: none; }
+.vg-error {
+  display: none; margin-top: 16px; padding: 13px 15px; border-radius: 12px; font-size: .86rem;
+  color: var(--pink); background: rgba(242,63,176,.08); border: 1px solid rgba(242,63,176,.3);
+}
+.vg-error.show { display: block; }
+
+/* success state */
+.vg-success { text-align: center; padding: 20px 4px; }
+.vg-success__icon {
+  width: 56px; height: 56px; border-radius: 50%; background: var(--grad); margin: 0 auto 22px;
+  display: flex; align-items: center; justify-content: center;
+}
+.vg-success__icon svg { width: 26px; height: 26px; }
+.vg-success h2 { font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; margin-bottom: 12px; }
+.vg-success p { color: var(--muted); font-size: .95rem; line-height: 1.6; max-width: 42ch; margin: 0 auto; }
+
+.vg-footer { text-align: center; margin-top: 40px; color: var(--faint); font-size: .78rem; }
+.vg-footer a { color: var(--muted); }
+
+@media (min-width: 560px) {
+  .vg-choice.tel-half { flex: 1 1 auto; }
+}

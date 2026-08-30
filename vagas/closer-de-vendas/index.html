@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#050505" />
+
+  <title>Candidate-se: Closer de Vendas (PJ) | Itajaí/SC</title>
+  <meta name="description" content="Vaga de Closer de Vendas (PJ) em Itajaí/SC. Ganhe até R$ 9.000/mês. Candidate-se em menos de 3 minutos." />
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700,500,400&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css?v=12" />
+  <link rel="stylesheet" href="vaga.css?v=1" />
+</head>
+<body class="js">
+  <div class="vg-bg" aria-hidden="true"></div>
+
+  <div class="vg-shell">
+    <header class="vg-header">
+      <img src="/assets/vibra-logo-white.png" alt="Vibra Marketing" />
+    </header>
+
+    <section class="vg-hero">
+      <span class="vg-kicker">Vaga aberta &middot; Itajaí/SC</span>
+      <h1>Candidate-se:<br />Closer de Vendas</h1>
+      <p class="hook">Ganhe até R$ 9.000/mês</p>
+      <p>Preencha o formulário abaixo com atenção. Sua candidatura é analisada com base nas respostas — capriche.</p>
+      <div class="vg-pills">
+        <span class="vg-pill">Regime PJ</span>
+        <span class="vg-pill">Presencial</span>
+        <span class="vg-pill">Vendas / Closing</span>
+      </div>
+    </section>
+
+    <div class="vg-card">
+      <form id="vgForm" method="post" action="submit.php" novalidate>
+
+        <!-- honeypot -->
+        <div class="vg-hp" aria-hidden="true">
+          <label for="website">Não preencha este campo</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="vg-section">
+          <div class="vg-section__label">Seus dados</div>
+
+          <div class="vg-field">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome e sobrenome" required autocomplete="name" />
+          </div>
+
+          <div class="vg-field">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="seu@email.com" required autocomplete="email" />
+          </div>
+
+          <div class="vg-field">
+            <label for="telefone">Telefone / WhatsApp</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(47) 90000-0000" required autocomplete="tel" inputmode="tel" />
+          </div>
+
+          <div class="vg-field">
+            <label for="cidade">Cidade onde mora</label>
+            <input type="text" id="cidade" name="cidade" placeholder="Ex: Itajaí/SC" required autocomplete="address-level2" />
+          </div>
+        </div>
+
+        <div class="vg-section">
+          <div class="vg-section__label">Sua experiência</div>
+
+          <div class="vg-field">
+            <label for="ocupacao">Qual sua ocupação atual (ou mais recente)?</label>
+            <input type="text" id="ocupacao" name="ocupacao" placeholder="Cargo e empresa" required />
+          </div>
+
+          <div class="vg-field">
+            <label for="experiencia">Quantos anos de experiência você tem em vendas?</label>
+            <select id="experiencia" name="experiencia" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="Menos de 1 ano">Menos de 1 ano</option>
+              <option value="1 a 2 anos">1 a 2 anos</option>
+              <option value="3 a 5 anos">3 a 5 anos</option>
+              <option value="Mais de 5 anos">Mais de 5 anos</option>
+            </select>
+          </div>
+
+          <div class="vg-field">
+            <label>Você já trabalhou fechando vendas (closing), não só prospectando?</label>
+            <div class="vg-choices">
+              <label class="vg-choice"><input type="radio" name="closing" value="Sim" required /><span>Sim</span></label>
+              <label class="vg-choice"><input type="radio" name="closing" value="Não" /><span>Não</span></label>
+            </div>
+          </div>
+
+          <div class="vg-field">
+            <label for="crm">Já usou algum CRM? Se sim, qual? <span class="opt">(opcional)</span></label>
+            <input type="text" id="crm" name="crm" placeholder="Ex: RD Station, Pipedrive, planilha..." />
+          </div>
+
+          <div class="vg-field">
+            <label for="ticket">Qual foi o maior ticket médio que você já trabalhou?</label>
+            <input type="text" id="ticket" name="ticket" placeholder="Ex: R$ 300 ou faixa de R$ 200 a R$ 500" required />
+          </div>
+        </div>
+
+        <div class="vg-section">
+          <div class="vg-section__label">Como você pensa</div>
+
+          <div class="vg-field">
+            <label for="situacional">Você está no meio de uma negociação e percebe que, para fechar a venda agora, precisaria pular uma etapa do processo/script da empresa. O que você faz?</label>
+            <textarea id="situacional" name="situacional" placeholder="Responda com pelo menos 3 linhas..." minlength="120" required></textarea>
+            <span class="vg-hint">Capriche: essa resposta é levada a sério na avaliação.</span>
+          </div>
+        </div>
+
+        <div class="vg-section">
+          <div class="vg-section__label">Disponibilidade</div>
+
+          <div class="vg-field">
+            <label>Em quais turnos você tem disponibilidade? <span class="opt">(marque um ou mais)</span></label>
+            <div class="vg-choices vg-choices--block">
+              <label class="vg-choice"><input type="checkbox" name="turno[]" value="09h às 15h" /><span>09h às 15h</span></label>
+              <label class="vg-choice"><input type="checkbox" name="turno[]" value="14h às 20h" /><span>14h às 20h</span></label>
+              <label class="vg-choice"><input type="checkbox" name="turno[]" value="15h às 21h" /><span>15h às 21h</span></label>
+            </div>
+          </div>
+
+          <div class="vg-field">
+            <label for="curriculo">Link do currículo ou LinkedIn <span class="opt">(opcional)</span></label>
+            <input type="text" id="curriculo" name="curriculo" placeholder="Cole aqui o link, se tiver" />
+          </div>
+        </div>
+
+        <div class="vg-section">
+          <label class="vg-check">
+            <input type="checkbox" id="ciente" name="ciente" required />
+            <span>Estou ciente de que a contratação é no regime <b>PJ (pessoa jurídica)</b> e que o trabalho é <b>presencial em Itajaí/SC</b>.</span>
+          </label>
+        </div>
+
+        <div class="vg-error" id="vgError">Verifique os campos destacados e tente novamente.</div>
+
+        <button type="submit" class="vg-submit" id="vgSubmit">Enviar candidatura</button>
+      </form>
+
+      <div class="vg-success" id="vgSuccess" style="display:none">
+        <div class="vg-success__icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 12.5l5 5L20 7" stroke="#04121a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2>Recebemos sua candidatura!</h2>
+        <p>Se seu perfil for selecionado, entraremos em contato pelo e-mail ou telefone informado.</p>
+      </div>
+    </div>
+
+    <div class="vg-footer">Vibra Marketing &middot; vibradados.com.br</div>
+  </div>
+
+  <script>
+    (function(){
+      var form = document.getElementById('vgForm');
+      var card = document.querySelector('.vg-card');
+      var errorBox = document.getElementById('vgError');
+      var submitBtn = document.getElementById('vgSubmit');
+      var successBox = document.getElementById('vgSuccess');
+
+      function turnosChecked(){
+        return form.querySelectorAll('input[name="turno[]"]:checked').length > 0;
+      }
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        errorBox.classList.remove('show');
+
+        if (!form.checkValidity() || !turnosChecked()) {
+          form.reportValidity();
+          if (!turnosChecked()) {
+            errorBox.textContent = 'Selecione ao menos um turno de disponibilidade.';
+            errorBox.classList.add('show');
+          }
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
+
+        var params = new URLSearchParams();
+        new FormData(form).forEach(function(value, key){ params.append(key, value); });
+
+        fetch('submit.php', {
+          method: 'POST',
+          body: params,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        })
+        .then(function(r){ return r.json().catch(function(){ return { ok:false }; }); })
+        .then(function(data){
+          if (data && data.ok) {
+            form.style.display = 'none';
+            successBox.style.display = 'block';
+            card.scrollIntoView({ behavior:'smooth', block:'start' });
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar candidatura';
+            errorBox.textContent = (data && data.error) || 'Não foi possível enviar agora. Tente novamente em instantes.';
+            errorBox.classList.add('show');
+          }
+        })
+        .catch(function(){
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar candidatura';
+          errorBox.textContent = 'Falha de conexão. Verifique sua internet e tente novamente.';
+          errorBox.classList.add('show');
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
