@@ -319,7 +319,7 @@ $V = function($k){ return htmlspecialchars($_POST[$k] ?? '', ENT_QUOTES, 'UTF-8'
 
   <footer class="ck-footer">
     <img src="/assets/vibra-logo-white.png" alt="Vibra Marketing" />
-    <span>© 2026 Vibra Marketing · CRM de Alta Conversão · Operado por ALIERE CURADORIA IMOBILIARIA LTDA</span>
+    <span>© 2026 Vibra Marketing · CRM de Alta Conversão · Operado por ALIERE CURADORIA IMOBILIARIA LTDA · <a href="/politica-de-privacidade" style="color:inherit">Política de Privacidade</a></span>
   </footer>
 
   <script>
