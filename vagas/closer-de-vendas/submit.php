@@ -7,7 +7,97 @@
 declare(strict_types=1);
 
 $LOG_FILE = '/home/vibradadoscombr/candidaturas-closer-vendas.csv';
+$SMTP_CONFIG_FILE = '/home/vibradadoscombr/smtp-config.php';
 $NOTIFY_TO = 'selecao@vibradados.com.br';
+
+/**
+ * Envia e-mail via SMTP autenticado (SSL). Sem dependências externas.
+ * Retorna ['ok' => bool, 'error' => string].
+ */
+function smtpSend(array $cfg, string $to, string $subject, string $body): array {
+  $ctx = stream_context_create(['ssl' => [
+    'verify_peer' => false, 'verify_peer_name' => false, 'allow_self_signed' => true,
+  ]]);
+  $fp = @stream_socket_client(
+    "ssl://{$cfg['host']}:{$cfg['port']}", $errno, $errstr, 15,
+    STREAM_CLIENT_CONNECT, $ctx
+  );
+  if (!$fp) {
+    return ['ok' => false, 'error' => "Conexão SMTP falhou: {$errstr} ({$errno})"];
+  }
+  stream_set_timeout($fp, 15);
+
+  $read = function () use ($fp): string {
+    $data = '';
+    while (($line = fgets($fp, 515)) !== false) {
+      $data .= $line;
+      if (isset($line[3]) && $line[3] === ' ') break;
+    }
+    return $data;
+  };
+  $write = function (string $cmd) use ($fp): void {
+    fwrite($fp, $cmd . "\r\n");
+  };
+  $expect = function (string $resp, string $code) {
+    return strpos($resp, $code) === 0 || strpos($resp, "\n{$code}") !== false;
+  };
+
+  $greeting = $read();
+  if (!$expect($greeting, '220')) { fclose($fp); return ['ok' => false, 'error' => 'Sem saudação SMTP.']; }
+
+  $write('EHLO vibradados.com.br');
+  $ehlo = $read();
+  if (!$expect($ehlo, '250')) { fclose($fp); return ['ok' => false, 'error' => 'EHLO falhou.']; }
+
+  $write('AUTH LOGIN');
+  $r1 = $read();
+  if (!$expect($r1, '334')) { fclose($fp); return ['ok' => false, 'error' => 'AUTH LOGIN não suportado.']; }
+
+  $write(base64_encode($cfg['user']));
+  $r2 = $read();
+  if (!$expect($r2, '334')) { fclose($fp); return ['ok' => false, 'error' => 'Usuário SMTP rejeitado.']; }
+
+  $write(base64_encode($cfg['pass']));
+  $r3 = $read();
+  if (!$expect($r3, '235')) { fclose($fp); return ['ok' => false, 'error' => 'Autenticação SMTP falhou.']; }
+
+  $write("MAIL FROM:<{$cfg['from']}>");
+  $r4 = $read();
+  if (!$expect($r4, '250')) { fclose($fp); return ['ok' => false, 'error' => 'MAIL FROM rejeitado.']; }
+
+  $write("RCPT TO:<{$to}>");
+  $r5 = $read();
+  if (!$expect($r5, '250') && !$expect($r5, '251')) { fclose($fp); return ['ok' => false, 'error' => 'RCPT TO rejeitado.']; }
+
+  $write('DATA');
+  $r6 = $read();
+  if (!$expect($r6, '354')) { fclose($fp); return ['ok' => false, 'error' => 'DATA não aceito.']; }
+
+  $fromHeader = isset($cfg['from_name']) && $cfg['from_name'] !== ''
+    ? '=?UTF-8?B?' . base64_encode($cfg['from_name']) . "?= <{$cfg['from']}>"
+    : $cfg['from'];
+
+  $subjectEnc = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+  $msg = "From: {$fromHeader}\r\n";
+  $msg .= "To: <{$to}>\r\n";
+  $msg .= "Subject: {$subjectEnc}\r\n";
+  if (!empty($cfg['reply_to'])) { $msg .= "Reply-To: {$cfg['reply_to']}\r\n"; }
+  $msg .= "MIME-Version: 1.0\r\n";
+  $msg .= "Content-Type: text/plain; charset=UTF-8\r\n";
+  $msg .= "\r\n";
+  $msg .= str_replace("\n.", "\n..", $body);
+  $msg .= "\r\n.";
+
+  $write($msg);
+  $r7 = $read();
+  $write('QUIT');
+  fclose($fp);
+
+  if (!$expect($r7, '250')) {
+    return ['ok' => false, 'error' => 'Servidor não confirmou o envio.'];
+  }
+  return ['ok' => true, 'error' => ''];
+}
 
 function wantsJson(): bool {
   return isset($_SERVER['HTTP_ACCEPT']) && strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false;
@@ -109,8 +199,8 @@ if ($fh) {
   fclose($fh);
 }
 
-// ---- notifica por e-mail ----
-$assunto = '=?UTF-8?B?' . base64_encode('Nova candidatura - Closer de Vendas (PJ): ' . $nome) . '?=';
+// ---- notifica por e-mail (SMTP autenticado) ----
+$assunto = 'Nova candidatura - Closer de Vendas (PJ): ' . $nome;
 
 $corpo = "Nova candidatura recebida para Closer de Vendas (PJ) — Itajaí/SC\n";
 $corpo .= "Data: {$dataHora}\n\n";
@@ -128,11 +218,10 @@ $corpo .= "Turnos disponíveis: {$turnos}\n";
 $corpo .= "Currículo/LinkedIn: " . ($curriculo !== '' ? $curriculo : '(não informado)') . "\n";
 $corpo .= "Ciente do regime PJ/presencial: Sim\n";
 
-$headers = "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
-$headers .= "From: Vagas Vibra Marketing <no-reply@vibradados.com.br>\r\n";
-$headers .= "Reply-To: {$nome} <{$email}>\r\n";
-
-@mail($NOTIFY_TO, $assunto, $corpo, $headers);
+if (is_readable($SMTP_CONFIG_FILE)) {
+  $smtpCfg = require $SMTP_CONFIG_FILE;
+  $smtpCfg['reply_to'] = "{$nome} <{$email}>";
+  smtpSend($smtpCfg, $NOTIFY_TO, $assunto, $corpo);
+}
 
 respond(true);
