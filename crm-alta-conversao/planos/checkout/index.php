@@ -12,7 +12,7 @@ date_default_timezone_set('America/Sao_Paulo');
 $PLANOS = [
   'avancado' => ['nome'=>'Avançado','valor'=>150.00,'usuarios'=>'Até 3 usuários',
                  'desc'=>'CRM de Alta Conversão — Plano Avançado (até 3 usuários)'],
-  'pro'      => ['nome'=>'Pro','valor'=>250.00,'usuarios'=>'Usuários ilimitados',
+  'pro'      => ['nome'=>'Pro','valor'=>299.00,'usuarios'=>'Usuários ilimitados',
                  'desc'=>'CRM de Alta Conversão — Plano Pro (usuários ilimitados)'],
   'prosite'  => ['nome'=>'Pro + Site','valor'=>459.00,'usuarios'=>'Usuários ilimitados',
                  'desc'=>'CRM de Alta Conversão — Pro + Site otimizado para campanhas de alta conversão'],
