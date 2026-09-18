@@ -50,5 +50,48 @@ if (!empty($cfg['notifyEmail']) && (in_array($event, $paidEvents, true) || in_ar
   @mail($cfg['notifyEmail'], $assunto, $corpo, 'From: no-reply@vibradados.com.br');
 }
 
+/* Implementação (pagamento único): quando a 1ª mensalidade é confirmada, gera a cobrança avulsa da
+   implementação no mesmo cliente. O valor vem do externalReference da assinatura ("crm-<plano>-i<valor>").
+   Idempotente por assinatura (impl-cobradas.log). Se falhar, avisa a equipe para cobrar manualmente. */
+if (in_array($event, $paidEvents, true) && !empty($pay['subscription']) && !empty($pay['customer']) && !empty($cfg['apiKey'])) {
+  $apiBase = $cfg['apiBase'] ?? 'https://api.asaas.com/v3';
+  $call = function ($method, $path, $body) use ($apiBase, $cfg) {
+    $ch = curl_init($apiBase . $path);
+    curl_setopt_array($ch, [
+      CURLOPT_RETURNTRANSFER => true, CURLOPT_CUSTOMREQUEST => $method, CURLOPT_TIMEOUT => 30,
+      CURLOPT_USERAGENT => 'VibraCRM/1.0 (vibradados.com.br)',
+      CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'User-Agent: VibraCRM/1.0', 'access_token: ' . $cfg['apiKey']],
+    ]);
+    if ($body !== null) curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($body));
+    $resp = curl_exec($ch); $http = curl_getinfo($ch, CURLINFO_HTTP_CODE); curl_close($ch);
+    return ['http' => $http, 'data' => json_decode($resp, true)];
+  };
+  $ext = $pay['externalReference'] ?? '';
+  if (!preg_match('/^crm-[a-z]+-i(\d+)$/', $ext)) {
+    $sub = $call('GET', '/subscriptions/' . rawurlencode($pay['subscription']), null);
+    $ext = $sub['data']['externalReference'] ?? '';
+  }
+  if (preg_match('/^crm-[a-z]+-i(\d+)$/', $ext, $m) && in_array((int)$m[1], [600, 1200], true)) {
+    $flag = dirname($_SERVER['DOCUMENT_ROOT']) . '/impl-cobradas.log';
+    $ja = is_file($flag) && strpos(file_get_contents($flag), '|' . $pay['subscription'] . '|') !== false;
+    if (!$ja) {
+      @file_put_contents($flag, '|' . $pay['subscription'] . '|' . date('c') . "\n", FILE_APPEND | LOCK_EX);
+      $r = $call('POST', '/payments', [
+        'customer' => $pay['customer'], 'billingType' => 'UNDEFINED', 'value' => (int)$m[1],
+        'dueDate' => date('Y-m-d', strtotime('+3 days')),
+        'description' => 'Implementação do CRM de Alta Conversão (pagamento único)',
+        'externalReference' => 'impl-' . $pay['subscription'],
+      ]);
+      $ok = $r['http'] >= 200 && $r['http'] < 300;
+      @file_put_contents($logFile, sprintf("[%s] IMPL | sub=%s | value=%s | http=%s | %s\n", date('Y-m-d H:i:s'), $pay['subscription'], $m[1], $r['http'], $ok ? ($r['data']['id'] ?? 'ok') : json_encode($r['data'])), FILE_APPEND | LOCK_EX);
+      if (!empty($cfg['notifyEmail'])) {
+        @mail($cfg['notifyEmail'], ($ok ? '[Implementação cobrada]' : '[ATENCAO] Falha ao cobrar implementação') . ' R$ ' . $m[1] . ' · ' . $pay['customer'],
+          "Assinatura: {$pay['subscription']}\nCliente: {$pay['customer']}\nValor: R$ {$m[1]}\n" . ($ok ? 'Link: ' . ($r['data']['invoiceUrl'] ?? '-') : 'Erro: ' . json_encode($r['data']) . "\nCriar a cobrança manualmente no Asaas."),
+          'From: no-reply@vibradados.com.br');
+      }
+    }
+  }
+}
+
 http_response_code(200);
 echo 'ok';

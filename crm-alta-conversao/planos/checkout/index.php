@@ -8,11 +8,13 @@
    ============================================================ */
 date_default_timezone_set('America/Sao_Paulo');
 
+/* Oferta relâmpago: vale até as 21h de 18/09/2026 (horário de Brasília). Decidida AQUI, no servidor. */
+$PROMO      = time() < strtotime('2026-09-18 21:00:00 America/Sao_Paulo');
+$IMPLANT    = $PROMO ? 600 : 1200;   // implementação: pagamento único, cobrado à parte (link Asaas)
+
 /* Planos (público) */
 $PLANOS = [
-  'avancado' => ['nome'=>'Avançado','valor'=>150.00,'usuarios'=>'Até 3 usuários',
-                 'desc'=>'CRM de Alta Conversão — Plano Avançado (até 3 usuários)'],
-  'pro'      => ['nome'=>'Pro','valor'=>299.00,'usuarios'=>'Usuários ilimitados',
+  'pro'      => ['nome'=>'Pro','valor'=>($PROMO ? 199.00 : 299.00),'usuarios'=>'Usuários ilimitados',
                  'desc'=>'CRM de Alta Conversão — Plano Pro (usuários ilimitados)'],
   'prosite'  => ['nome'=>'Pro + Site','valor'=>459.00,'usuarios'=>'Usuários ilimitados',
                  'desc'=>'CRM de Alta Conversão — Pro + Site otimizado para campanhas de alta conversão'],
@@ -87,8 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $apiKey = $cfg['apiKey'];
     // registro de aceite do contrato (acima do public_html)
     @file_put_contents(dirname($_SERVER['DOCUMENT_ROOT']).'/contratos-aceites.log',
-      sprintf("[%s] %s | doc=%s | %s | %s | %s/%s | IP=%s | plano=%s | mensal=%.2f | anual=%.2f | multa=%d%% | aceite=SIM\n",
-        date('Y-m-d H:i:s'),$nome,$doc,$email,$fone,$cidade,$uf,($_SERVER['REMOTE_ADDR']??'?'),$plano['nome'],$plano['valor'],$anual,$MULTA_PCT),
+      sprintf("[%s] %s | doc=%s | %s | %s | %s/%s | IP=%s | plano=%s | mensal=%.2f | anual=%.2f | implantacao=%d | multa=%d%% | aceite=SIM\n",
+        date('Y-m-d H:i:s'),$nome,$doc,$email,$fone,$cidade,$uf,($_SERVER['REMOTE_ADDR']??'?'),$plano['nome'],$plano['valor'],$anual,$IMPLANT,$MULTA_PCT),
       FILE_APPEND|LOCK_EX);
 
     // Asaas Checkout — SOMENTE cartao de credito (sem debito) + assinatura recorrente mensal.
@@ -98,9 +100,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       'billingTypes'    => ['CREDIT_CARD'],
       'chargeTypes'     => ['RECURRENT'],
       'minutesToExpire' => 60,
-      'externalReference' => 'crm-'.$key,
+      'externalReference' => 'crm-'.$key.'-i'.$IMPLANT,
       'callback' => [
-        'successUrl' => $base.'/obrigado.php',
+        'successUrl' => $base.'/obrigado.php?i='.$IMPLANT,
         'cancelUrl'  => $base.'/?plano='.$key,
         'expiredUrl' => $host.'/crm-alta-conversao/planos/',
       ],
@@ -247,13 +249,14 @@ $V = function($k){ return htmlspecialchars($_POST[$k] ?? '', ENT_QUOTES, 'UTF-8'
         <span class="plan-tag"><?= $e($plano['usuarios']) ?></span>
         <div class="ck-price"><span class="cur">R$</span><span class="val"><?= $brl0($plano['valor']) ?></span><span class="per">/mês</span></div>
         <p class="ck-cycle">Cobrança mensal no cartão · <b>contrato de 12 meses</b><br>Total no período: <b>R$ <?= $brl2($anual) ?></b></p>
+        <p class="ck-cycle" style="margin-top:10px">Implementação (pagamento único): <b>R$ <?= $brl2($IMPLANT) ?></b><?php if ($PROMO): ?> <s>R$ 1.200,00</s><?php endif; ?><br>Cobrada à parte: você recebe o link do Asaas por e-mail após a 1ª mensalidade.</p>
         <ul>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>CRM completo: funil, WhatsApp e automações</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Meta CAPI + Google Ads via API + GA4 (server-side)</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Conversão por etapa do funil enviada a Meta e Google</li>
           <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>Configuração e operação completas pela Vibra</li>
         </ul>
-        <p class="switch">Plano errado? <a href="/crm-alta-conversao/planos/">Ver os dois planos</a></p>
+        <p class="switch">Plano errado? <a href="/crm-alta-conversao/planos/">Ver os planos</a></p>
       </aside>
     </div>
   </main>
@@ -285,6 +288,8 @@ $V = function($k){ return htmlspecialchars($_POST[$k] ?? '', ENT_QUOTES, 'UTF-8'
         <p>2.1. Pela assinatura, a CONTRATANTE pagará a mensalidade de <b>R$ <span id="ct-mensal"></span></b>, cobrada mensalmente por cartão de crédito, por meio do processador de pagamentos Asaas.</p>
         <p>2.2. O presente contrato tem <b>vigência de 12 (doze) meses</b>, com cobrança mensal, totalizando o valor global de <b>R$ <span id="ct-anual"></span></b> no período.</p>
         <p>2.3. A primeira cobrança ocorre no ato da contratação e as demais nas datas mensais subsequentes, renovando-se a assinatura automaticamente ao término da vigência, salvo manifestação em contrário de qualquer das partes.</p>
+
+        <p>2.4. Além da mensalidade, a CONTRATANTE pagará uma <b>taxa de implementação de pagamento único no valor de R$ <span id="ct-impl"></span></b>, referente à configuração inicial da Plataforma e do rastreamento, cobrada à parte por link de pagamento do Asaas enviado ao e-mail informado, após a confirmação da primeira mensalidade. A taxa de implementação não integra a base de cálculo da multa da Cláusula 3.</p>
 
         <h2 class="ct-h2">Cláusula 3 — Rescisão e multa proporcional</h2>
         <p>3.1. Considerando que o valor é apurado com base no período anual de 12 (doze) meses, em caso de <b>rescisão antecipada e imotivada pela CONTRATANTE</b> antes do término da vigência, será devida <b>multa rescisória equivalente a <span id="ct-multapct"></span>% do valor das mensalidades vincendas</b>, isto é, proporcional aos meses faltantes para o encerramento do contrato.</p>
@@ -324,7 +329,7 @@ $V = function($k){ return htmlspecialchars($_POST[$k] ?? '', ENT_QUOTES, 'UTF-8'
 
   <script>
     (function(){
-      var PLANO = <?= json_encode(['nome'=>$plano['nome'],'usuarios'=>$plano['usuarios'],'mensal'=>$plano['valor'],'anual'=>$anual]) ?>;
+      var PLANO = <?= json_encode(['nome'=>$plano['nome'],'usuarios'=>$plano['usuarios'],'mensal'=>$plano['valor'],'anual'=>$anual,'impl'=>$IMPLANT]) ?>;
       var MULTA = <?= (int)$MULTA_PCT ?>;
       var $ = function(s){ return document.querySelector(s); };
       var money = function(v){ return v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}); };
@@ -386,7 +391,7 @@ $V = function($k){ return htmlspecialchars($_POST[$k] ?? '', ENT_QUOTES, 'UTF-8'
         set('#ct-data',hoje); set('#ct-data2',hoje);
         set('#ct-nome',$('#nome').value||'—'); set('#ct-doc',fmtDoc($('#cpfCnpj').value)||'—');
         set('#ct-endereco',endereco()); set('#ct-email',$('#email').value||'—'); set('#ct-fone',$('#celular').value||'—');
-        set('#ct-mensal',money(PLANO.mensal)); set('#ct-mensal2',money(PLANO.mensal)); set('#ct-anual',money(PLANO.anual));
+        set('#ct-mensal',money(PLANO.mensal)); set('#ct-mensal2',money(PLANO.mensal)); set('#ct-anual',money(PLANO.anual)); set('#ct-impl',money(PLANO.impl));
         set('#ct-multapct',MULTA); set('#ct-multapct2',MULTA);
         set('#ct-multaex',money(MULTA/100*PLANO.mensal*8));
         var loc=[$('#cidade').value,$('#uf').value].filter(Boolean).join('/')||'—';

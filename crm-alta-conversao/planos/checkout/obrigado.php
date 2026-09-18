@@ -1,4 +1,4 @@
-<?php header('X-Robots-Tag: noindex'); ?>
+<?php header('X-Robots-Tag: noindex'); $impl = (int)($_GET['i'] ?? 0); if (!in_array($impl,[600,1200],true)) $impl = 0; ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -34,6 +34,11 @@
       para iniciar o onboarding e configurar o seu CRM e todo o rastreamento (Meta CAPI, Google Ads e GA4) — você não
       precisa fazer nada técnico.
     </p>
+    <?php if ($impl): ?>
+    <p style="margin-top:16px">
+      Você também vai receber, por e-mail, o link do Asaas para pagar a <b>implementação (R$ <?= number_format($impl,2,',','.') ?>, pagamento único)</b>.
+    </p>
+    <?php endif; ?>
     <a href="https://wa.me/5547984483590?text=Ol%C3%A1!%20Acabei%20de%20assinar%20o%20CRM%20de%20Alta%20Convers%C3%A3o%20e%20quero%20iniciar%20o%20onboarding." target="_blank" rel="noopener noreferrer" class="btn btn--primary" style="margin-top:30px" data-magnetic>
       <span>Falar com a Vibra no WhatsApp</span>
     </a>

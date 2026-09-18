@@ -36,16 +36,16 @@
 
 /* ---------- GRID DE PLANOS ---------- */
 .pl-plans {
-  position: relative; z-index: 2; max-width: 1320px; margin: 0 auto;
+  position: relative; z-index: 2; max-width: 1180px; margin: 0 auto;
   padding: clamp(24px, 4vw, 48px) var(--gutter) clamp(40px, 6vw, 80px);
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start;
 }
 .plan {
   position: relative; border: 1px solid var(--hair-soft); border-radius: 22px;
   padding: 30px 26px; background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.008));
   display: flex; flex-direction: column; min-width: 0;
 }
-.plan__price--consult .val { font-size: 1.9rem; letter-spacing: -.01em; }
+.plan__price.plan__price--consult .val { font-size: 2rem; letter-spacing: -.01em; }
 .plan--pop {
   border-color: transparent; background:
     linear-gradient(var(--graphite), var(--graphite)) padding-box,
@@ -148,16 +148,17 @@
 
 /* ---------- RESPONSIVO ---------- */
 /* Alinha preços, boxes e botões entre os cards (mesma altura por linha) */
-@media (min-width: 861px) {
+@media (min-width: 1051px) {
   .pl-plans { align-items: stretch; }
   .plan__name  { min-height: 78px; }
   .plan__desc  { min-height: 94px; }
   .plan__price { min-height: 104px; }
   .plan__cycle { min-height: 62px; }
   .plan__seats { min-height: 148px; }
+  .plan__impl  { min-height: 112px; }
 }
-@media (max-width: 1150px) {
-  .pl-plans { grid-template-columns: repeat(2, 1fr); max-width: 760px; }
+@media (max-width: 1050px) {
+  .pl-plans { grid-template-columns: 1fr; max-width: 460px; gap: 34px; }
 }
 @media (max-width: 860px) {
   body { overflow-x: hidden; }
@@ -167,3 +168,40 @@
   .pl-step p, .plan__feats li { overflow-wrap: break-word; }
   .pl-billing { flex-wrap: wrap; justify-content: center; max-width: 100%; text-align: center; line-height: 1.6; }
 }
+
+
+/* ---------- OFERTA (promo até as 21h) ---------- */
+.only-promo { display: none; }
+body.promo-on .only-promo { display: revert; }
+body.promo-on .only-regular { display: none; }
+body.promo-on span.only-promo, body.promo-on b.only-promo { display: inline; }
+
+.hot { color: #48d597; }
+.plan__price { position: relative; }
+.plan__was { position: absolute; top: -20px; left: 0; font-size: .86rem; color: var(--muted); }
+.plan__was s { color: var(--pink); text-decoration-thickness: 2px; }
+
+.plan__impl {
+  margin-top: 16px; padding: 14px 16px; border-radius: 14px;
+  border: 1px dashed var(--hair); background: rgba(255,255,255,.02);
+}
+.plan__impl-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.plan__impl-row .lbl { font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); font-weight: 600; margin-right: auto; }
+.plan__impl-row b { font-family: var(--font-display); font-size: 1.3rem; color: var(--ink); }
+.plan__impl-row b.hot { color: #48d597; }
+.plan__impl-row s { color: var(--pink); font-size: .9rem; }
+.plan__impl p { margin-top: 6px; font-size: .78rem; line-height: 1.5; color: var(--faint); }
+.plan__impl p b { color: var(--ink); font-variant-numeric: tabular-nums; }
+.plan__impl + .plan__cta { margin-top: 16px; }
+
+.pl-flash {
+  position: relative; z-index: 2; max-width: 940px; margin: 8px auto 0; padding: 14px 20px;
+  border-radius: 16px; border: 1px solid rgba(72,213,151,.35); background: rgba(72,213,151,.07);
+  flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 18px; text-align: center;
+}
+body.promo-on .pl-flash { display: flex; }
+.pl-flash__tag { font-family: var(--font-display); font-weight: 700; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: #04121a; background: #48d597; padding: 5px 12px; border-radius: 100px; }
+.pl-flash__txt { font-size: .95rem; color: var(--ink); }
+.pl-flash__clock { font-size: .9rem; color: var(--muted); }
+.pl-flash__clock b { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .pl-flash { margin: 8px 16px 0; } }

@@ -6,8 +6,9 @@
 
 declare(strict_types=1);
 
-$LOG_FILE = '/home/vibradadoscombr/candidaturas-closer-vendas.csv';
-$SMTP_CONFIG_FILE = '/home/vibradadoscombr/smtp-config.php';
+$BASE_DIR = dirname($_SERVER['DOCUMENT_ROOT']); // acima do public_html/public
+$LOG_FILE = $BASE_DIR . '/candidaturas-closer-vendas.csv';
+$SMTP_CONFIG_FILE = $BASE_DIR . '/smtp-config.php';
 $NOTIFY_TO = 'selecao@vibradados.com.br';
 
 /**
